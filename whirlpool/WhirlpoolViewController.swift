@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class WhirlpoolViewController: UIViewController {
+class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let TIMER_INIT_STR = "00:00.0"
 
@@ -34,13 +34,16 @@ class WhirlpoolViewController: UIViewController {
         case SAVE = "保存"
     }
     
+    var recordStore = WhirlpoolRecordStore()
+    var current_record :WhirlpoolRecord?
+    
     var current_state = TIMER_STATE.INIT
     var current_date :Date? = nil
     var pause_time :Date? = nil
+    var split_time: Date? = nil
     var time_list: [TimeInterval?] = []
     var current_timer: Timer? = nil
     var split_count = 0
-    
     
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var splitBtn: UIButton!
@@ -48,11 +51,14 @@ class WhirlpoolViewController: UIViewController {
     
     @IBOutlet var timeLabel: UILabel!
     
+    @IBOutlet weak var recordsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.reset()
-        
+        self.recordsTableView.dataSource = self
+        self.recordsTableView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -85,15 +91,22 @@ class WhirlpoolViewController: UIViewController {
         
     }
     
-    func showLabel() {
+    func refresh() {
         switch self.current_state {
         case TIMER_STATE.PAUSING:
             let pause_interval = self.pause_time?.timeIntervalSince(self.current_date ?? Date.init())
             self.timeLabel.text = self.format2ReadableTime(time: pause_interval ?? 0)
+            
+            self.current_record?.time = self.pause_time?.timeIntervalSince(self.split_time ?? Date.init())
+            self.current_record?.time_far = pause_interval
         default:
-            self.timeLabel.text = self.format2ReadableTime(time: self.current_date?.timeIntervalSinceNow ?? 0)
+            let time_far = self.current_date?.timeIntervalSinceNow ?? 0
+            self.timeLabel.text = self.format2ReadableTime(time: time_far)
+            
+            self.current_record?.time = self.split_time?.timeIntervalSince(Date.init()) ?? 0
+            self.current_record?.time_far = time_far
+            self.recordsTableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableView.RowAnimation.none)
         }
-        
     }
     
     func start() {
@@ -103,11 +116,14 @@ class WhirlpoolViewController: UIViewController {
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
         self.splitBtn.isEnabled = true
         
+        self.current_record = WhirlpoolRecord(num: 1, time: 0, time_far: 0)
+        self.recordsTableView.reloadData()
+        
         self.current_timer = Timer.scheduledTimer(
                 withTimeInterval: 0.1,
                 repeats: true,
                 block: { (timer) in
-                    self.showLabel()
+                    self.refresh()
                 }
             )
     }
@@ -115,6 +131,7 @@ class WhirlpoolViewController: UIViewController {
     func go_on() {
         let c_date = Date.init()
         self.current_date = Date.init(timeInterval: c_date.timeIntervalSince(self.pause_time ?? c_date), since: self.current_date ?? c_date)
+        self.split_time = Date.init(timeInterval: c_date.timeIntervalSince(self.pause_time ?? c_date), since: self.split_time ?? c_date)
         
         self.current_state = TIMER_STATE.TIMING
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
@@ -140,11 +157,26 @@ class WhirlpoolViewController: UIViewController {
         self.saveBtn.isHidden = true
         self.current_timer?.invalidate()
         self.current_date = nil
+        
+        self.split_count = 0
+        self.current_record = nil
+        self.recordStore.clear()
+        self.recordsTableView.reloadData()
     }
     
     func split() {
         self.split_count += 1
-        self.timeLabel.text = "split " + self.split_count.description
+        let pre_split_time = self.split_time ?? (self.current_date ?? Date.init())
+        self.split_time = Date.init()
+        self.recordStore.append(record:
+            WhirlpoolRecord(
+                num: self.split_count,
+                time: self.split_time?.timeIntervalSince(pre_split_time) ?? 0.0,
+                time_far: self.split_time?.timeIntervalSince(self.current_date ?? Date.init()) ?? 0.0
+            )
+        )
+        self.current_record?.num = self.split_count + 1 //self.recordStore.count()
+        self.recordsTableView.reloadData()
     }
     
     func do_nothing() {
@@ -152,6 +184,9 @@ class WhirlpoolViewController: UIViewController {
     }
     
     func format2ReadableTime(time: TimeInterval) -> String {
+        if time == 0 {
+            return TIMER_INIT_STR
+        }
         let timed = fabs(Double(time))
         let day = Int(floor(timed / SECONDS_LIMIT.DAY.rawValue))
         let hours = Int(floor(timed / SECONDS_LIMIT.HOUR.rawValue))
@@ -165,6 +200,36 @@ class WhirlpoolViewController: UIViewController {
             return String(format: "%02d:%04.1f", minutes, seconds)
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // let cell = UITableViewCell(style: .value1, reuseIdentifier: "UITableViewCell")
+        let cell = self.recordsTableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
+        var record :WhirlpoolRecord?
+        if indexPath.row > 0 {
+            record = self.recordStore.get_record(index: self.recordStore.count() - indexPath.row)
+            cell?.textLabel?.textColor = .gray
+            cell?.detailTextLabel?.textColor = .lightGray
+        } else {
+            record = self.current_record
+            cell?.textLabel?.textColor = .red
+            cell?.detailTextLabel?.textColor = .darkGray
+        }
+        // cell.textLabel?.font = UIFont(name: "Helvetica Neue Thin", size: UIFont.labelFontSize)
+        cell?.textLabel?.text = (record?.num.description ?? "")
+        
+        // cell.detailTextLabel?.font = UIFont(name: "Helvetica Neue Thin", size: UIFont.labelFontSize)
+        // cell.detailTextLabel?.textAlignment = NSTextAlignment.left
+        cell?.detailTextLabel?.text = self.format2ReadableTime(time: record?.time ?? 0) + "\t" + self.format2ReadableTime(time: record?.time_far ?? 0)
+        return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.current_record == nil {
+            return 0
+        } else {
+            return self.recordStore.count() + 1
+        }
+    }
+    
 }
 
