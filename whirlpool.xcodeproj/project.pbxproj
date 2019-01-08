@@ -14,7 +14,6 @@
 		BF508E3721DDF76E0010E1BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF508E3521DDF76E0010E1BD /* LaunchScreen.storyboard */; };
 		BF508E4221DDF76E0010E1BD /* whirlpoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508E4121DDF76E0010E1BD /* whirlpoolTests.swift */; };
 		BF508E4D21DDF76E0010E1BD /* whirlpoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508E4C21DDF76E0010E1BD /* whirlpoolUITests.swift */; };
-		BFF7B20521E360AF0079F187 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7B20421E360AF0079F187 /* DateHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		BF508E4821DDF76E0010E1BD /* whirlpoolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = whirlpoolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF508E4C21DDF76E0010E1BD /* whirlpoolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whirlpoolUITests.swift; sourceTree = "<group>"; };
 		BF508E4E21DDF76E0010E1BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFF7B20421E360AF0079F187 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +103,6 @@
 				BF508E3321DDF76E0010E1BD /* Assets.xcassets */,
 				BF508E3521DDF76E0010E1BD /* LaunchScreen.storyboard */,
 				BF508E3821DDF76E0010E1BD /* Info.plist */,
-				BFF7B20421E360AF0079F187 /* DateHelper.swift */,
 			);
 			path = whirlpool;
 			sourceTree = "<group>";
@@ -259,7 +256,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF7B20521E360AF0079F187 /* DateHelper.swift in Sources */,
 				BF508E2D21DDF76D0010E1BD /* WhirlpoolViewController.swift in Sources */,
 				BF508E2921DDF76D0010E1BD /* AppDelegate.swift in Sources */,
 			);
