@@ -88,6 +88,35 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func saveBtnTouched(_ sender: Any) {
+        var records = self.recordStore.records
+        if self.current_record != nil {
+            records.append(self.current_record!)
+        }
+        var out_str = ""
+        for r in records {
+            out_str += r.description + "\n"
+        }
+        print(out_str)
+        
+        let modal = UIAlertController(title: "导出名称", message: "", preferredStyle: .alert)
+        modal.addTextField(configurationHandler:{ (textField: UITextField) in
+            textField.placeholder = "请输入导出的名称"
+        })
+        modal.addAction( UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        modal.addAction( UIAlertAction(title: "导出", style: .default, handler: { (_) in
+            let tf = modal.textFields![0]
+            let title = tf.text ?? "A record"
+            let items = [title, out_str, "http://www.vii.red"]
+            
+            let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            avc.completionWithItemsHandler = {act, success, items, error in print(error ?? "ok") }
+            self.present(avc, animated: true)
+        }))
+        self.present(modal, animated: true, completion: { () in
+            print("done")
+        })
+        
+        
         
     }
     
@@ -137,6 +166,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
         self.saveBtn.isHidden = true
+        self.recordsTableView.reloadData()
     }
 
     func pause() {
@@ -145,6 +175,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.startBtn.setTitle(BTN_TEXT.GO_ON.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.RESET.rawValue, for: .normal)
         self.saveBtn.isHidden = false
+        self.recordsTableView.reloadData()
     }
     
     func reset() {
@@ -160,7 +191,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.split_count = 0
         self.current_record = nil
-        self.recordStore.clear()
+        self.recordStore = WhirlpoolRecordStore()
         self.recordsTableView.reloadData()
     }
     
@@ -202,25 +233,27 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // let cell = UITableViewCell(style: .value1, reuseIdentifier: "UITableViewCell")
-        let cell = self.recordsTableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
-        var record :WhirlpoolRecord?
+        let cell = self.recordsTableView.dequeueReusableCell(withIdentifier: "WhirlpoolRecordTableViewCell") as! WhirlpoolRecordTableViewCell
+        var record :WhirlpoolRecord!
         if indexPath.row > 0 {
             record = self.recordStore.get_record(index: self.recordStore.count() - indexPath.row)
-            cell?.textLabel?.textColor = .gray
-            cell?.detailTextLabel?.textColor = .lightGray
+            cell.titleLabel.textColor = .gray
+            cell.time1Label.textColor = .lightGray
+            cell.time2Label.textColor = .lightGray
         } else {
             record = self.current_record
-            cell?.textLabel?.textColor = .red
-            cell?.detailTextLabel?.textColor = .darkGray
+            cell.titleLabel.textColor = .red
+            cell.time1Label.textColor = .darkGray
+            cell.time2Label.textColor = .darkGray
         }
-        // cell.textLabel?.font = UIFont(name: "Helvetica Neue Thin", size: UIFont.labelFontSize)
-        cell?.textLabel?.text = (record?.num.description ?? "")
-        
-        // cell.detailTextLabel?.font = UIFont(name: "Helvetica Neue Thin", size: UIFont.labelFontSize)
-        // cell.detailTextLabel?.textAlignment = NSTextAlignment.left
-        cell?.detailTextLabel?.text = self.format2ReadableTime(time: record?.time ?? 0) + "\t" + self.format2ReadableTime(time: record?.time_far ?? 0)
-        return cell ?? UITableViewCell()
+        cell.setRecord(record: record)
+        //cell.updateData(num: record?.num ?? 0, t1: self.format2ReadableTime(time: record?.time ?? 0) , t2: self.format2ReadableTime(time: record?.time_far ?? 0))
+        if self.current_state == TIMER_STATE.TIMING {
+            cell.disableDescTextField()
+        } else {
+            cell.enableDescTextField()
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

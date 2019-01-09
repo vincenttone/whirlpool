@@ -36,6 +36,6 @@ class WhirlpoolRecordStore {
     }
     
     func clear() {
-        records.removeAll()
+        records = []
     }
 }
