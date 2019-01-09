@@ -32,5 +32,4 @@ class WhirlpoolRecordDescTextField: UITextField {
         return self.editable
     }
 
-
 }

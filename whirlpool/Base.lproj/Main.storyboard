@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n1S-o0-2bc">
-                                <rect key="frame" x="0.0" y="176" width="375" height="337"/>
+                                <rect key="frame" x="0.0" y="192" width="375" height="305"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WhirlpoolRecordTableViewCell" id="f7D-SJ-yDH" customClass="WhirlpoolRecordTableViewCell" customModule="whirlpool" customModuleProvider="target">
@@ -61,6 +61,7 @@
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="descTextFieldEditing:" destination="f7D-SJ-yDH" eventType="editingChanged" id="1Zd-W2-bdr"/>
+                                                        <action selector="didEndEditing:" destination="f7D-SJ-yDH" eventType="editingDidEndOnExit" id="Ku2-dM-da7"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="time1Label" text="00:00.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mN1-jO-awY">
@@ -99,6 +100,7 @@
                                                 <constraint firstItem="SeV-Xv-squ" firstAttribute="bottom" secondItem="FEi-yf-5v8" secondAttribute="bottomMargin" id="mn8-XL-eNt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="descTextField" destination="W50-L4-QOf" id="PcM-oy-flR"/>
                                             <outlet property="time1Label" destination="mN1-jO-awY" id="3iK-GV-OLV"/>
@@ -132,7 +134,8 @@
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" id="0P8-PU-n0i"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="bottom" secondItem="yFp-vr-VTv" secondAttribute="bottom" constant="48" id="DcO-p8-rvl"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ggr-rJ-sSK" secondAttribute="trailing" id="GtP-Gg-YkA"/>
-                            <constraint firstItem="n1S-o0-2bc" firstAttribute="top" secondItem="ggr-rJ-sSK" secondAttribute="bottom" constant="16" id="IUA-PP-Iyo"/>
+                            <constraint firstItem="yFp-vr-VTv" firstAttribute="top" secondItem="n1S-o0-2bc" secondAttribute="bottom" constant="32" id="IT8-Be-kcv"/>
+                            <constraint firstItem="n1S-o0-2bc" firstAttribute="top" secondItem="ggr-rJ-sSK" secondAttribute="bottom" constant="32" id="P7C-Pb-x8R"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="leading" secondItem="Lc6-B8-YaY" secondAttribute="leading" id="PwZ-sv-ybG"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" secondItem="nfk-1r-1XQ" secondAttribute="trailing" constant="68" id="Scd-8P-MfZ"/>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" constant="64" id="Ux1-hG-udT"/>
@@ -142,7 +145,6 @@
                             <constraint firstItem="yFp-vr-VTv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" symbolic="YES" id="e5s-Uo-Qju"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="centerX" secondItem="7PV-XT-sdA" secondAttribute="centerX" id="hMc-m9-zIp"/>
                             <constraint firstItem="nfk-1r-1XQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7PV-XT-sdA" secondAttribute="trailing" constant="8" symbolic="YES" id="j73-EE-j99"/>
-                            <constraint firstItem="7PV-XT-sdA" firstAttribute="top" secondItem="n1S-o0-2bc" secondAttribute="bottom" constant="16" id="lFS-aB-B8V"/>
                             <constraint firstItem="7PV-XT-sdA" firstAttribute="centerX" secondItem="Lc6-B8-YaY" secondAttribute="centerX" id="mWh-lm-lAH"/>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="centerX" secondItem="Lc6-B8-YaY" secondAttribute="centerX" id="q2S-mC-IFj"/>
                             <constraint firstItem="7PV-XT-sdA" firstAttribute="leading" secondItem="yFp-vr-VTv" secondAttribute="trailing" constant="48" id="xkf-Cu-mWV"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -44,6 +45,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     var time_list: [TimeInterval?] = []
     var current_timer: Timer? = nil
     var split_count = 0
+    
+    var uuid: String? = nil
     
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var splitBtn: UIButton!
@@ -96,6 +99,52 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         for r in records {
             out_str += r.description + "\n"
         }
+        
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        
+        if self.uuid == nil {
+            self.uuid = NSUUID().uuidString
+            let b = NSEntityDescription.insertNewObject(forEntityName: "Batches", into: context) as! Batches
+            b.uuid = self.uuid
+            b.date = Date()
+            do {
+                try context.save()
+                print("saved ok!!!")
+            } catch {
+                print("save failed!")
+            }
+        } else { // remove old data
+        
+            let fetchRequest = NSFetchRequest<Records>(entityName: "Records")
+            // fetchRequest.fetchLimit = 300
+            // fetchRequest.fetchOffset = 0
+        
+            do {
+                let predicate = NSPredicate(format: "uuid=\"\(self.uuid!)\"", "")
+                fetchRequest.predicate = predicate
+                let fetchObjects = try context.fetch(fetchRequest)
+                if fetchObjects.count > 0 {
+                    for i in fetchObjects {
+                        context.delete(i)
+                    }
+                }
+            } catch {
+                print("fetch failed!!!")
+                
+            }
+        }
+        // save records
+        let rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as! Records
+        for r in records {
+            rtx.uuid = self.uuid
+            rtx.desc = r.desc
+            rtx.t1 = r.time
+            rtx.t2 = r.time_far ?? 0
+        }
+       
+        
+        /*
         print(out_str)
         
         let modal = UIAlertController(title: "导出名称", message: "", preferredStyle: .alert)
@@ -112,11 +161,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             avc.completionWithItemsHandler = {act, success, items, error in print(error ?? "ok") }
             self.present(avc, animated: true)
         }))
-        self.present(modal, animated: true, completion: { () in
-            print("done")
-        })
-        
-        
+        self.present(modal, animated: true)
+        */
         
     }
     

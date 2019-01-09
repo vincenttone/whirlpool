@@ -21,6 +21,9 @@ class WhirlpoolRecordTableViewCell : UITableViewCell {
     @IBAction func descTextFieldEditing(_ sender: Any) {
         self.record?.desc = self.descTextField.text ?? ""
     }
+    @IBAction func didEndEditing(_ sender: Any) {
+        self.descTextField.resignFirstResponder()
+    }
     
     func setRecord(record: WhirlpoolRecord) {
         self.record = record
