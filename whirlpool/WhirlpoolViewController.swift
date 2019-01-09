@@ -124,13 +124,13 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         switch self.current_state {
         case TIMER_STATE.PAUSING:
             let pause_interval = self.pause_time?.timeIntervalSince(self.current_date ?? Date.init())
-            self.timeLabel.text = self.format2ReadableTime(time: pause_interval ?? 0)
+            self.timeLabel.text = TimeHelper.format2ReadableTime(time: pause_interval ?? 0)
             
             self.current_record?.time = self.pause_time?.timeIntervalSince(self.split_time ?? Date.init())
             self.current_record?.time_far = pause_interval
         default:
             let time_far = self.current_date?.timeIntervalSinceNow ?? 0
-            self.timeLabel.text = self.format2ReadableTime(time: time_far)
+            self.timeLabel.text = TimeHelper.format2ReadableTime(time: time_far)
             
             self.current_record?.time = self.split_time?.timeIntervalSince(Date.init()) ?? 0
             self.current_record?.time_far = time_far
@@ -214,24 +214,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
-    func format2ReadableTime(time: TimeInterval) -> String {
-        if time == 0 {
-            return TIMER_INIT_STR
-        }
-        let timed = fabs(Double(time))
-        let day = Int(floor(timed / SECONDS_LIMIT.DAY.rawValue))
-        let hours = Int(floor(timed / SECONDS_LIMIT.HOUR.rawValue))
-        let minutes = Int(floor(timed.truncatingRemainder(dividingBy: SECONDS_LIMIT.HOUR.rawValue) / SECONDS_LIMIT.MINUTES.rawValue))
-        let seconds = timed.truncatingRemainder(dividingBy: SECONDS_LIMIT.MINUTES.rawValue)
-        if day > 0 {
-            return String(format: "%d,%02d:%02d", day, hours, minutes)
-        } else if hours > 0 {
-            return String(format: "%02d:%02d:%04.1f", hours, minutes, seconds)
-        } else {
-            return String(format: "%02d:%04.1f", minutes, seconds)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.recordsTableView.dequeueReusableCell(withIdentifier: "WhirlpoolRecordTableViewCell") as! WhirlpoolRecordTableViewCell
         var record :WhirlpoolRecord!
@@ -247,7 +229,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.time2Label.textColor = .darkGray
         }
         cell.setRecord(record: record)
-        //cell.updateData(num: record?.num ?? 0, t1: self.format2ReadableTime(time: record?.time ?? 0) , t2: self.format2ReadableTime(time: record?.time_far ?? 0))
         if self.current_state == TIMER_STATE.TIMING {
             cell.disableDescTextField()
         } else {

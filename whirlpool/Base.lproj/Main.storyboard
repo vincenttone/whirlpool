@@ -22,7 +22,7 @@
                                 <rect key="frame" x="66" y="529" width="49" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="计次">
-                                    <color key="titleColor" red="0.24863049880417876" green="0.50941751132636182" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.2425819669" green="0.79644996759999998" blue="0.19028506540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="splitBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="HrW-bn-2Ka"/>
@@ -111,9 +111,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PV-XT-sdA">
                                 <rect key="frame" x="163" y="529" width="49" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="保存">
-                                    <color key="titleColor" red="0.0" green="0.74917017487046622" blue="0.27069873388593713" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="保存"/>
                                 <connections>
                                     <action selector="saveBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="NAO-tp-EjT"/>
                                 </connections>

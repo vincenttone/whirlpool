@@ -24,7 +24,7 @@ class WhirlpoolRecordTableViewCell : UITableViewCell {
     
     func setRecord(record: WhirlpoolRecord) {
         self.record = record
-        self.updateData(num: record.num , t1: self.format2ReadableTime(time: record.time) , t2: self.format2ReadableTime(time: record.time_far ?? 0))
+        self.updateData(num: record.num , t1: TimeHelper.format2ReadableTime(time: record.time) , t2: TimeHelper.format2ReadableTime(time: record.time_far ?? 0))
     }
     
     func updateData(num: Int, t1: String, t2: String) {
@@ -40,23 +40,5 @@ class WhirlpoolRecordTableViewCell : UITableViewCell {
     
     func enableDescTextField() {
         self.descTextField.setEditable()
-    }
-    
-    func format2ReadableTime(time: TimeInterval) -> String {
-        if time == 0 {
-            return "00:00.0"
-        }
-        let timed = fabs(Double(time))
-        let day = Int(floor(timed / 86400))
-        let hours = Int(floor(timed / 3600))
-        let minutes = Int(floor(timed.truncatingRemainder(dividingBy: 3600) / 60))
-        let seconds = timed.truncatingRemainder(dividingBy: 60)
-        if day > 0 {
-            return String(format: "%d,%02d:%02d", day, hours, minutes)
-        } else if hours > 0 {
-            return String(format: "%02d:%02d:%04.1f", hours, minutes, seconds)
-        } else {
-            return String(format: "%02d:%04.1f", minutes, seconds)
-        }
     }
 }

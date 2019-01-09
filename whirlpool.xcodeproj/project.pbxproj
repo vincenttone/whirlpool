@@ -19,6 +19,7 @@
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
 		BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */; };
 		BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */; };
+		BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189721E5E89A004D6480 /* TimeHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
 		BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordTableViewCell.swift; sourceTree = "<group>"; };
 		BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordDescTextField.swift; sourceTree = "<group>"; };
+		BFF2189721E5E89A004D6480 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */,
 				BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */,
 				BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */,
+				BFF2189721E5E89A004D6480 /* TimeHelper.swift */,
 			);
 			path = whirlpool;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			files = (
 				BF508E2D21DDF76D0010E1BD /* WhirlpoolViewController.swift in Sources */,
 				BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */,
+				BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */,
 				BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */,
 				BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */,
 				BF508E2921DDF76D0010E1BD /* AppDelegate.swift in Sources */,
