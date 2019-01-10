@@ -38,6 +38,11 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     var recordStore = WhirlpoolRecordStore()
     var current_record :WhirlpoolRecord?
     
+    var uuid: String? = nil
+    var timer_title = ""
+    var begin_date: Date = Date()
+    var end_date: Date? = nil
+    
     var current_state = TIMER_STATE.INIT
     var current_date :Date? = nil
     var pause_time :Date? = nil
@@ -46,11 +51,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     var current_timer: Timer? = nil
     var split_count = 0
     
-    var uuid: String? = nil
-    
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var splitBtn: UIButton!
-    @IBOutlet var saveBtn: UIButton!
     
     @IBOutlet var timeLabel: UILabel!
     
@@ -90,82 +92,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    @IBAction func saveBtnTouched(_ sender: Any) {
-        var records = self.recordStore.records
-        if self.current_record != nil {
-            records.append(self.current_record!)
-        }
-        var out_str = ""
-        for r in records {
-            out_str += r.description + "\n"
-        }
-        
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        
-        if self.uuid == nil {
-            self.uuid = NSUUID().uuidString
-            let b = NSEntityDescription.insertNewObject(forEntityName: "Batches", into: context) as! Batches
-            b.uuid = self.uuid
-            b.date = Date()
-            do {
-                try context.save()
-                print("saved ok!!!")
-            } catch {
-                print("save failed!")
-            }
-        } else { // remove old data
-        
-            let fetchRequest = NSFetchRequest<Records>(entityName: "Records")
-            // fetchRequest.fetchLimit = 300
-            // fetchRequest.fetchOffset = 0
-        
-            do {
-                let predicate = NSPredicate(format: "uuid=\"\(self.uuid!)\"", "")
-                fetchRequest.predicate = predicate
-                let fetchObjects = try context.fetch(fetchRequest)
-                if fetchObjects.count > 0 {
-                    for i in fetchObjects {
-                        context.delete(i)
-                    }
-                }
-            } catch {
-                print("fetch failed!!!")
-                
-            }
-        }
-        // save records
-        let rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as! Records
-        for r in records {
-            rtx.uuid = self.uuid
-            rtx.desc = r.desc
-            rtx.t1 = r.time
-            rtx.t2 = r.time_far ?? 0
-        }
-       
-        
-        /*
-        print(out_str)
-        
-        let modal = UIAlertController(title: "导出名称", message: "", preferredStyle: .alert)
-        modal.addTextField(configurationHandler:{ (textField: UITextField) in
-            textField.placeholder = "请输入导出的名称"
-        })
-        modal.addAction( UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        modal.addAction( UIAlertAction(title: "导出", style: .default, handler: { (_) in
-            let tf = modal.textFields![0]
-            let title = tf.text ?? "A record"
-            let items = [title, out_str, "http://www.vii.red"]
-            
-            let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            avc.completionWithItemsHandler = {act, success, items, error in print(error ?? "ok") }
-            self.present(avc, animated: true)
-        }))
-        self.present(modal, animated: true)
-        */
-        
-    }
-    
     func refresh() {
         switch self.current_state {
         case TIMER_STATE.PAUSING:
@@ -185,7 +111,9 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func start() {
+        self.uuid = NSUUID().uuidString
         self.current_date = Date.init()
+        self.begin_date = self.current_date!
         self.current_state = TIMER_STATE.TIMING
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
@@ -211,27 +139,27 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.current_state = TIMER_STATE.TIMING
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
-        self.saveBtn.isHidden = true
         self.recordsTableView.reloadData()
     }
 
     func pause() {
         self.pause_time = Date.init()
+        self.end_date = self.pause_time
         self.current_state = TIMER_STATE.PAUSING
         self.startBtn.setTitle(BTN_TEXT.GO_ON.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.RESET.rawValue, for: .normal)
-        self.saveBtn.isHidden = false
         self.recordsTableView.reloadData()
     }
     
     func reset() {
+        self.timer_title = ""
+        self.end_date = nil
         self.current_state = TIMER_STATE.INIT
         self.timeLabel.text = self.TIMER_INIT_STR
         self.startBtn.setTitle(BTN_TEXT.START.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .disabled)
-        self.saveBtn.setTitle(BTN_TEXT.SAVE.rawValue, for: .normal)
         self.splitBtn.isEnabled = false
-        self.saveBtn.isHidden = true
+        self.splitBtn.setTitleColor(.gray, for: .disabled)
         self.current_timer?.invalidate()
         self.current_date = nil
         
@@ -261,18 +189,43 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var base = 0
+        if self.current_state == .PAUSING {
+            base = 1
+            if indexPath.row == 0 {
+                let tbCell = self.recordsTableView.dequeueReusableCell(withIdentifier: "WhirlPoolToolbarTableViewCell") as! WhirlpoolToolbarTableViewCell
+                tbCell.basedViewController = self
+                var records = self.recordStore.records
+                if self.current_record != nil {
+                    records.append(self.current_record!)
+                }
+                tbCell.records = records
+                if self.uuid != tbCell.uuid {
+                    tbCell.uuid = self.uuid
+                    tbCell.nameTextField.text = ""
+                }
+                return tbCell
+            }
+        }
         let cell = self.recordsTableView.dequeueReusableCell(withIdentifier: "WhirlpoolRecordTableViewCell") as! WhirlpoolRecordTableViewCell
         var record :WhirlpoolRecord!
-        if indexPath.row > 0 {
-            record = self.recordStore.get_record(index: self.recordStore.count() - indexPath.row)
+        if indexPath.row > base {
+            record = self.recordStore.get_record(index: self.recordStore.count() + base - indexPath.row)
             cell.titleLabel.textColor = .gray
             cell.time1Label.textColor = .lightGray
             cell.time2Label.textColor = .lightGray
-        } else {
+        } else if indexPath.row == base {
             record = self.current_record
-            cell.titleLabel.textColor = .red
-            cell.time1Label.textColor = .darkGray
-            cell.time2Label.textColor = .darkGray
+            if base == 0 {
+                cell.titleLabel.textColor = .red
+                cell.time1Label.textColor = .darkGray
+                cell.time2Label.textColor = .darkGray
+            } else {
+                cell.titleLabel.textColor = .gray
+                cell.time1Label.textColor = .lightGray
+                cell.time2Label.textColor = .lightGray
+            }
         }
         cell.setRecord(record: record)
         if self.current_state == TIMER_STATE.TIMING {
@@ -286,6 +239,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.current_record == nil {
             return 0
+        } else if self.current_state == .PAUSING {
+            return self.recordStore.count() + 2
         } else {
             return self.recordStore.count() + 1
         }
