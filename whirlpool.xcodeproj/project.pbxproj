@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF113A0121E5FF0800F38D43 /* whirlpool.xcdatamodeld */; };
+		BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryRecordTableViewController.swift */; };
 		BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */; };
 		BF368CD821E75B6400A8971E /* WhirlpoolHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF368CD721E75B6400A8971E /* WhirlpoolHistoryTableViewController.swift */; };
 		BF508E2921DDF76D0010E1BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508E2821DDF76D0010E1BD /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		BF113A0221E5FF0800F38D43 /* TimeRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeRecord.xcdatamodel; sourceTree = "<group>"; };
 		BF113A0C21E60F3B00F38D43 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryRecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryRecordTableViewController.swift; sourceTree = "<group>"; };
 		BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolToolbarTableViewCell.swift; sourceTree = "<group>"; };
 		BF368CD721E75B6400A8971E /* WhirlpoolHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryTableViewController.swift; sourceTree = "<group>"; };
 		BF508E2521DDF76D0010E1BD /* whirlpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whirlpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 				BFF2189721E5E89A004D6480 /* TimeHelper.swift */,
 				BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */,
 				BF368CD721E75B6400A8971E /* WhirlpoolHistoryTableViewController.swift */,
+				BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryRecordTableViewController.swift */,
 			);
 			path = whirlpool;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */,
 				BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */,
 				BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */,
+				BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryRecordTableViewController.swift in Sources */,
 				BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */,
 				BF368CD821E75B6400A8971E /* WhirlpoolHistoryTableViewController.swift in Sources */,
 				BF508E2921DDF76D0010E1BD /* AppDelegate.swift in Sources */,

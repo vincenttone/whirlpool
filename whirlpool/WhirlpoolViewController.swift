@@ -13,18 +13,6 @@ import CoreData
 class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let TIMER_INIT_STR = "00:00.0"
-
-    enum TIMER_STATE {
-        case INIT
-        case TIMING
-        case PAUSING
-    }
-    
-    enum SECONDS_LIMIT :Double{
-        case DAY = 86400
-        case HOUR = 3600
-        case MINUTES = 60
-    }
     
     enum BTN_TEXT :String {
         case START = "开始"
@@ -35,24 +23,13 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         case SAVE = "保存"
     }
     
-    var recordStore = WhirlpoolRecordStore()
-    var current_record :WhirlpoolRecord?
+    var recordStore: WhirlpoolRecordStore!
     
-    var uuid: String? = nil
-    var timer_title = ""
-    var begin_date: Date = Date()
-    var end_date: Date? = nil
-    
-    var current_state = TIMER_STATE.INIT
-    var current_date :Date? = nil
-    var pause_time :Date? = nil
-    var split_time: Date? = nil
-    var time_list: [TimeInterval?] = []
     var current_timer: Timer? = nil
-    var split_count = 0
     
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var splitBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIButton!
     
     @IBOutlet var timeLabel: UILabel!
     
@@ -60,7 +37,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.reset()
         self.recordsTableView.dataSource = self
         self.recordsTableView.delegate = self
@@ -71,116 +47,115 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func startBtnTouched(_ sender: Any) {
-        switch self.current_state {
-        case TIMER_STATE.INIT:
+        if self.recordStore.isWaiting() {
             self.start()
-        case TIMER_STATE.TIMING:
+        } else if self.recordStore.isTiming() {
             self.pause()
-        case TIMER_STATE.PAUSING:
-            self.go_on()
+        } else if self.recordStore.isPausing() {
+            self.goOn()
         }
     }
     
     @IBAction func splitBtnTouched(_ sender: Any) {
-        switch self.current_state {
-        case TIMER_STATE.PAUSING:
+        if self.recordStore.isPausing() {
             self.reset()
-        case TIMER_STATE.TIMING:
+        } else if self.recordStore.isTiming() {
             self.split()
-        case TIMER_STATE.INIT:
+        } else if self.recordStore.isWaiting() {
             self.do_nothing()
         }
     }
+    @IBAction func saveBtnTouched(_ sender: Any) {
+        let alert = UIAlertController(title: "名称", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "请输入记录名称"
+            if self.recordStore.title.count > 0 {
+                textField.text = self.recordStore.title
+            }
+        }
+        alert.addAction(UIAlertAction(title: "分享", style: .default, handler: { (_) in
+            let title_tf = alert.textFields!.first!
+            self.recordStore.title = title_tf.text ?? ""
+            self.recordStore.share(vc: self)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "保存", style: .default, handler: { (_) in
+            let title_tf = alert.textFields!.first!
+            self.recordStore.title = title_tf.text ?? ""
+            self.recordStore.save()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
-    func refresh() {
-        switch self.current_state {
-        case TIMER_STATE.PAUSING:
-            let pause_interval = self.pause_time?.timeIntervalSince(self.current_date ?? Date.init())
-            self.timeLabel.text = TimeHelper.format2ReadableTime(time: pause_interval ?? 0)
-            
-            self.current_record?.time = self.pause_time?.timeIntervalSince(self.split_time ?? Date.init())
-            self.current_record?.time_far = pause_interval
-        default:
-            let time_far = self.current_date?.timeIntervalSinceNow ?? 0
-            self.timeLabel.text = TimeHelper.format2ReadableTime(time: time_far)
-            
-            self.current_record?.time = self.split_time?.timeIntervalSince(Date.init()) ?? 0
-            self.current_record?.time_far = time_far
+    func refresh_data() {
+        if self.recordStore.isPausing() {
+            self.timeLabel.text = TimeHelper.format2ReadableTime(time: self.recordStore.getPausingTimeInterval())
+            self.recordStore.flushCurrentRecord()
+        } else {
+            self.timeLabel.text = TimeHelper.format2ReadableTime(time: self.recordStore.getTimingTimeInterval())
+            self.recordStore.flushCurrentRecord()
             self.recordsTableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableView.RowAnimation.none)
         }
     }
     
     func start() {
-        self.uuid = NSUUID().uuidString
-        self.current_date = Date.init()
-        self.begin_date = self.current_date!
-        self.current_state = TIMER_STATE.TIMING
+        self.recordStore.start()
+        
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
         self.splitBtn.isEnabled = true
+        self.splitBtn.isHidden = false
         
-        self.current_record = WhirlpoolRecord(num: 1, time: 0, time_far: 0)
         self.recordsTableView.reloadData()
         
         self.current_timer = Timer.scheduledTimer(
                 withTimeInterval: 0.1,
                 repeats: true,
                 block: { (timer) in
-                    self.refresh()
+                    self.refresh_data()
                 }
             )
     }
     
-    func go_on() {
-        let c_date = Date.init()
-        self.current_date = Date.init(timeInterval: c_date.timeIntervalSince(self.pause_time ?? c_date), since: self.current_date ?? c_date)
-        self.split_time = Date.init(timeInterval: c_date.timeIntervalSince(self.pause_time ?? c_date), since: self.split_time ?? c_date)
+    func goOn() {
+        self.saveBtn.isEnabled = false
+        self.saveBtn.isHidden = true
         
-        self.current_state = TIMER_STATE.TIMING
+        self.recordStore.goOn()
+
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
         self.recordsTableView.reloadData()
     }
 
     func pause() {
-        self.pause_time = Date.init()
-        self.end_date = self.pause_time
-        self.current_state = TIMER_STATE.PAUSING
+        self.recordStore.pause()
+        self.saveBtn.isEnabled = true
+        self.saveBtn.isHidden = false
+
         self.startBtn.setTitle(BTN_TEXT.GO_ON.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.RESET.rawValue, for: .normal)
         self.recordsTableView.reloadData()
     }
     
     func reset() {
-        self.timer_title = ""
-        self.end_date = nil
-        self.current_state = TIMER_STATE.INIT
+        self.recordStore = WhirlpoolRecordStore()
+        
         self.timeLabel.text = self.TIMER_INIT_STR
         self.startBtn.setTitle(BTN_TEXT.START.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .disabled)
         self.splitBtn.isEnabled = false
-        self.splitBtn.setTitleColor(.gray, for: .disabled)
-        self.current_timer?.invalidate()
-        self.current_date = nil
+        self.splitBtn.isHidden = true
+        self.saveBtn.isEnabled = false
+        self.saveBtn.isHidden = true
         
-        self.split_count = 0
-        self.current_record = nil
-        self.recordStore = WhirlpoolRecordStore()
+        self.current_timer?.invalidate()
+        
         self.recordsTableView.reloadData()
     }
     
     func split() {
-        self.split_count += 1
-        let pre_split_time = self.split_time ?? (self.current_date ?? Date.init())
-        self.split_time = Date.init()
-        self.recordStore.append(record:
-            WhirlpoolRecord(
-                num: self.split_count,
-                time: self.split_time?.timeIntervalSince(pre_split_time) ?? 0.0,
-                time_far: self.split_time?.timeIntervalSince(self.current_date ?? Date.init()) ?? 0.0
-            )
-        )
-        self.current_record?.num = self.split_count + 1 //self.recordStore.count()
+        self.recordStore.split()
         self.recordsTableView.reloadData()
     }
     
@@ -189,46 +164,21 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var base = 0
-        if self.current_state == .PAUSING {
-            base = 1
-            if indexPath.row == 0 {
-                let tbCell = self.recordsTableView.dequeueReusableCell(withIdentifier: "WhirlPoolToolbarTableViewCell") as! WhirlpoolToolbarTableViewCell
-                tbCell.basedViewController = self
-                var records = self.recordStore.records
-                if self.current_record != nil {
-                    records.append(self.current_record!)
-                }
-                tbCell.records = records
-                if self.uuid != tbCell.uuid {
-                    tbCell.uuid = self.uuid
-                    tbCell.nameTextField.text = ""
-                }
-                return tbCell
-            }
-        }
         let cell = self.recordsTableView.dequeueReusableCell(withIdentifier: "WhirlpoolRecordTableViewCell") as! WhirlpoolRecordTableViewCell
-        var record :WhirlpoolRecord!
-        if indexPath.row > base {
-            record = self.recordStore.get_record(index: self.recordStore.count() + base - indexPath.row)
+        let record :WhirlpoolRecord? = self.recordStore.get_record(index: self.recordStore.count() - indexPath.row - 1) ?? nil
+        if indexPath.row > 0 {
             cell.titleLabel.textColor = .gray
             cell.time1Label.textColor = .lightGray
             cell.time2Label.textColor = .lightGray
-        } else if indexPath.row == base {
-            record = self.current_record
-            if base == 0 {
-                cell.titleLabel.textColor = .red
-                cell.time1Label.textColor = .darkGray
-                cell.time2Label.textColor = .darkGray
-            } else {
-                cell.titleLabel.textColor = .gray
-                cell.time1Label.textColor = .lightGray
-                cell.time2Label.textColor = .lightGray
-            }
+        } else if indexPath.row == 0 {
+            cell.titleLabel.textColor = .red
+            cell.time1Label.textColor = .darkGray
+            cell.time2Label.textColor = .darkGray
         }
-        cell.setRecord(record: record)
-        if self.current_state == TIMER_STATE.TIMING {
+        if record != nil {
+            cell.setRecord(record: record!)
+        }
+        if self.recordStore.isTiming() {
             cell.disableDescTextField()
         } else {
             cell.enableDescTextField()
@@ -237,13 +187,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.current_record == nil {
-            return 0
-        } else if self.current_state == .PAUSING {
-            return self.recordStore.count() + 2
-        } else {
-            return self.recordStore.count() + 1
-        }
+        return self.recordStore.count()
     }
     
 }

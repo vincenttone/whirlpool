@@ -18,7 +18,7 @@ class WhirlpoolHistoryTableViewController: UITableViewController {
     
     @IBOutlet weak var historiesTableView: UITableView!
     
-    func cellForRow(at indexPath: IndexPath) -> UITableViewCell? {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.historiesTableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
         while self.histories.count <= indexPath.row {
             self.loadHistories()
@@ -29,18 +29,31 @@ class WhirlpoolHistoryTableViewController: UITableViewController {
         dateFmter.dateFormat = "YYYY-MM-dd HH:mm:ss"
         var detailText = ""
         if history.date != nil {
-           detailText = "@ " + dateFmter.string(from: history.date!) + "\t"
+           detailText = dateFmter.string(from: history.date!) + "\t"
         }
         detailText += history.count.description + "条记录"
+        if history.title?.count == 0 {
+            cell?.textLabel?.text = "暂无标题"
+            cell?.textLabel?.textColor = .gray
+        } else {
+            cell?.textLabel?.textColor = .gray
+        }
         cell?.detailTextLabel?.text = detailText
-        return cell
+        return cell!
     }
     
-    func numberOfRows(inSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.count == 0 {
             self.fetchHistoriesCount()
         }
         return self.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = WhirlpoolHistoryRecordTableViewController()
+        vc.history = self.histories[indexPath.row]
+        vc.load_records()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func fetchHistoriesCount() {
