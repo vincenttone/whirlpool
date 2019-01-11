@@ -74,6 +74,7 @@ class WhirlpoolHistoryTableViewController: UITableViewController {
         let fbr = NSFetchRequest<Batches>(entityName: "Batches")
         fbr.fetchLimit = self.fetchLimit
         fbr.fetchOffset = self.fetchOffset
+        fbr.sortDescriptors = [NSSortDescriptor.init(key: "date", ascending: false)]
         do {
             let fetchedBatch = try context.fetch(fbr)
             if fetchedBatch.count > 0 {

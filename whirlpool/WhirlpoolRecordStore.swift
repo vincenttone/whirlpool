@@ -190,12 +190,18 @@ class WhirlpoolRecordStore {
             }
         }
         // save records
-        let rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as! Records
+        var rtx: Records!
         for r in self.getAllRecords() {
+            rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as! Records
             rtx.uuid = self.uuid
             rtx.desc = r.desc
             rtx.t1 = r.time
             rtx.t2 = r.time_far ?? 0
+            do {
+                try context.save()
+            } catch {
+                print("save failed!")
+            }
         }
     }
     
@@ -232,6 +238,7 @@ class WhirlpoolRecordStore {
         let fbr = NSFetchRequest<Records>(entityName: "Records")
         fbr.fetchLimit = count
         fbr.fetchOffset = offset
+        fbr.sortDescriptors = [NSSortDescriptor(key: "no", ascending: true)]
         let fbp = NSPredicate(format: "uuid=\"\(uuid)\"", "")
         fbr.predicate = fbp
         do {
