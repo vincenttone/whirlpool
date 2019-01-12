@@ -171,7 +171,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.time1Label.textColor = .lightGray
             cell.time2Label.textColor = .lightGray
         } else if indexPath.row == 0 {
-            cell.titleLabel.textColor = .red
+            cell.titleLabel.textColor = .red // UIColor(displayP3Red: 0.27, green: 0.74, blue: 0.6, alpha: 1.0)
             cell.time1Label.textColor = .darkGray
             cell.time2Label.textColor = .darkGray
         }

@@ -192,7 +192,8 @@ class WhirlpoolRecordStore {
         // save records
         var rtx: Records!
         for r in self.getAllRecords() {
-            rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as! Records
+            rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as? Records
+            rtx.no = Int32(r.num)
             rtx.uuid = self.uuid
             rtx.desc = r.desc
             rtx.t1 = r.time

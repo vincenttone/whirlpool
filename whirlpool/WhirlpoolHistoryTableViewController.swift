@@ -51,6 +51,7 @@ class WhirlpoolHistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = WhirlpoolHistoryRecordTableViewController()
+        vc.view.addSubview(UITableViewCell())
         vc.history = self.histories[indexPath.row]
         vc.load_records()
         self.navigationController?.pushViewController(vc, animated: true)
