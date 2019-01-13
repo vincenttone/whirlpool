@@ -30,6 +30,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var splitBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
     
     @IBOutlet var timeLabel: UILabel!
     
@@ -65,6 +66,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             self.do_nothing()
         }
     }
+    
     @IBAction func saveBtnTouched(_ sender: Any) {
         let alert = UIAlertController(title: "名称", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -73,18 +75,17 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
                 textField.text = self.recordStore.title
             }
         }
-        alert.addAction(UIAlertAction(title: "分享", style: .default, handler: { (_) in
-            let title_tf = alert.textFields!.first!
-            self.recordStore.title = title_tf.text ?? ""
-            self.recordStore.share(vc: self)
-            
-        }))
+        alert.addAction(UIAlertAction(title: "取消", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "保存", style: .default, handler: { (_) in
             let title_tf = alert.textFields!.first!
             self.recordStore.title = title_tf.text ?? ""
             self.recordStore.save()
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func shareBtnTouched(_ sender: Any) {
+        self.recordStore.share(vc: self)
     }
     
     func refresh_data() {
@@ -104,7 +105,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
         self.splitBtn.isEnabled = true
-        self.splitBtn.isHidden = false
         
         self.recordsTableView.reloadData()
         
@@ -121,6 +121,9 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.saveBtn.isEnabled = false
         self.saveBtn.isHidden = true
         
+        self.shareBtn.isEnabled = false
+        self.shareBtn.isHidden = true
+        
         self.recordStore.goOn()
 
         self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
@@ -132,6 +135,9 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.recordStore.pause()
         self.saveBtn.isEnabled = true
         self.saveBtn.isHidden = false
+        
+        self.shareBtn.isEnabled = true
+        self.shareBtn.isHidden = false
 
         self.startBtn.setTitle(BTN_TEXT.GO_ON.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.RESET.rawValue, for: .normal)
@@ -145,9 +151,11 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.startBtn.setTitle(BTN_TEXT.START.rawValue, for: .normal)
         self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .disabled)
         self.splitBtn.isEnabled = false
-        self.splitBtn.isHidden = true
+        
         self.saveBtn.isEnabled = false
         self.saveBtn.isHidden = true
+        self.shareBtn.isEnabled = false
+        self.shareBtn.isHidden = true
         
         self.current_timer?.invalidate()
         
@@ -171,7 +179,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.time1Label.textColor = .lightGray
             cell.time2Label.textColor = .lightGray
         } else if indexPath.row == 0 {
-            cell.titleLabel.textColor = .red // UIColor(displayP3Red: 0.27, green: 0.74, blue: 0.6, alpha: 1.0)
+            cell.titleLabel.textColor = UIColor(displayP3Red: 0.27, green: 0.74, blue: 0.6, alpha: 1.0)
             cell.time1Label.textColor = .darkGray
             cell.time2Label.textColor = .darkGray
         }

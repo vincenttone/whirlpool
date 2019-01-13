@@ -1,5 +1,5 @@
 //
-//  WhirlpoolHistoryTableViewController.swift
+//  WhirlpoolHistoryViewController.swift
 //  whirlpool
 //
 //  Created by Vincent.Tone on 2019/1/10.
@@ -9,17 +9,25 @@
 import UIKit
 import CoreData
 
-class WhirlpoolHistoryTableViewController: UITableViewController {
+class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var historyTableView: UITableView!
     
     var fetchOffset = 0
     let fetchLimit = 30
     var histories: [Batches] = []
     var count = 0
     
-    @IBOutlet weak var historiesTableView: UITableView!
+    var choosedHistory: Batches? = nil
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.historiesTableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
+    override func viewDidLoad() {
+        self.historyTableView.delegate = self
+        self.historyTableView.dataSource = self
+        super.viewDidLoad()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
         while self.histories.count <= indexPath.row {
             self.loadHistories()
         }
@@ -42,21 +50,30 @@ class WhirlpoolHistoryTableViewController: UITableViewController {
         return cell!
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.count == 0 {
             self.fetchHistoriesCount()
         }
         return self.count
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = WhirlpoolHistoryRecordTableViewController()
-        vc.view.addSubview(UITableViewCell())
-        vc.history = self.histories[indexPath.row]
-        vc.load_records()
-        self.navigationController?.pushViewController(vc, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let vc = WhirlpoolHistoryRecordTableViewController()
+        //vc.view.addSubview(UITableViewCell())
+        self.choosedHistory = self.histories[indexPath.row]
+        //vc.load_records()
+        self.performSegue(withIdentifier: "showHistoryDetail", sender: self)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showHistoryDetail" {
+            let ta = segue.destination as! WhirlpoolHistoryDetailViewController
+            ta.history = self.choosedHistory!
+            ta.load_records()
+            print(ta.records)
+        }
+    }
+    
     func fetchHistoriesCount() {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
