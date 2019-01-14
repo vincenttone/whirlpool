@@ -10,7 +10,7 @@ import UIKit
 
 class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var recordStore = WhirlpoolRecordStore()
-    var history: Batches!
+    var history: Batch!
     var records: [WhirlpoolRecord] = []
     
     @IBOutlet weak var detailTableView: UITableView!

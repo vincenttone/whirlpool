@@ -15,10 +15,10 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     
     var fetchOffset = 0
     let fetchLimit = 30
-    var histories: [Batches] = []
+    var histories: [Batch] = []
     var count = 0
     
-    var choosedHistory: Batches? = nil
+    var choosedHistory: Batch? = nil
     
     override func viewDidLoad() {
         self.historyTableView.delegate = self
@@ -70,37 +70,18 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
             let ta = segue.destination as! WhirlpoolHistoryDetailViewController
             ta.history = self.choosedHistory!
             ta.load_records()
-            print(ta.records)
         }
     }
     
     func fetchHistoriesCount() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        let fbr = NSFetchRequest<Batches>(entityName: "Batches")
-        do {
-            self.count = try context.count(for: fbr)
-        } catch {
-            print("fetch failed!")
-        }
+        self.count = WhirlpoolRecordStoreManager.manager().fetchHistoriesCount()
     }
 
     func loadHistories() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        
-        let fbr = NSFetchRequest<Batches>(entityName: "Batches")
-        fbr.fetchLimit = self.fetchLimit
-        fbr.fetchOffset = self.fetchOffset
-        fbr.sortDescriptors = [NSSortDescriptor.init(key: "date", ascending: false)]
-        do {
-            let fetchedBatch = try context.fetch(fbr)
-            if fetchedBatch.count > 0 {
-                self.histories += fetchedBatch
-                self.fetchOffset += fetchedBatch.count
-            }
-        } catch {
-            print("fetch batch info failed!")
+        let fetchedBatch = WhirlpoolRecordStoreManager.manager().loadHistories(limit: self.fetchLimit, offset: self.fetchOffset)
+        if fetchedBatch.count > 0 {
+            self.histories += fetchedBatch
+            self.fetchOffset += fetchedBatch.count
         }
     }
 }

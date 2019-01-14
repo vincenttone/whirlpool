@@ -117,28 +117,28 @@
                                     <action selector="startBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="FCq-Z9-o5o"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXU-wM-xod">
-                                <rect key="frame" x="328" y="178" width="31" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD7-mZ-Di2">
+                                <rect key="frame" x="16" y="20" width="35" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="历史"/>
+                                <connections>
+                                    <segue destination="hFW-mg-OhJ" kind="presentation" modalTransitionStyle="flipHorizontal" id="RFU-5Z-aBp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXU-wM-xod">
+                                <rect key="frame" x="328" y="20" width="31" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="保存"/>
                                 <connections>
                                     <action selector="saveBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="MF8-O3-OL8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucB-XI-fVM">
-                                <rect key="frame" x="281" y="178" width="31" height="30"/>
+                            <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucB-XI-fVM">
+                                <rect key="frame" x="281" y="20" width="31" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="分享"/>
                                 <connections>
                                     <action selector="shareBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="an5-XZ-Ip5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD7-mZ-Di2">
-                                <rect key="frame" x="16" y="20" width="35" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="历史"/>
-                                <connections>
-                                    <segue destination="9iR-SB-Blf" kind="presentation" modalTransitionStyle="flipHorizontal" id="RFU-5Z-aBp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -149,15 +149,15 @@
                             <constraint firstItem="yFp-vr-VTv" firstAttribute="top" secondItem="n1S-o0-2bc" secondAttribute="bottom" constant="32" id="4Nu-s9-1nv"/>
                             <constraint firstItem="JXU-wM-xod" firstAttribute="leading" secondItem="ucB-XI-fVM" secondAttribute="trailing" constant="16" id="4Pp-G5-5Cq"/>
                             <constraint firstItem="ucB-XI-fVM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" symbolic="YES" id="59G-j6-aIX"/>
-                            <constraint firstItem="n1S-o0-2bc" firstAttribute="top" secondItem="JXU-wM-xod" secondAttribute="bottom" id="6J2-ft-1b3"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" secondItem="nfk-1r-1XQ" secondAttribute="trailing" constant="94" id="BQk-9j-5Va"/>
+                            <constraint firstItem="JXU-wM-xod" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" id="CP1-tP-r7f"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="bottom" secondItem="yFp-vr-VTv" secondAttribute="bottom" constant="48" id="DcO-p8-rvl"/>
-                            <constraint firstItem="n1S-o0-2bc" firstAttribute="top" secondItem="JXU-wM-xod" secondAttribute="bottom" id="ErK-aU-1dL"/>
                             <constraint firstItem="cD7-mZ-Di2" firstAttribute="leading" secondItem="C7F-gh-4qS" secondAttribute="leading" constant="16" id="FMY-tn-SXp"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ggr-rJ-sSK" secondAttribute="trailing" id="GtP-Gg-YkA"/>
                             <constraint firstItem="yFp-vr-VTv" firstAttribute="top" secondItem="n1S-o0-2bc" secondAttribute="bottom" constant="32" id="IT8-Be-kcv"/>
                             <constraint firstItem="JXU-wM-xod" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" symbolic="YES" id="MNn-6M-ZhU"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cD7-mZ-Di2" secondAttribute="trailing" symbolic="YES" id="N9V-yC-hhj"/>
+                            <constraint firstItem="ucB-XI-fVM" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" id="P5w-2l-2x8"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="leading" secondItem="Lc6-B8-YaY" secondAttribute="leading" id="PwZ-sv-ybG"/>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" constant="64" id="Ux1-hG-udT"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="bottom" secondItem="nfk-1r-1XQ" secondAttribute="bottom" constant="48" id="YMO-4d-3yM"/>
@@ -167,7 +167,6 @@
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="leading" secondItem="C7F-gh-4qS" secondAttribute="leading" id="l9b-hR-kyO"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" secondItem="JXU-wM-xod" secondAttribute="trailing" constant="16" id="pDf-0B-NnD"/>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="centerX" secondItem="Lc6-B8-YaY" secondAttribute="centerX" id="q2S-mC-IFj"/>
-                            <constraint firstItem="n1S-o0-2bc" firstAttribute="top" secondItem="ucB-XI-fVM" secondAttribute="bottom" id="szX-2G-ehm"/>
                             <constraint firstItem="cD7-mZ-Di2" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" id="zY7-RH-wOA"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="trailing" secondItem="C7F-gh-4qS" secondAttribute="trailing" id="znv-q1-1yO"/>
                         </constraints>
@@ -187,7 +186,7 @@
             </objects>
             <point key="canvasLocation" x="1711" y="-18"/>
         </scene>
-        <!--Whirlpool History View Controller-->
+        <!--历史记录-->
         <scene sceneID="6Sf-Je-ioH">
             <objects>
                 <viewController id="9iR-SB-Blf" customClass="WhirlpoolHistoryViewController" customModule="whirlpool" customModuleProvider="target" sceneMemberID="viewController">
@@ -195,18 +194,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGB-J3-aXa">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="历史记录" id="U2N-hk-uMV">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="3ID-TH-UM3">
-                                            <connections>
-                                                <segue destination="c5x-w3-Rks" kind="presentation" modalTransitionStyle="flipHorizontal" id="10i-7c-372"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bJB-gd-UiP">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -240,24 +227,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bJB-gd-UiP" firstAttribute="top" secondItem="MGB-J3-aXa" secondAttribute="bottom" id="JeW-eU-fcI"/>
+                            <constraint firstItem="bJB-gd-UiP" firstAttribute="top" secondItem="9qL-hy-L2p" secondAttribute="top" id="COo-cA-NgE"/>
                             <constraint firstItem="9qL-hy-L2p" firstAttribute="bottom" secondItem="bJB-gd-UiP" secondAttribute="bottom" id="VZy-hn-mdi"/>
-                            <constraint firstAttribute="trailing" secondItem="MGB-J3-aXa" secondAttribute="trailing" id="bga-hc-LTP"/>
                             <constraint firstItem="bJB-gd-UiP" firstAttribute="leading" secondItem="9qL-hy-L2p" secondAttribute="leading" id="dpL-ld-2W2"/>
-                            <constraint firstItem="MGB-J3-aXa" firstAttribute="leading" secondItem="9qL-hy-L2p" secondAttribute="leading" id="lGx-PB-K8f"/>
-                            <constraint firstItem="MGB-J3-aXa" firstAttribute="top" secondItem="9qL-hy-L2p" secondAttribute="top" id="tAu-jB-iHR"/>
                             <constraint firstItem="9qL-hy-L2p" firstAttribute="trailing" secondItem="bJB-gd-UiP" secondAttribute="trailing" id="tJo-eW-N59"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9qL-hy-L2p"/>
                     </view>
+                    <navigationItem key="navigationItem" title="历史记录" id="dRj-J2-Iqf">
+                        <barButtonItem key="leftBarButtonItem" title="秒表" id="3ID-TH-UM3">
+                            <color key="tintColor" red="0.34238928559999998" green="0.75078982110000003" blue="0.61175286770000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <segue destination="c5x-w3-Rks" kind="presentation" modalTransitionStyle="flipHorizontal" id="10i-7c-372"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="historyTableView" destination="bJB-gd-UiP" id="5vV-jw-pJe"/>
-                        <segue destination="vxN-gm-nTg" kind="presentation" identifier="showHistoryDetail" modalTransitionStyle="coverVertical" id="8l7-Wx-egJ"/>
+                        <segue destination="vxN-gm-nTg" kind="show" identifier="showHistoryDetail" id="YaY-ll-sR7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dxm-GH-4HP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="-20.239880059970016"/>
+            <point key="canvasLocation" x="3567.1999999999998" y="-20.239880059970016"/>
         </scene>
         <!--Whirlpool History Detail View Controller-->
         <scene sceneID="wez-dB-DU0">
@@ -267,18 +259,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAB-9t-4rR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="详情" leftItemsSupplementBackButton="YES" id="RWs-G7-wO9">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="Uk9-uf-d5Z">
-                                            <connections>
-                                                <segue destination="9iR-SB-Blf" kind="presentation" modalTransitionStyle="crossDissolve" id="8Y0-AI-Vxz"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ERU-DU-ZEI">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -313,11 +293,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ERU-DU-ZEI" firstAttribute="leading" secondItem="mNR-Fr-I7a" secondAttribute="leading" id="Fqf-E5-Pz1"/>
-                            <constraint firstItem="tAB-9t-4rR" firstAttribute="leading" secondItem="sju-tP-IdR" secondAttribute="leading" id="Rxw-2K-Uh1"/>
-                            <constraint firstItem="ERU-DU-ZEI" firstAttribute="top" secondItem="tAB-9t-4rR" secondAttribute="bottom" id="Z3r-yk-MKC"/>
+                            <constraint firstItem="ERU-DU-ZEI" firstAttribute="top" secondItem="mNR-Fr-I7a" secondAttribute="top" id="ZYg-Cc-ZRj"/>
                             <constraint firstItem="mNR-Fr-I7a" firstAttribute="bottom" secondItem="ERU-DU-ZEI" secondAttribute="bottom" id="bz3-c8-cCa"/>
-                            <constraint firstItem="mNR-Fr-I7a" firstAttribute="trailing" secondItem="tAB-9t-4rR" secondAttribute="trailing" id="kEt-8A-dAO"/>
-                            <constraint firstItem="tAB-9t-4rR" firstAttribute="top" secondItem="mNR-Fr-I7a" secondAttribute="top" id="pPa-Mi-SNR"/>
                             <constraint firstItem="mNR-Fr-I7a" firstAttribute="trailing" secondItem="ERU-DU-ZEI" secondAttribute="trailing" id="tvd-6Z-aQk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mNR-Fr-I7a"/>
@@ -329,10 +306,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tFV-vU-bRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3676" y="-18"/>
+            <point key="canvasLocation" x="4615.1999999999998" y="-18.440779610194905"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zlo-fw-8TZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hFW-mg-OhJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wRU-JA-zA5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9iR-SB-Blf" kind="relationship" relationship="rootViewController" id="RhM-qX-4Di"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CrM-4y-BdP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="-20.239880059970016"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="RFU-5Z-aBp"/>
-    </inferredMetricsTieBreakers>
 </document>

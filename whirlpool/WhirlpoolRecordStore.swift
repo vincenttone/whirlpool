@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 import CoreData
 
-class WhirlpoolRecordStore {
+class WhirlpoolRecordStore: NSObject, NSCoding {
     
     // status
-    enum STATE {
-        case INIT
-        case TIMING
-        case PAUSING
+    enum STATE :Int{
+        case INIT = 0;
+        case TIMING = 1;
+        case PAUSING = 2;
     }
     
     var uuid: String = NSUUID().uuidString
@@ -126,6 +126,26 @@ class WhirlpoolRecordStore {
         return self.records.count + 1
     }
     
+    func loadHistory(_ history: Batch) {
+        self.uuid = history.uuid!
+        self.state = WhirlpoolRecordStore.STATE(rawValue: Int(history.state)) ?? STATE.INIT
+        self.title = history.title ?? ""
+        self.start_time = history.start_time ?? Date()
+        self.real_start_time = history.real_start_time
+        self.finish_time = history.finish_time
+        self.split_time = history.split_time ?? self.start_time
+        self.last_pause_time = history.last_pause_time
+        
+        let rs = self.getHistoryRecords(uuid: self.uuid, count: Int(history.count), offset: 0)
+        self.records = []
+        for rd in rs {
+            self.records.append(WhirlpoolRecord(num: Int(rd.no), time: rd.t1, time_far: rd.t2, desc: rd.desc ?? ""))
+        }
+        if self.records.count > 0 {
+            self.current_record = self.records.popLast() ?? WhirlpoolRecord(num: 1, time: 0, time_far: 0)
+        }
+    }
+    
     func getAllRecords() -> [WhirlpoolRecord] {
         if self.isWaiting() {
             return []
@@ -144,65 +164,40 @@ class WhirlpoolRecordStore {
         let context = app.persistentContainer.viewContext
         
         var saved_count = 0
-        let fbr = NSFetchRequest<Batches>(entityName: "Batches")
-        fbr.fetchLimit = 1
-        fbr.fetchOffset = 0
+        let fbr = NSFetchRequest<Batch>(entityName: "Batch")
         do {
             let fbp = NSPredicate(format: "uuid=\"\(self.uuid)\"", "")
             fbr.predicate = fbp
             let fetchedBatch = try context.fetch(fbr)
             if fetchedBatch.count > 0 {
-                saved_count = fetchedBatch.count
-                print("batch saved before!", fetchedBatch)
+                for _b in fetchedBatch {
+                    saved_count = Int(_b.count) > saved_count ? Int(_b.count) : saved_count
+                    _b.title = self.title
+                    _b.date = Date()
+                    _b.count = Int32(self.count())
+                    _b.state = Int16(self.state.rawValue)
+                    _b.start_time = self.start_time
+                    _b.real_start_time = self.real_start_time
+                    _b.finish_time = self.finish_time
+                    _b.split_time = self.split_time
+                    _b.last_pause_time = self.last_pause_time
+                    
+                }
+                try context.save()
             }
         } catch {
-            print("fetch batch info failed!")
+            print("fetch and up batch info failed!")
         }
         
         if saved_count > 0 { // remove old records
-            let fetchRequest = NSFetchRequest<Records>(entityName: "Records")
-            fetchRequest.fetchLimit = saved_count
-            fetchRequest.fetchOffset = 0
-            do {
-                let predicate = NSPredicate(format: "uuid=\"\(self.uuid)\"", "")
-                fetchRequest.predicate = predicate
-                let fetchObjects = try context.fetch(fetchRequest)
-                if fetchObjects.count > 0 {
-                    for i in fetchObjects {
-                        context.delete(i)
-                    }
-                }
-            } catch {
-                print("delete failed!!!")
-            }
-        } else { // insert batches
-            let b = NSEntityDescription.insertNewObject(forEntityName: "Batches", into: context) as! Batches
-            b.uuid = self.uuid
-            b.title = self.title
-            b.date = Date()
-            b.count = Int32(self.count())
-            
-            do {
-                try context.save()
-                print("saved ok!!!")
-            } catch {
-                print("save failed!")
-            }
+            // update saved batch
+            self.deleteRecords(uuid: self.uuid)
+        } else { // insert
+            self.createHistory()
         }
         // save records
-        var rtx: Records!
         for r in self.getAllRecords() {
-            rtx = NSEntityDescription.insertNewObject(forEntityName: "Records", into: context) as? Records
-            rtx.no = Int32(r.num)
-            rtx.uuid = self.uuid
-            rtx.desc = r.desc
-            rtx.t1 = r.time
-            rtx.t2 = r.time_far ?? 0
-            do {
-                try context.save()
-            } catch {
-                print("save failed!")
-            }
+            r.save(self.uuid)
         }
     }
     
@@ -217,7 +212,7 @@ class WhirlpoolRecordStore {
         vc.present(avc, animated: true)
     }
     
-    var description: String {
+    override var description: String {
         if self.isWaiting() {
             return ""
         }
@@ -232,22 +227,144 @@ class WhirlpoolRecordStore {
         return out_str
     }
     
-    func getHistoryRecords(uuid: String, count: Int, offset: Int) -> [Records] {
+    func createHistory() {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
         
-        let fbr = NSFetchRequest<Records>(entityName: "Records")
+        let b = NSEntityDescription.insertNewObject(forEntityName: "Batch", into: context) as! Batch
+        b.title = self.title
+        b.date = Date()
+        b.count = Int32(self.count())
+        b.state = Int16(self.state.rawValue)
+        b.start_time = self.start_time
+        b.real_start_time = self.real_start_time
+        b.finish_time = self.finish_time
+        b.split_time = self.split_time
+        b.last_pause_time = self.last_pause_time
+        b.uuid = self.uuid
+        do {
+            try context.save()
+        } catch {
+            print("save failed!")
+        }
+    }
+    
+    func updateHistory(history: WhirlpoolRecordStore) {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        
+        let fbr = NSFetchRequest<Batch>(entityName: "Batch")
+        do {
+            let fbp = NSPredicate(format: "uuid=\"\(history.uuid)\"", "")
+            fbr.predicate = fbp
+            let fetchedBatch = try context.fetch(fbr)
+            if fetchedBatch.count > 0 {
+                for _b in fetchedBatch {
+                    _b.title = history.title
+                    _b.date = Date()
+                    _b.count = Int32(history.count())
+                    _b.state = Int16(history.state.rawValue)
+                    _b.start_time = history.start_time
+                    _b.real_start_time = history.real_start_time
+                    _b.finish_time = history.finish_time
+                    _b.split_time = history.split_time
+                    _b.last_pause_time = history.last_pause_time
+                }
+                try context.save()
+            }
+        } catch {
+            print("fetch and up batch info failed!")
+        }
+    }
+    
+    func getHistoryRecords(uuid: String, count: Int, offset: Int) -> [Record] {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        
+        let fbr = NSFetchRequest<Record>(entityName: "Record")
         fbr.fetchLimit = count
         fbr.fetchOffset = offset
         fbr.sortDescriptors = [NSSortDescriptor(key: "no", ascending: true)]
         let fbp = NSPredicate(format: "uuid=\"\(uuid)\"", "")
         fbr.predicate = fbp
         do {
-            let rs: [Records] = try context.fetch(fbr)
+            let rs: [Record] = try context.fetch(fbr)
             return rs
         } catch {
             print("fetch batch info failed!")
         }
         return []
     }
+    
+    func deleteHistory(uuid: String) {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Batch>(entityName: "Batch")
+        do {
+            let predicate = NSPredicate(format: "uuid=\"\(uuid)\"", "")
+            fetchRequest.predicate = predicate
+            let fetchObjects = try context.fetch(fetchRequest)
+            if fetchObjects.count > 0 {
+                for i in fetchObjects {
+                    context.delete(i)
+                }
+            }
+            try context.save()
+        } catch {
+            print("delete failed!!!")
+        }
+    }
+    
+    func deleteRecords(uuid: String) {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Record>(entityName: "Record")
+        do {
+            let predicate = NSPredicate(format: "uuid=\"\(uuid)\"", "")
+            fetchRequest.predicate = predicate
+            let fetchObjects = try context.fetch(fetchRequest)
+            if fetchObjects.count > 0 {
+                for i in fetchObjects {
+                    context.delete(i)
+                }
+            }
+            try context.save()
+        } catch {
+            print("delete failed!!!")
+        }
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.start_time, forKey: "start")
+        aCoder.encode(self.real_start_time, forKey: "real_start")
+        aCoder.encode(self.finish_time, forKey: "finish")
+        aCoder.encode(self.last_pause_time, forKey: "pause")
+        aCoder.encode(self.split_time, forKey: "split")
+        var rode: [WhirlpoolRecord] = []
+        for r in self.getAllRecords() {
+           rode.append(r)
+        }
+        aCoder.encode(rode, forKey: "records")
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        let rode = aDecoder.decodeObject(forKey: "records") as! [WhirlpoolRecord]
+        if rode.count == 0 {
+            return
+        }
+        self.start_time = aDecoder.decodeObject(forKey: "start") as! Date?
+        self.real_start_time = aDecoder.decodeObject(forKey: "real_start") as! Date?
+        self.finish_time = aDecoder.decodeObject(forKey: "finish") as! Date?
+        self.last_pause_time = aDecoder.decodeObject(forKey: "pause") as! Date?
+        self.split_time = aDecoder.decodeObject(forKey: "split") as! Date?
+        
+        for r in rode {
+            self.records.append(WhirlpoolRecord(num: r.num, time: r.time, time_far: r.time_far ?? 0, desc: r.desc))
+        }
+    }
+    
 }
