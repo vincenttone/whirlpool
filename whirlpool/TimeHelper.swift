@@ -12,7 +12,7 @@ class TimeHelper {
     
     class func format2ReadableTime(time: TimeInterval) -> String {
         if time == 0 {
-            return "00:00.0"
+            return "00:00.00"
         }
         let seconds = Int(abs(time))
         let minutes = Int(seconds / 60)
@@ -29,7 +29,7 @@ class TimeHelper {
         } else if hour > 0 {
             return String(format: "%02d:%02d:%02d", hour, minute, second)
         } else {
-            return String(format: "%02d:%04.1f", minutes, Double(second) + ms)
+            return String(format: "%02d:%05.2f", minutes, Double(second) + ms)
         }
     }
 }

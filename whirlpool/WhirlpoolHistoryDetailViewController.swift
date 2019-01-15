@@ -11,28 +11,29 @@ import UIKit
 class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var recordStore = WhirlpoolRecordStore()
     var history: Batch!
-    var records: [WhirlpoolRecord] = []
     
     @IBOutlet weak var detailTableView: UITableView!
+    @IBOutlet weak var shareBtn: UIBarButtonItem!
+    
+    @IBAction func shareBtnTouched(_ sender: Any) {
+        self.recordStore.share(vc: self)
+    }
     
     override func viewDidLoad() {
         self.detailTableView.delegate = self
         self.detailTableView.dataSource = self
+        self.navigationItem.title = self.history.title
         super.viewDidLoad()
     }
     
-    func load_records() {
-        let records = self.recordStore.getHistoryRecords(uuid: self.history.uuid!, count: Int(self.history.count), offset: 0)
-        var record: WhirlpoolRecord!
-        for r in records {
-            record = WhirlpoolRecord(num: Int(r.no) , time: r.t1, time_far: r.t2, desc: r.desc ?? "")
-            self.records.append(record)
-        }
+    func loadHistory(_ history: Batch) {
+        self.history = history
+        self.recordStore.loadHistory(history)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
-        let record = self.records[indexPath.row]
+        let record = self.recordStore.get_record(index: indexPath.row)!
         cell!.textLabel?.textColor = .darkGray
         cell!.textLabel?.font = UIFont.init(name: "Helvetica neue", size: 20)
         if record.desc.count > 0 {
@@ -42,11 +43,11 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         }
         cell!.detailTextLabel?.textColor = .gray
         cell!.detailTextLabel?.font = UIFont.init(name: "Helvetica neue", size: 20)
-        cell!.detailTextLabel?.text = String(format: "%@ \t%@", TimeHelper.format2ReadableTime(time: record.time!), TimeHelper.format2ReadableTime(time: record.time_far!))
+        cell!.detailTextLabel?.text = String(format: "%@ \t%@", TimeHelper.format2ReadableTime(time: record.time), TimeHelper.format2ReadableTime(time: record.time_far))
         return cell!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.records.count
+        return self.recordStore.count()
     }
 }

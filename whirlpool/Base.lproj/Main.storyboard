@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c5x-w3-Rks">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qcg-wZ-4Sp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,13 +26,13 @@
                                     <action selector="splitBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="HrW-bn-2Ka"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggr-rJ-sSK">
-                                <rect key="frame" x="80.5" y="84" width="214" height="76"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggr-rJ-sSK">
+                                <rect key="frame" x="63" y="128" width="249.5" height="76"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="64"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n1S-o0-2bc">
-                                <rect key="frame" x="0.0" y="208" width="375" height="338"/>
+                                <rect key="frame" x="0.0" y="252" width="375" height="294"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WhirlpoolRecordTableViewCell" id="Bxf-mR-jSS" customClass="WhirlpoolRecordTableViewCell" customModule="whirlpool" customModuleProvider="target">
@@ -52,7 +52,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z2w-Cx-E2D" customClass="WhirlpoolRecordDescTextField" customModule="whirlpool" customModuleProvider="target">
-                                                    <rect key="frame" x="63" y="0.0" width="137" height="43.5"/>
+                                                    <rect key="frame" x="63" y="0.0" width="97" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -61,19 +61,19 @@
                                                         <action selector="didEndEditing:" destination="Bxf-mR-jSS" eventType="editingDidEndOnExit" id="AMn-H6-qk1"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="time1Label" text="00:00.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PL7-be-jBq">
-                                                    <rect key="frame" x="200" y="11" width="80" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="time1Label" text="00:00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PL7-be-jBq">
+                                                    <rect key="frame" x="160" y="11" width="100" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="6mR-Og-DgJ"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7bp-ZV-ZOJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="time2Label" text="00.00.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CML-cC-ZDh">
-                                                    <rect key="frame" x="280" y="11" width="80" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="time2Label" text="00.00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CML-cC-ZDh">
+                                                    <rect key="frame" x="260" y="11" width="100" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="YTz-5E-M5Z"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ykt-SJ-7mt"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                     <nil key="textColor"/>
@@ -117,47 +117,16 @@
                                     <action selector="startBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="FCq-Z9-o5o"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD7-mZ-Di2">
-                                <rect key="frame" x="16" y="20" width="35" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="历史"/>
-                                <connections>
-                                    <segue destination="hFW-mg-OhJ" kind="presentation" modalTransitionStyle="flipHorizontal" id="RFU-5Z-aBp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXU-wM-xod">
-                                <rect key="frame" x="328" y="20" width="31" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="保存"/>
-                                <connections>
-                                    <action selector="saveBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="MF8-O3-OL8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucB-XI-fVM">
-                                <rect key="frame" x="281" y="20" width="31" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="分享"/>
-                                <connections>
-                                    <action selector="shareBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="an5-XZ-Ip5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" id="0P8-PU-n0i"/>
                             <constraint firstItem="yFp-vr-VTv" firstAttribute="top" secondItem="n1S-o0-2bc" secondAttribute="bottom" constant="32" id="4Nu-s9-1nv"/>
-                            <constraint firstItem="JXU-wM-xod" firstAttribute="leading" secondItem="ucB-XI-fVM" secondAttribute="trailing" constant="16" id="4Pp-G5-5Cq"/>
-                            <constraint firstItem="ucB-XI-fVM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" symbolic="YES" id="59G-j6-aIX"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" secondItem="nfk-1r-1XQ" secondAttribute="trailing" constant="94" id="BQk-9j-5Va"/>
-                            <constraint firstItem="JXU-wM-xod" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" id="CP1-tP-r7f"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="bottom" secondItem="yFp-vr-VTv" secondAttribute="bottom" constant="48" id="DcO-p8-rvl"/>
-                            <constraint firstItem="cD7-mZ-Di2" firstAttribute="leading" secondItem="C7F-gh-4qS" secondAttribute="leading" constant="16" id="FMY-tn-SXp"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ggr-rJ-sSK" secondAttribute="trailing" id="GtP-Gg-YkA"/>
                             <constraint firstItem="yFp-vr-VTv" firstAttribute="top" secondItem="n1S-o0-2bc" secondAttribute="bottom" constant="32" id="IT8-Be-kcv"/>
-                            <constraint firstItem="JXU-wM-xod" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C7F-gh-4qS" secondAttribute="leading" symbolic="YES" id="MNn-6M-ZhU"/>
-                            <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cD7-mZ-Di2" secondAttribute="trailing" symbolic="YES" id="N9V-yC-hhj"/>
-                            <constraint firstItem="ucB-XI-fVM" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" id="P5w-2l-2x8"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="leading" secondItem="Lc6-B8-YaY" secondAttribute="leading" id="PwZ-sv-ybG"/>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" constant="64" id="Ux1-hG-udT"/>
                             <constraint firstItem="C7F-gh-4qS" firstAttribute="bottom" secondItem="nfk-1r-1XQ" secondAttribute="bottom" constant="48" id="YMO-4d-3yM"/>
@@ -165,18 +134,35 @@
                             <constraint firstItem="yFp-vr-VTv" firstAttribute="leading" secondItem="C7F-gh-4qS" secondAttribute="leading" constant="96" id="fZN-bB-Bvr"/>
                             <constraint firstItem="nfk-1r-1XQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yFp-vr-VTv" secondAttribute="trailing" constant="8" symbolic="YES" id="jfw-Yz-Whz"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="leading" secondItem="C7F-gh-4qS" secondAttribute="leading" id="l9b-hR-kyO"/>
-                            <constraint firstItem="C7F-gh-4qS" firstAttribute="trailing" secondItem="JXU-wM-xod" secondAttribute="trailing" constant="16" id="pDf-0B-NnD"/>
                             <constraint firstItem="ggr-rJ-sSK" firstAttribute="centerX" secondItem="Lc6-B8-YaY" secondAttribute="centerX" id="q2S-mC-IFj"/>
-                            <constraint firstItem="cD7-mZ-Di2" firstAttribute="top" secondItem="C7F-gh-4qS" secondAttribute="top" id="zY7-RH-wOA"/>
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="trailing" secondItem="C7F-gh-4qS" secondAttribute="trailing" id="znv-q1-1yO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C7F-gh-4qS"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="秒表" id="lzq-Mo-ReD"/>
+                    <navigationItem key="navigationItem" id="VzO-SO-XR6">
+                        <barButtonItem key="backBarButtonItem" title="秒表" id="NoU-Eh-Aga"/>
+                        <barButtonItem key="leftBarButtonItem" title="历史" id="Dzr-ih-Dor">
+                            <connections>
+                                <segue destination="9iR-SB-Blf" kind="show" id="9KZ-7l-FOi"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="保存" id="mAU-Il-F0r">
+                                <connections>
+                                    <action selector="saveBtnTouched:" destination="c5x-w3-Rks" id="swh-G4-V9H"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="分享" id="zM4-TI-Pyx">
+                                <connections>
+                                    <action selector="shareBtnTouched:" destination="c5x-w3-Rks" id="gAu-Ww-JB9"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="recordsTableView" destination="n1S-o0-2bc" id="hmt-Hw-NuB"/>
-                        <outlet property="saveBtn" destination="JXU-wM-xod" id="WrD-6R-Vwa"/>
-                        <outlet property="shareBtn" destination="ucB-XI-fVM" id="J0Z-Uz-KR9"/>
+                        <outlet property="saveBtn" destination="mAU-Il-F0r" id="5mv-xk-16Q"/>
+                        <outlet property="shareBtn" destination="zM4-TI-Pyx" id="b9u-LP-1h2"/>
                         <outlet property="splitBtn" destination="yFp-vr-VTv" id="LHv-tT-OXc"/>
                         <outlet property="startBtn" destination="nfk-1r-1XQ" id="cYP-Pq-czM"/>
                         <outlet property="timeLabel" destination="ggr-rJ-sSK" id="sJa-fe-nRn"/>
@@ -184,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEw-ME-BSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711" y="-18"/>
+            <point key="canvasLocation" x="2648.8000000000002" y="-18.440779610194905"/>
         </scene>
         <!--历史记录-->
         <scene sceneID="6Sf-Je-ioH">
@@ -198,11 +184,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UITableViewCell" textLabel="QRu-kO-ZQ3" detailTextLabel="F22-F0-8zI" style="IBUITableViewCellStyleSubtitle" id="zgz-A3-BRl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UITableViewCell" textLabel="QRu-kO-ZQ3" detailTextLabel="F22-F0-8zI" style="IBUITableViewCellStyleSubtitle" id="zgz-A3-BRl">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zgz-A3-BRl" id="w0O-DG-T4p">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QRu-kO-ZQ3">
@@ -234,14 +220,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9qL-hy-L2p"/>
                     </view>
-                    <navigationItem key="navigationItem" title="历史记录" id="dRj-J2-Iqf">
-                        <barButtonItem key="leftBarButtonItem" title="秒表" id="3ID-TH-UM3">
-                            <color key="tintColor" red="0.34238928559999998" green="0.75078982110000003" blue="0.61175286770000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <segue destination="c5x-w3-Rks" kind="presentation" modalTransitionStyle="flipHorizontal" id="10i-7c-372"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="历史记录" id="dRj-J2-Iqf"/>
                     <connections>
                         <outlet property="historyTableView" destination="bJB-gd-UiP" id="5vV-jw-pJe"/>
                         <segue destination="vxN-gm-nTg" kind="show" identifier="showHistoryDetail" id="YaY-ll-sR7"/>
@@ -249,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dxm-GH-4HP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3567.1999999999998" y="-20.239880059970016"/>
+            <point key="canvasLocation" x="3684" y="-18"/>
         </scene>
         <!--Whirlpool History Detail View Controller-->
         <scene sceneID="wez-dB-DU0">
@@ -299,32 +278,40 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mNR-Fr-I7a"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aj4-2x-dIa"/>
+                    <navigationItem key="navigationItem" id="aj4-2x-dIa">
+                        <barButtonItem key="rightBarButtonItem" title="分享" id="Q20-gL-rBd">
+                            <connections>
+                                <action selector="shareBtnTouched:" destination="vxN-gm-nTg" id="M5P-Zz-KSW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailTableView" destination="ERU-DU-ZEI" id="ETM-Hv-zXP"/>
+                        <outlet property="shareBtn" destination="Q20-gL-rBd" id="lrq-f5-iMu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tFV-vU-bRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4615.1999999999998" y="-18.440779610194905"/>
+            <point key="canvasLocation" x="4636" y="-18"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="zlo-fw-8TZ">
+        <!--秒表-->
+        <scene sceneID="peO-sv-bvn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hFW-mg-OhJ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qcg-wZ-4Sp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="秒表" id="lzq-Mo-ReD"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wRU-JA-zA5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q8l-Ew-dho">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9iR-SB-Blf" kind="relationship" relationship="rootViewController" id="RhM-qX-4Di"/>
+                        <segue destination="c5x-w3-Rks" kind="relationship" relationship="rootViewController" id="ZhM-QY-WDG"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CrM-4y-BdP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Cz-le-HpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="-20.239880059970016"/>
+            <point key="canvasLocation" x="1709.5999999999999" y="-18.440779610194905"/>
         </scene>
     </scenes>
 </document>

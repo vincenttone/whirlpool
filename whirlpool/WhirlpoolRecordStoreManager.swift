@@ -16,10 +16,12 @@ class WhirlpoolRecordStoreManager {
     var currentStore: WhirlpoolRecordStore? = nil
     var currentTimer: Timer? = nil
     
+    var timerVC: WhirlpoolViewController!
+    
     var archiveUrl: URL {
         let docDirs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docDir = docDirs.first!
-        return docDir.appendingPathComponent("record.snapshoot", isDirectory: false)
+        return docDir.appendingPathComponent("record.snapshoot.plist", isDirectory: false)
     }
     
     class func manager() -> WhirlpoolRecordStoreManager {
@@ -84,20 +86,33 @@ class WhirlpoolRecordStoreManager {
     }
     
     func recoverSnapshoot() -> Bool{
+        if FileManager.default.fileExists(atPath: archiveUrl.path) == false {
+            return false
+        }
         var snapshoot_data: Data!
         do {
             snapshoot_data = try Data(contentsOf: archiveUrl)
         } catch {
+            dump(error)
             print("get snapshoot data failed!")
             return false
         }
         do {
-            let store = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSObject.self, NSCoder.self], from: snapshoot_data) as! WhirlpoolRecordStore
-            if store.isWaiting() == false {
+            let store = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(snapshoot_data) as? WhirlpoolRecordStore
+            if store?.isWaiting() == false {
                 self.currentStore = store
             }
+            try FileManager.default.removeItem(at: archiveUrl)
         } catch {
+            dump(error)
             print("recover snapshoot failed!")
+            if FileManager.default.fileExists(atPath: archiveUrl.path) {
+                do {
+                    try FileManager.default.removeItem(at: archiveUrl)
+                } catch {
+                    print("remove archive file failed!")
+                }
+            }
             return false
         }
         return true
@@ -113,7 +128,7 @@ class WhirlpoolRecordStoreManager {
     
     func resetTimer(_ block: @escaping (_ timer: Timer) -> Void) {
         self.currentTimer = Timer.scheduledTimer(
-            withTimeInterval: 0.1,
+            withTimeInterval: 0.07,
             repeats: true,
             block: block
         )

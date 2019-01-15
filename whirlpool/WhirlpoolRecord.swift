@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 
 class WhirlpoolRecord :NSObject, NSCoding {
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(num, forKey: "num")
         aCoder.encode(time, forKey: "time")
@@ -19,16 +20,21 @@ class WhirlpoolRecord :NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.num = aDecoder.decodeObject(forKey: "num") as! Int
-        self.time = (aDecoder.decodeObject(forKey: "time") as! TimeInterval)
-        self.time_far = aDecoder.decodeObject(forKey: "time_far") as? TimeInterval
-        self.desc = aDecoder.decodeObject(forKey: "desc") as! String
+        num = aDecoder.decodeInteger(forKey: "num")
+        time = aDecoder.decodeDouble(forKey: "time") as TimeInterval
+        time_far = aDecoder.decodeDouble(forKey: "time_far") as TimeInterval
+        desc = aDecoder.decodeObject(forKey: "desc") as! String
     }
     
     var num = 0
-    var time :TimeInterval!
-    var time_far :TimeInterval?
+    var time :TimeInterval = 0
+    var time_far :TimeInterval = 0
     var desc :String = ""
+    
+    init (num: Int) {
+        super.init()
+        self.num = num
+    }
     
     init(num :Int, time :TimeInterval, time_far :TimeInterval) {
         super.init()
@@ -50,11 +56,11 @@ class WhirlpoolRecord :NSObject, NSCoding {
     }
     
     func encodedString() -> String {
-        return String(format: "%d\t%@\t%@\t%@", self.num, TimeHelper.format2ReadableTime(time: self.time ?? 0), TimeHelper.format2ReadableTime(time: self.time_far ?? 0), self.desc)
+        return String(format: "%d\t%@\t%@\t%@", self.num, TimeHelper.format2ReadableTime(time: self.time), TimeHelper.format2ReadableTime(time: self.time_far), self.desc)
     }
     
     override var description: String{
-        return String(format: "#%d\t%@\t%@\t%@", self.num, TimeHelper.format2ReadableTime(time: self.time ?? 0), TimeHelper.format2ReadableTime(time: self.time_far ?? 0), self.desc)
+        return String(format: "#%d\t%@\t%@\t%@", self.num, TimeHelper.format2ReadableTime(time: self.time), TimeHelper.format2ReadableTime(time: self.time_far), self.desc)
     }
     
     func loadRecordData(_ record: Record) {
@@ -74,7 +80,7 @@ class WhirlpoolRecord :NSObject, NSCoding {
         rtx.uuid = uuid
         rtx.desc = self.desc
         rtx.t1 = self.time
-        rtx.t2 = self.time_far ?? 0
+        rtx.t2 = self.time_far
         do {
             try context.save()
         } catch {

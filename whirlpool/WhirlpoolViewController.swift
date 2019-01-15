@@ -12,7 +12,7 @@ import CoreData
 
 class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let TIMER_INIT_STR = "00:00.0"
+    let TIMER_INIT_STR = "00:00.00"
     
     enum BTN_TEXT :String {
         case START = "开始"
@@ -25,8 +25,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var splitBtn: UIButton!
-    @IBOutlet weak var saveBtn: UIButton!
-    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIBarButtonItem!
+    @IBOutlet weak var shareBtn: UIBarButtonItem!
     
     @IBOutlet var timeLabel: UILabel!
     
@@ -47,6 +47,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             self.recordsTableView.reloadData()
             self.resetTimer()
         }
+        WhirlpoolRecordStoreManager.manager().timerVC = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -146,6 +147,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     func pause() {
         WhirlpoolRecordStoreManager.manager().currentStore!.pause()
         self.setPausingStyle()
+        self.timeLabel.text = TimeHelper.format2ReadableTime(time: WhirlpoolRecordStoreManager.manager().currentStore!.getTimingTimeInterval())
+        WhirlpoolRecordStoreManager.manager().currentStore!.flushCurrentRecord()
         self.recordsTableView.reloadData()
     }
     
@@ -189,7 +192,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         if record != nil {
             cell.setRecord(record: record!)
         }
-        if WhirlpoolRecordStoreManager.manager().currentStore!.isTiming() {
+        if WhirlpoolRecordStoreManager.manager().currentStore!.isTiming() && indexPath.row == 0 {
             cell.disableDescTextField()
         } else {
             cell.enableDescTextField()

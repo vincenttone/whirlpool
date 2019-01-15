@@ -27,7 +27,7 @@ class WhirlpoolRecordTableViewCell : UITableViewCell {
     
     func setRecord(record: WhirlpoolRecord) {
         self.record = record
-        self.updateData(num: record.num , t1: TimeHelper.format2ReadableTime(time: record.time) , t2: TimeHelper.format2ReadableTime(time: record.time_far ?? 0))
+        self.updateData(num: record.num , t1: TimeHelper.format2ReadableTime(time: record.time) , t2: TimeHelper.format2ReadableTime(time: record.time_far))
     }
     
     func updateData(num: Int, t1: String, t2: String) {

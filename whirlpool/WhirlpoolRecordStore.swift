@@ -18,6 +18,14 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         case PAUSING = 2;
     }
     
+    struct EncodeError: Error {
+        let reason: String
+        var context: String = ""
+        init(reason: String) {
+            self.reason = reason
+        }
+    }
+    
     var uuid: String = NSUUID().uuidString
     var title: String = ""
     
@@ -30,7 +38,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     var last_pause_time: Date? = nil
     var split_time: Date? = nil
     
-    var current_record :WhirlpoolRecord = WhirlpoolRecord(num: 1, time: 0, time_far: 0)
+    var current_record :WhirlpoolRecord = WhirlpoolRecord(num: 1)
     var records :[WhirlpoolRecord] = []
     
     func isTiming() -> Bool {
@@ -73,9 +81,11 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
             WhirlpoolRecord(
                 num: self.records.count + 1,
                 time: self.split_time!.timeIntervalSince(pre_split_time),
-                time_far: self.split_time!.timeIntervalSince(self.start_time!)
+                time_far: self.split_time!.timeIntervalSince(self.start_time!),
+                desc: self.current_record.desc
             )
         )
+        self.current_record.desc = ""
         self.current_record.num = self.records.count + 1
     }
     
@@ -84,7 +94,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     }
     
     func getTimingTimeInterval() -> TimeInterval {
-        return Date().timeIntervalSince(self.start_time!)
+        return Date().timeIntervalSince(self.start_time ?? Date())
     }
     
     func flushCurrentRecord() {
@@ -335,16 +345,15 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.start_time, forKey: "start")
-        aCoder.encode(self.real_start_time, forKey: "real_start")
-        aCoder.encode(self.finish_time, forKey: "finish")
-        aCoder.encode(self.last_pause_time, forKey: "pause")
-        aCoder.encode(self.split_time, forKey: "split")
-        var rode: [WhirlpoolRecord] = []
-        for r in self.getAllRecords() {
-           rode.append(r)
-        }
-        aCoder.encode(rode, forKey: "records")
+        aCoder.encode(self.start_time, forKey: "start_time")
+        aCoder.encode(self.real_start_time, forKey: "real_start_time")
+        aCoder.encode(self.finish_time, forKey: "finish_time")
+        aCoder.encode(self.last_pause_time, forKey: "pause_time")
+        aCoder.encode(self.split_time, forKey: "split_time")
+        aCoder.encode(self.getAllRecords(), forKey: "records")
+        aCoder.encode(self.state.rawValue, forKey: "state")
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.uuid, forKey: "uuid")
     }
     
     override init() {
@@ -352,19 +361,20 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        let rode = aDecoder.decodeObject(forKey: "records") as! [WhirlpoolRecord]
-        if rode.count == 0 {
+        var rs = aDecoder.decodeObject(forKey: "records") as! [WhirlpoolRecord]
+        if rs.count == 0 {
             return
         }
-        self.start_time = aDecoder.decodeObject(forKey: "start") as! Date?
-        self.real_start_time = aDecoder.decodeObject(forKey: "real_start") as! Date?
-        self.finish_time = aDecoder.decodeObject(forKey: "finish") as! Date?
-        self.last_pause_time = aDecoder.decodeObject(forKey: "pause") as! Date?
-        self.split_time = aDecoder.decodeObject(forKey: "split") as! Date?
-        
-        for r in rode {
-            self.records.append(WhirlpoolRecord(num: r.num, time: r.time, time_far: r.time_far ?? 0, desc: r.desc))
-        }
+        self.current_record = rs.popLast()!
+        self.records = rs
+        start_time = (aDecoder.decodeObject(forKey: "start_time") as! Date)
+        split_time = (aDecoder.decodeObject(forKey: "split_time") as! Date)
+        real_start_time = (aDecoder.decodeObject(forKey: "real_start_time") as! Date)
+        finish_time = aDecoder.decodeObject(forKey: "finish_time") as! Date?
+        last_pause_time = aDecoder.decodeObject(forKey: "pause_time") as! Date?
+        state = STATE.init(rawValue: aDecoder.decodeInteger(forKey: "state"))!
+        title = aDecoder.decodeObject(forKey: "title") as! String
+        uuid = aDecoder.decodeObject(forKey: "uuid") as! String
     }
     
 }

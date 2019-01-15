@@ -68,8 +68,7 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showHistoryDetail" {
             let ta = segue.destination as! WhirlpoolHistoryDetailViewController
-            ta.history = self.choosedHistory!
-            ta.load_records()
+            ta.loadHistory(self.choosedHistory!)
         }
     }
     

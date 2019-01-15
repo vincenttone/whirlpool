@@ -15,7 +15,7 @@ class WhirlpoolRecordsTableViewController : UITableViewController {
         let cell = UITableViewCell.init(style: .value1, reuseIdentifier: "UITableViewCell")
         let record = self.recordStore.get_record(index: indexPath.row)
         cell.textLabel?.text = "#" + (record?.num.description ?? "")
-        cell.detailTextLabel?.text = record?.time?.description ?? "None for now"
+        cell.detailTextLabel?.text = record?.time.description ?? "None for now"
         return cell
     }
     
