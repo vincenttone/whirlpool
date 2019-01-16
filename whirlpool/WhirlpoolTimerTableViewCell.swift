@@ -17,7 +17,7 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
     
     var record: WhirlpoolRecord!
     var desc_changed: Bool = false
-    var switchBar: UIToolbar?
+    var switchBar: WhirlpoolTableCellTextFieldSwitchBar?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -62,36 +62,35 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func prepareSwitchBar(tableView: UITableView, indexPath: IndexPath) {
-        self.switchBar = UIToolbar()
-        // pre button
-        let preBtn = switchToolbarButtonItem(title: "上一个", style: .plain, target: self, action: #selector(switchToPreTextField(sender:)))
-        preBtn.tableView = tableView
-        preBtn.indexPath = indexPath
-        // next button
-        let nextBtn = switchToolbarButtonItem(title: "下一个", style: .plain, target: self, action: #selector(switchToNextTextField(sender:)))
-        nextBtn.tableView = tableView
-        nextBtn.indexPath = indexPath
-        // set items
-        switchBar!.items = [preBtn, nextBtn]
-        switchBar!.sizeToFit()
+        switchBar = WhirlpoolTableCellTextFieldSwitchBar()
+        switchBar?.addSwitchItems(
+            tableView: tableView,
+            indexPath: indexPath,
+            record: record,
+            preCallback: {
+                (cell: UITableViewCell?) in
+                if cell == nil {
+                    return
+                }
+                let commentField = (cell as! WhirlpoolTimerTableViewCell).commentTextField
+                if commentField != nil {
+                    tableView.scrollToRow(at: self.switchBar!.preIndexPath, at: .middle, animated: true)
+                    commentField?.becomeFirstResponder()
+                }
+            },
+            nextCallback: {(cell: UITableViewCell?) in
+                if cell == nil {
+                    return
+                }
+                let commentField = (cell as! WhirlpoolTimerTableViewCell).commentTextField
+                if commentField != nil {
+                    tableView.scrollToRow(at: self.switchBar!.nextIndexPath, at: .middle, animated: true)
+                    commentField?.becomeFirstResponder()
+                }
+            }
+        )
         self.commentTextField.inputAccessoryView = self.switchBar
-    }
-    
-    @objc func switchToPreTextField(sender: switchToolbarButtonItem) {
-        let cell = sender.switchToPreCell() as! WhirlpoolTimerTableViewCell?
-        if cell != nil {
-            cell?.commentTextField.becomeFirstResponder()
-            sender.tableView.scrollToRow(at: sender.preIndexPath, at: .middle, animated: true)
-        }
-    }
-    
-    @objc func switchToNextTextField(sender: switchToolbarButtonItem) {
-        let cell = sender.switchToNextCell() as! WhirlpoolTimerTableViewCell?
-        if cell != nil {
-            sender.tableView.scrollToRow(at: sender.nextIndexPath, at: .middle, animated: true)
-            cell?.commentTextField.becomeFirstResponder()
-        }
     }
 }

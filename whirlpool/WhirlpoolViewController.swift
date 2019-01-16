@@ -13,7 +13,7 @@ import CoreData
 class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let TIMER_INIT_STR = "00:00.00"
-    var switchToolbars: [UIToolbar] = []
+    var switchToolbars: [WhirlpoolTableCellTextFieldSwitchBar] = []
     
     enum BTN_TEXT :String {
         case START = "开始"
@@ -198,7 +198,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             cell.enableDescTextField()
         }
-        cell.descTextField.inputAccessoryView = self.getSwitchToolbar(indexPath: indexPath)
+        cell.descTextField.inputAccessoryView = self.getSwitchToolbar(indexPath: indexPath, record: record!)
         return cell
     }
     
@@ -206,40 +206,42 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         return WhirlpoolRecordStoreManager.manager().currentStore!.count()
     }
     
-    func getSwitchToolbar(indexPath: IndexPath) -> UIToolbar {
-        var switchToolbar: UIToolbar!
+    func getSwitchToolbar(indexPath: IndexPath, record: WhirlpoolRecord) -> UIToolbar {
+        var switchToolbar: WhirlpoolTableCellTextFieldSwitchBar!
         while self.switchToolbars.count <= indexPath.row {
-            self.switchToolbars.append(UIToolbar())
+            self.switchToolbars.append(WhirlpoolTableCellTextFieldSwitchBar())
         }
         switchToolbar = switchToolbars[indexPath.row]
-        // pre button
-        let preBtn = switchToolbarButtonItem(title: "上一个", style: .plain, target: self, action: #selector(switchToPreTextField(sender:)))
-        preBtn.tableView = self.recordsTableView
-        preBtn.indexPath = indexPath
-        // next button
-        let nextBtn = switchToolbarButtonItem(title: "下一个", style: .plain, target: self, action: #selector(switchToNextTextField(sender:)))
-        nextBtn.tableView = self.recordsTableView
-        nextBtn.indexPath = indexPath
+        switchToolbar.addSwitchItems(
+            tableView: self.recordsTableView,
+            indexPath: indexPath,
+            record: record,
+            preCallback: {
+                (cell: UITableViewCell?) in
+                    if cell == nil {
+                        return
+                    }
+                    let commentField = (cell as! WhirlpoolRecordTableViewCell).descTextField
+                    if commentField != nil && commentField!.editable {
+                        self.recordsTableView.scrollToRow(at: switchToolbar.preIndexPath, at: .middle, animated: true)
+                        commentField?.becomeFirstResponder()
+                    }
+            },
+            nextCallback: {(cell: UITableViewCell?) in
+                if cell == nil {
+                    return
+                }
+                let commentField = (cell as! WhirlpoolRecordTableViewCell).descTextField
+                if commentField != nil && commentField!.editable {
+                    self.recordsTableView.scrollToRow(at: switchToolbar.nextIndexPath, at: .middle, animated: true)
+                    commentField?.becomeFirstResponder()
+                }
+            }
+        )
         // set items
-        switchToolbar.items = [preBtn, nextBtn]
-        switchToolbar.sizeToFit()
+        // switchToolbar.sizeToFit()
         return switchToolbar
     }
-    
-    @objc func switchToPreTextField(sender: switchToolbarButtonItem) {
-        let cell = sender.switchToPreCell() as! WhirlpoolRecordTableViewCell?
-        if cell != nil && cell!.descTextField.editable {
-            sender.tableView.scrollToRow(at: sender.preIndexPath, at: .middle, animated: true)
-            cell?.descTextField.becomeFirstResponder()
-        }
-    }
-    
-    @objc func switchToNextTextField(sender: switchToolbarButtonItem) {
-        let cell = sender.switchToNextCell() as! WhirlpoolRecordTableViewCell?
-        if cell != nil  && cell!.descTextField.editable {
-            sender.tableView.scrollToRow(at: sender.nextIndexPath, at: .middle, animated: true)
-            cell?.descTextField.becomeFirstResponder()
-        }
-    }
+
 }
 
