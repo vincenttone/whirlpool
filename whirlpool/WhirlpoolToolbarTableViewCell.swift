@@ -39,4 +39,5 @@ class WhirlpoolToolbarTableViewCell: UITableViewCell {
     @IBAction func saveBtnTouched(_ sender: Any) {
         self.recordStore.save()
     }
+    
 }

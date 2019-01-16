@@ -19,13 +19,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udp-L6-2Yb">
-                        <rect key="frame" x="4" y="0.0" width="48" height="43.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udp-L6-2Yb">
+                        <rect key="frame" x="8" y="0.0" width="48" height="43.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="U34-Je-VAx"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Ea-ZGd">
@@ -46,7 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Q-3g-rQ9">
-                        <rect key="frame" x="52" y="0.0" width="72" height="43.5"/>
+                        <rect key="frame" x="56" y="0.0" width="68" height="43.5"/>
                         <color key="textColor" red="0.085749484599999995" green="0.50275510550000002" blue="0.43921414019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -58,11 +58,11 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Udp-L6-2Yb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="4MD-Uc-Pqt"/>
                     <constraint firstItem="g39-Ea-ZGd" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="A1u-xF-b9S"/>
                     <constraint firstItem="g39-Ea-ZGd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="EOE-2V-1nH"/>
                     <constraint firstAttribute="bottom" secondItem="Z6Q-3g-rQ9" secondAttribute="bottom" id="FPk-k1-4Ne"/>
                     <constraint firstItem="g39-Ea-ZGd" firstAttribute="leading" secondItem="hfv-C9-xHa" secondAttribute="trailing" id="Ids-oV-vNE"/>
+                    <constraint firstItem="Udp-L6-2Yb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Kev-GW-cCK"/>
                     <constraint firstItem="hfv-C9-xHa" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="MFe-im-i4L"/>
                     <constraint firstItem="Z6Q-3g-rQ9" firstAttribute="leading" secondItem="Udp-L6-2Yb" secondAttribute="trailing" id="SbB-4d-3iQ"/>
                     <constraint firstAttribute="bottom" secondItem="Udp-L6-2Yb" secondAttribute="bottom" id="Uj2-ct-eTn"/>
