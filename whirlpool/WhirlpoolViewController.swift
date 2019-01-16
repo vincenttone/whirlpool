@@ -82,7 +82,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
                 textField.text = WhirlpoolRecordStoreManager.manager().currentStore!.title
             }
         }
-        alert.addAction(UIAlertAction(title: "取消", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "保存", style: .default, handler: { (_) in
             let title_tf = alert.textFields!.first!
             WhirlpoolRecordStoreManager.manager().currentStore!.title = title_tf.text ?? ""

@@ -38,7 +38,8 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     var last_pause_time: Date? = nil
     var split_time: Date? = nil
     
-    var current_record :WhirlpoolRecord = WhirlpoolRecord(num: 1)
+    var current_record :WhirlpoolRecord!
+
     var records :[WhirlpoolRecord] = []
     
     func isTiming() -> Bool {
@@ -82,7 +83,8 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
                 num: self.records.count + 1,
                 time: self.split_time!.timeIntervalSince(pre_split_time),
                 time_far: self.split_time!.timeIntervalSince(self.start_time!),
-                desc: self.current_record.desc
+                desc: self.current_record.desc,
+                uuid: self.uuid
             )
         )
         self.current_record.desc = ""
@@ -149,10 +151,10 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         let rs = self.getHistoryRecords(uuid: self.uuid, count: Int(history.count), offset: 0)
         self.records = []
         for rd in rs {
-            self.records.append(WhirlpoolRecord(num: Int(rd.no), time: rd.t1, time_far: rd.t2, desc: rd.desc ?? ""))
+            self.records.append(WhirlpoolRecord(num: Int(rd.no), time: rd.t1, time_far: rd.t2, desc: rd.desc ?? "", uuid: rd.uuid!))
         }
         if self.records.count > 0 {
-            self.current_record = self.records.popLast() ?? WhirlpoolRecord(num: 1, time: 0, time_far: 0)
+            self.current_record = self.records.popLast()!
         }
     }
     
@@ -201,13 +203,22 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         
         if saved_count > 0 { // remove old records
             // update saved batch
-            self.deleteRecords(uuid: self.uuid)
+            do {
+                try WhirlpoolRecordStore.deleteRecords(uuid: self.uuid)
+            } catch {
+                dump(error)
+                print("delete records failed!")
+            }
         } else { // insert
             self.createHistory()
         }
         // save records
         for r in self.getAllRecords() {
-            r.save(self.uuid)
+            do {
+                try r.save()
+            } catch {
+                dump(error)
+            }
         }
     }
     
@@ -306,7 +317,8 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         return []
     }
     
-    func deleteHistory(uuid: String) {
+    class func deleteHistory(uuid: String) throws {
+        try WhirlpoolRecordStore.deleteRecords(uuid: uuid)
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Batch>(entityName: "Batch")
@@ -322,10 +334,11 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
             try context.save()
         } catch {
             print("delete failed!!!")
+            throw error
         }
     }
     
-    func deleteRecords(uuid: String) {
+    class func deleteRecords(uuid: String) throws {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Record>(entityName: "Record")
@@ -341,6 +354,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
             try context.save()
         } catch {
             print("delete failed!!!")
+            throw error
         }
     }
     
@@ -358,6 +372,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     
     override init() {
         super.init()
+        self.current_record = WhirlpoolRecord(num: 1,  uuid: self.uuid)
     }
     
     required init?(coder aDecoder: NSCoder) {

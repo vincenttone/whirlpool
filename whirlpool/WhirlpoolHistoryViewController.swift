@@ -58,11 +58,41 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let vc = WhirlpoolHistoryRecordTableViewController()
-        //vc.view.addSubview(UITableViewCell())
         self.choosedHistory = self.histories[indexPath.row]
-        //vc.load_records()
         self.performSegue(withIdentifier: "showHistoryDetail", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert = UIAlertController(title: "确认删除？", message: "确认要删除这条记录吗？", preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: "取消", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (_ sender: Any?) in
+                let target_history = self.histories[indexPath.row]
+                if target_history.uuid == nil {
+                    let alert_failed = UIAlertController(title: "删除失败", message: "因未知原因删除失败，请稍后尝试", preferredStyle: .alert)
+                    alert_failed.addAction(UIAlertAction(title: "确认", style: .default, handler: nil))
+                    self.present(alert_failed, animated: true, completion: nil)
+                    return
+                }
+                do {
+                    try WhirlpoolRecordStore.deleteHistory(uuid: target_history.uuid!)
+                    self.histories.remove(at: indexPath.row)
+                    self.count -= 1
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                } catch {
+                    dump(error)
+                    let alert_failed = UIAlertController(title: "删除失败", message: "因未知原因删除失败，请稍后尝试", preferredStyle: .alert)
+                    alert_failed.addAction(UIAlertAction(title: "确认", style: .default, handler: nil))
+                    self.present(alert_failed, animated: true, completion: nil)
+                    return
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

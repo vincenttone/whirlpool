@@ -30,10 +30,21 @@ class WhirlpoolRecord :NSObject, NSCoding {
     var time :TimeInterval = 0
     var time_far :TimeInterval = 0
     var desc :String = ""
+    var uuid: String!
     
-    init (num: Int) {
+    init(num: Int, uuid: String) {
         super.init()
         self.num = num
+        self.uuid = uuid
+    }
+    
+    init(_ record: Record) {
+        super.init()
+        self.uuid = record.uuid
+        self.num = Int(record.no)
+        self.time = record.t1
+        self.time_far = record.t2
+        self.desc = record.desc ?? ""
     }
     
     init(num :Int, time :TimeInterval, time_far :TimeInterval) {
@@ -43,12 +54,13 @@ class WhirlpoolRecord :NSObject, NSCoding {
         self.time_far = time_far
     }
     
-    init(num :Int, time :TimeInterval, time_far :TimeInterval, desc :String) {
+    init(num :Int, time :TimeInterval, time_far :TimeInterval, desc :String, uuid: String) {
         super.init()
         self.num = num
         self.time = time
         self.time_far = time_far
         self.desc = desc
+        self.uuid = uuid
     }
 
     func set_desc(desc :String) {
@@ -63,21 +75,34 @@ class WhirlpoolRecord :NSObject, NSCoding {
         return String(format: "#%d\t%@\t%@\t%@", self.num, TimeHelper.format2ReadableTime(time: self.time), TimeHelper.format2ReadableTime(time: self.time_far), self.desc)
     }
     
-    func loadRecordData(_ record: Record) {
-        self.num = Int(record.no)
-        self.time = record.t1
-        self.time_far = record.t2
-        self.desc = record.desc ?? ""
+    func update() throws {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        // save records
+        let request = NSFetchRequest<Record>(entityName: "Record")
+        let predicate = NSPredicate(format: "uuid = \"\(self.uuid!)\" AND %K = %d", "no", self.num)
+        print(predicate.predicateFormat)
+        request.predicate = predicate
+        do {
+            let records = try context.fetch(request)
+            for r in records {
+                r.desc = self.desc
+            }
+            try context.save()
+        } catch {
+            print("update failed!")
+            throw error
+        }
     }
     
-    func save(_ uuid: String) {
+    func save() throws {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
         // save records
         var rtx: Record!
         rtx = NSEntityDescription.insertNewObject(forEntityName: "Record", into: context) as? Record
         rtx.no = Int32(self.num)
-        rtx.uuid = uuid
+        rtx.uuid = self.uuid
         rtx.desc = self.desc
         rtx.t1 = self.time
         rtx.t2 = self.time_far
@@ -85,6 +110,7 @@ class WhirlpoolRecord :NSObject, NSCoding {
             try context.save()
         } catch {
             print("save failed!")
+            throw error
         }
     }
 

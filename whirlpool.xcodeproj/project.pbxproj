@@ -19,6 +19,8 @@
 		BF508E3721DDF76E0010E1BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF508E3521DDF76E0010E1BD /* LaunchScreen.storyboard */; };
 		BF508E4221DDF76E0010E1BD /* whirlpoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508E4121DDF76E0010E1BD /* whirlpoolTests.swift */; };
 		BF508E4D21DDF76E0010E1BD /* whirlpoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508E4C21DDF76E0010E1BD /* whirlpoolUITests.swift */; };
+		BF85DABE21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85DABC21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift */; };
+		BF85DABF21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF85DABD21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib */; };
 		BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */; };
 		BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */; };
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
@@ -64,6 +66,8 @@
 		BF508E4821DDF76E0010E1BD /* whirlpoolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = whirlpoolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF508E4C21DDF76E0010E1BD /* whirlpoolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whirlpoolUITests.swift; sourceTree = "<group>"; };
 		BF508E4E21DDF76E0010E1BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF85DABC21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTimerTableViewCell.swift; sourceTree = "<group>"; };
+		BF85DABD21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhirlpoolTimerTableViewCell.xib; sourceTree = "<group>"; };
 		BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecord.swift; sourceTree = "<group>"; };
 		BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordStore.swift; sourceTree = "<group>"; };
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */,
 				BF368CD721E75B6400A8971E /* WhirlpoolHistoryViewController.swift */,
 				BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */,
+				BF85DABC21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift */,
+				BF85DABD21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib */,
 				BF3F53CC21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift */,
 			);
 			path = whirlpool;
@@ -280,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF85DABF21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib in Resources */,
 				BF508E3721DDF76E0010E1BD /* LaunchScreen.storyboard in Resources */,
 				BF508E3421DDF76E0010E1BD /* Assets.xcassets in Resources */,
 				BF508E3221DDF76D0010E1BD /* Main.storyboard in Resources */,
@@ -317,6 +324,7 @@
 				BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */,
 				BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */,
 				BF368CD821E75B6400A8971E /* WhirlpoolHistoryViewController.swift in Sources */,
+				BF85DABE21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift in Sources */,
 				BF508E2921DDF76D0010E1BD /* AppDelegate.swift in Sources */,
 				BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */,
 				BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */,

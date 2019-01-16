@@ -24,6 +24,7 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         self.detailTableView.dataSource = self
         self.navigationItem.title = self.history.title
         super.viewDidLoad()
+        self.detailTableView.register(UINib(nibName: "WhirlpoolTimerTableViewCell", bundle: nil), forCellReuseIdentifier: "WhirlpoolTimerTableViewCell")
     }
     
     func loadHistory(_ history: Batch) {
@@ -32,8 +33,10 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WhirlpoolTimerTableViewCell") as! WhirlpoolTimerTableViewCell
         let record = self.recordStore.get_record(index: indexPath.row)!
+        cell.setRecord(record)
+        /*
         cell!.textLabel?.textColor = .darkGray
         cell!.textLabel?.font = UIFont.init(name: "Helvetica neue", size: 20)
         if record.desc.count > 0 {
@@ -44,7 +47,8 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         cell!.detailTextLabel?.textColor = .gray
         cell!.detailTextLabel?.font = UIFont.init(name: "Helvetica neue", size: 20)
         cell!.detailTextLabel?.text = String(format: "%@ \t%@", TimeHelper.format2ReadableTime(time: record.time), TimeHelper.format2ReadableTime(time: record.time_far))
-        return cell!
+        */
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
