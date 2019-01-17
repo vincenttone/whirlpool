@@ -17,12 +17,19 @@ class WhirlpoolRecordTableViewCell : UITableViewCell {
     @IBOutlet var descTextField: WhirlpoolRecordDescTextField!
     
     var record: WhirlpoolRecord?
+    var beginEditingCallback: (() -> Void)?
     
     @IBAction func descTextFieldEditing(_ sender: Any) {
         self.record?.desc = self.descTextField.text ?? ""
     }
     @IBAction func didEndEditing(_ sender: Any) {
         self.descTextField.resignFirstResponder()
+    }
+    
+    @IBAction func didBeginEditing(_ sender: Any) {
+        if self.beginEditingCallback != nil {
+            beginEditingCallback!()
+        }
     }
     
     func setRecord(record: WhirlpoolRecord) {

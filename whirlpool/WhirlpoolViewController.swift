@@ -13,7 +13,9 @@ import CoreData
 class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let TIMER_INIT_STR = "00:00.00"
+    
     var switchToolbars: [WhirlpoolTableCellTextFieldSwitchBar] = []
+    var editingIndexPath: IndexPath?
     
     enum BTN_TEXT :String {
         case START = "开始"
@@ -49,6 +51,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             self.resetTimer()
         }
         WhirlpoolRecordStoreManager.manager().timerVC = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(note:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(note:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -193,6 +197,9 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         if record != nil {
             cell.setRecord(record: record!)
         }
+        cell.beginEditingCallback = {() in
+            self.editingIndexPath = indexPath
+        }
         if WhirlpoolRecordStoreManager.manager().currentStore!.isTiming() && indexPath.row == 0 {
             cell.disableDescTextField()
         } else {
@@ -223,9 +230,12 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                     let commentField = (cell as! WhirlpoolRecordTableViewCell).descTextField
                     if commentField != nil && commentField!.editable {
-                        self.recordsTableView.scrollToRow(at: switchToolbar.preIndexPath, at: .middle, animated: true)
+                        //self.recordsTableView.scrollToRow(at: switchToolbar.preIndexPath, at: .middle, animated: true)
+                        UIView.animate(withDuration: 0.2, animations: {() in
+                            self.recordsTableView.scrollToRow(at: switchToolbar.preIndexPath, at: .middle, animated: false)
+                        })
                         commentField?.becomeFirstResponder()
-                    }
+                }
             },
             nextCallback: {(cell: UITableViewCell?) in
                 if cell == nil {
@@ -233,7 +243,10 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
                 let commentField = (cell as! WhirlpoolRecordTableViewCell).descTextField
                 if commentField != nil && commentField!.editable {
-                    self.recordsTableView.scrollToRow(at: switchToolbar.nextIndexPath, at: .middle, animated: true)
+                    //self.recordsTableView.scrollToRow(at: switchToolbar.nextIndexPath, at: .middle, animated: true)
+                    UIView.animate(withDuration: 0.2, animations: {() in
+                        self.recordsTableView.scrollToRow(at: switchToolbar.nextIndexPath, at: .middle, animated: false)
+                    })
                     commentField?.becomeFirstResponder()
                 }
             }
@@ -242,6 +255,22 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         // switchToolbar.sizeToFit()
         return switchToolbar
     }
-
+    
+    @objc func keyboardWillShow(note: NSNotification) {
+        let info = note.userInfo!
+        let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+        self.recordsTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: kbSize.height - 80, right: 0)
+        if self.editingIndexPath != nil {
+            UIView.animate(withDuration: 0.2, animations: {() in
+                self.recordsTableView.scrollToRow(at: self.editingIndexPath!, at: .middle, animated: false)
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(note: NSNotification) {
+        UIView.animate(withDuration: 0.3, animations: {() in
+            self.recordsTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        })
+    }
 }
 

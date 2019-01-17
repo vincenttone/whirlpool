@@ -58,6 +58,8 @@
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="descTextFieldEditing:" destination="Bxf-mR-jSS" eventType="editingChanged" id="YPb-Al-ndL"/>
+                                                        <action selector="didBeginEditing:" destination="Bxf-mR-jSS" eventType="editingDidEnd" id="G9S-sa-Ifs"/>
+                                                        <action selector="didBeginEditing:" destination="Bxf-mR-jSS" eventType="editingDidBegin" id="kQe-mP-2wd"/>
                                                         <action selector="didEndEditing:" destination="Bxf-mR-jSS" eventType="editingDidEndOnExit" id="AMn-H6-qk1"/>
                                                     </connections>
                                                 </textField>

@@ -18,6 +18,7 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
     var record: WhirlpoolRecord!
     var desc_changed: Bool = false
     var switchBar: WhirlpoolTableCellTextFieldSwitchBar?
+    var beginEditingCallback: (()->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +44,9 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
     }
     
     @IBAction func whenEditing(_ sender: Any) {
+        if beginEditingCallback != nil {
+            beginEditingCallback!()
+        }
         if self.record.desc != self.commentTextField.text {
             self.record.desc = self.commentTextField.text ?? ""
             self.desc_changed = true

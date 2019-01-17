@@ -11,6 +11,7 @@ import UIKit
 class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var recordStore = WhirlpoolRecordStore()
     var history: Batch!
+    var editingIndexPath: IndexPath?
     
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var shareBtn: UIBarButtonItem!
@@ -25,6 +26,8 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         self.navigationItem.title = self.history.title
         super.viewDidLoad()
         self.detailTableView.register(UINib(nibName: "WhirlpoolTimerTableViewCell", bundle: nil), forCellReuseIdentifier: "WhirlpoolTimerTableViewCell")
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(note:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(note:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     func loadHistory(_ history: Batch) {
@@ -37,10 +40,30 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         let record = self.recordStore.get_record(index: indexPath.row)!
         cell.setRecord(record)
         cell.prepareSwitchBar(tableView: tableView, indexPath: indexPath)
+        cell.beginEditingCallback = { () in
+            self.editingIndexPath = indexPath
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.recordStore.count()
+    }
+    
+    @objc func keyboardWillShow(note: NSNotification) {
+        let info = note.userInfo!
+        let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+        self.detailTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        if self.editingIndexPath != nil {
+            UIView.animate(withDuration: 0.2, animations: {() in
+                self.detailTableView.scrollToRow(at: self.editingIndexPath!, at: .middle, animated: false)
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(note: NSNotification) {
+        UIView.animate(withDuration: 0.5, animations: {() in
+            self.detailTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        })
     }
 }
