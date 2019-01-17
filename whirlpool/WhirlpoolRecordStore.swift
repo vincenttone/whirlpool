@@ -196,6 +196,8 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
                     
                 }
                 try context.save()
+            } else {
+                self.createHistory()
             }
         } catch {
             print("fetch and up batch info failed!")
@@ -204,18 +206,16 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         if saved_count > 0 { // remove old records
             // update saved batch
             do {
-                try WhirlpoolRecordStore.deleteRecords(uuid: self.uuid)
+                try WhirlpoolRecordStore.deleteRecords(uuid: self.uuid, context: context)
             } catch {
                 dump(error)
                 print("delete records failed!")
             }
-        } else { // insert
-            self.createHistory()
         }
         // save records
         for r in self.getAllRecords() {
             do {
-                try r.save()
+                try r.save(context: context)
             } catch {
                 dump(error)
             }
@@ -338,9 +338,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         }
     }
     
-    class func deleteRecords(uuid: String) throws {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
+    class func deleteRecords(uuid: String, context: NSManagedObjectContext) throws {
         let fetchRequest = NSFetchRequest<Record>(entityName: "Record")
         do {
             let predicate = NSPredicate(format: "uuid=\"\(uuid)\"", "")
@@ -356,6 +354,12 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
             print("delete failed!!!")
             throw error
         }
+    }
+    
+    class func deleteRecords(uuid: String) throws {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        try WhirlpoolRecordStore.deleteRecords(uuid: uuid, context: context)
     }
     
     func encode(with aCoder: NSCoder) {

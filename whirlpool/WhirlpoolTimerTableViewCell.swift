@@ -72,7 +72,7 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
         switchBar?.addSwitchItems(
             tableView: tableView,
             indexPath: indexPath,
-            record: record,
+            textField: self.commentTextField,
             preCallback: {
                 (cell: UITableViewCell?) in
                 if cell == nil {

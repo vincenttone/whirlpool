@@ -12,12 +12,34 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     var recordStore = WhirlpoolRecordStore()
     var history: Batch!
     var editingIndexPath: IndexPath?
+    var deletedCallback: (() -> Void)?
+    
+    var selectedIndexPath: IndexPath?
     
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var shareBtn: UIBarButtonItem!
     
     @IBAction func shareBtnTouched(_ sender: Any) {
         self.recordStore.share(vc: self)
+    }
+    
+    @IBAction func deleteBtnTouched(_ sender: Any) {
+        let alert = UIAlertController(title: "确认删除？", message: "确认要删除这条记录吗？", preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "取消", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (_ sender: Any?) in
+            do {
+                try WhirlpoolRecordStoreManager.deleteHistory(uuid: self.recordStore.uuid)
+                self.navigationController?.popViewController(animated: true)
+                self.deletedCallback?()
+            } catch {
+                dump(error)
+                let alert_failed = UIAlertController(title: "删除失败", message: "因未知原因删除失败，请稍后尝试", preferredStyle: .alert)
+                alert_failed.addAction(UIAlertAction(title: "确认", style: .default, handler: nil))
+                self.present(alert_failed, animated: true, completion: nil)
+                return
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -50,7 +72,15 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         return self.recordStore.count()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
+    }
+    
     @objc func keyboardWillShow(note: NSNotification) {
+        if self.selectedIndexPath != nil {
+            self.detailTableView.deselectRow(at: self.selectedIndexPath!, animated: true)
+            self.selectedIndexPath = nil
+        }
         let info = note.userInfo!
         let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
         self.detailTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: kbSize.height, right: 0)

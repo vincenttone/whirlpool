@@ -133,4 +133,9 @@ class WhirlpoolRecordStoreManager {
             block: block
         )
     }
+    
+    class func deleteHistory(uuid: String) throws {
+        try WhirlpoolRecordStore.deleteRecords(uuid: uuid)
+        try WhirlpoolRecordStore.deleteHistory(uuid: uuid)
+    }
 }

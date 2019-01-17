@@ -21,7 +21,7 @@ class WhirlpoolTableCellTextFieldSwitchBar: UIToolbar {
     var indexPath: IndexPath!
     var preIndexPath: IndexPath!
     var nextIndexPath: IndexPath!
-    var record: WhirlpoolRecord!
+    var textField: UITextField?
     
     var preCallback: ((_ cell: UITableViewCell?) -> Void)?
     var nextCallback: ((_ cell: UITableViewCell?) -> Void)?
@@ -34,15 +34,17 @@ class WhirlpoolTableCellTextFieldSwitchBar: UIToolbar {
         nextIndexPath.row = indexPath.row + 1
     }
     
-    func addSwitchItems(tableView: UITableView, indexPath: IndexPath, record:WhirlpoolRecord, preCallback: @escaping (_ cell: UITableViewCell?) -> Void, nextCallback: @escaping (_ cell: UITableViewCell?) -> Void) {
+    func addSwitchItems(tableView: UITableView, indexPath: IndexPath, textField: UITextField, preCallback: @escaping (_ cell: UITableViewCell?) -> Void, nextCallback: @escaping (_ cell: UITableViewCell?) -> Void) {
         self.setIndexPath(indexPath)
         self.tableView = tableView
-        self.record = record
+        self.textField = textField
         let preBtn = WhirlpoolSwitchToolbarButtonItem(title: "上一个", style: .plain, target: self, action: #selector(switchToPreTarget(sender:)))
         self.preCallback = preCallback
         let nextBtn = WhirlpoolSwitchToolbarButtonItem(title: "下一个", style: .plain, target: self, action: #selector(switchToNextTarget(sender:)))
         self.nextCallback = nextCallback
-        self.items = [preBtn, nextBtn]
+        let space = UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let hideBtn = UIBarButtonItem.init(title: "隐藏", style: .plain, target: self, action: #selector(hidekeyboard(sender:)))
+        self.items = [preBtn, nextBtn, space, hideBtn]
         self.sizeToFit()
     }
     
@@ -56,5 +58,9 @@ class WhirlpoolTableCellTextFieldSwitchBar: UIToolbar {
         if self.nextCallback != nil {
             self.nextCallback!(sender.switchToNextCell())
         }
+    }
+    
+    @objc func hidekeyboard(sender: UIBarButtonItem) {
+        textField?.resignFirstResponder()
     }
 }

@@ -100,6 +100,14 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         WhirlpoolRecordStoreManager.manager().currentStore!.share(vc: self)
     }
     
+    @IBAction func draging(_ sender: Any) {
+        if self.editingIndexPath != nil {
+            let cell = self.recordsTableView.cellForRow(at: self.editingIndexPath!) as! WhirlpoolRecordTableViewCell
+            cell.descTextField.resignFirstResponder()
+        }
+    }
+    
+    
     func refresh_data() {
         if WhirlpoolRecordStoreManager.manager().currentStore!.isPausing() {
             self.timeLabel.text = TimeHelper.format2ReadableTime(time: WhirlpoolRecordStoreManager.manager().currentStore!.getPausingTimeInterval())
@@ -205,7 +213,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             cell.enableDescTextField()
         }
-        cell.descTextField.inputAccessoryView = self.getSwitchToolbar(indexPath: indexPath, record: record!)
+        cell.descTextField.inputAccessoryView = self.getSwitchToolbar(indexPath: indexPath, record: record!, textField: cell.descTextField )
         return cell
     }
     
@@ -213,7 +221,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         return WhirlpoolRecordStoreManager.manager().currentStore!.count()
     }
     
-    func getSwitchToolbar(indexPath: IndexPath, record: WhirlpoolRecord) -> UIToolbar {
+    func getSwitchToolbar(indexPath: IndexPath, record: WhirlpoolRecord, textField: UITextField) -> UIToolbar {
         var switchToolbar: WhirlpoolTableCellTextFieldSwitchBar!
         while self.switchToolbars.count <= indexPath.row {
             self.switchToolbars.append(WhirlpoolTableCellTextFieldSwitchBar())
@@ -222,7 +230,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         switchToolbar.addSwitchItems(
             tableView: self.recordsTableView,
             indexPath: indexPath,
-            record: record,
+            textField: textField,
             preCallback: {
                 (cell: UITableViewCell?) in
                     if cell == nil {

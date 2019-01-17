@@ -18,12 +18,13 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     var histories: [Batch] = []
     var count = 0
     
-    var choosedHistory: Batch? = nil
+    var choosedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         self.historyTableView.delegate = self
         self.historyTableView.dataSource = self
         super.viewDidLoad()
+        print("load history", self.histories)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,7 +59,7 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.choosedHistory = self.histories[indexPath.row]
+        self.choosedIndexPath = indexPath
         self.performSegue(withIdentifier: "showHistoryDetail", sender: self)
     }
     
@@ -97,8 +98,16 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showHistoryDetail" {
+            if self.choosedIndexPath == nil {
+                return
+            }
             let ta = segue.destination as! WhirlpoolHistoryDetailViewController
-            ta.loadHistory(self.choosedHistory!)
+            ta.loadHistory(self.histories[self.choosedIndexPath!.row])
+            ta.deletedCallback = {() in
+                self.count -= 1
+                self.histories.remove(at: self.choosedIndexPath!.row)
+                self.historyTableView.deleteRows(at: [self.choosedIndexPath!], with: .fade)
+            }
         }
     }
     

@@ -17,6 +17,7 @@ class WhirlpoolRecord :NSObject, NSCoding {
         aCoder.encode(time, forKey: "time")
         aCoder.encode(time_far, forKey: "time_far")
         aCoder.encode(desc, forKey: "desc")
+        aCoder.encode(uuid, forKey: "uuid")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,6 +25,7 @@ class WhirlpoolRecord :NSObject, NSCoding {
         time = aDecoder.decodeDouble(forKey: "time") as TimeInterval
         time_far = aDecoder.decodeDouble(forKey: "time_far") as TimeInterval
         desc = aDecoder.decodeObject(forKey: "desc") as! String
+        uuid = aDecoder.decodeObject(forKey: "uuid") as? String
     }
     
     var num = 0
@@ -81,7 +83,6 @@ class WhirlpoolRecord :NSObject, NSCoding {
         // save records
         let request = NSFetchRequest<Record>(entityName: "Record")
         let predicate = NSPredicate(format: "uuid = \"\(self.uuid!)\" AND %K = %d", "no", self.num)
-        print(predicate.predicateFormat)
         request.predicate = predicate
         do {
             let records = try context.fetch(request)
@@ -95,23 +96,31 @@ class WhirlpoolRecord :NSObject, NSCoding {
         }
     }
     
-    func save() throws {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
+    func save(context: NSManagedObjectContext) throws {
         // save records
-        var rtx: Record!
-        rtx = NSEntityDescription.insertNewObject(forEntityName: "Record", into: context) as? Record
-        rtx.no = Int32(self.num)
-        rtx.uuid = self.uuid
-        rtx.desc = self.desc
-        rtx.t1 = self.time
-        rtx.t2 = self.time_far
+        var record: Record!
+        record = NSEntityDescription.insertNewObject(forEntityName: "Record", into: context) as? Record
+        self.warpToRecord(record: record)
         do {
             try context.save()
         } catch {
             print("save failed!")
             throw error
         }
+    }
+    
+    func save() throws {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        try self.save(context: context)
+    }
+    
+    func warpToRecord(record: Record) {
+        record.no = Int32(self.num)
+        record.uuid = self.uuid
+        record.desc = self.desc
+        record.t1 = self.time
+        record.t2 = self.time_far
     }
 
 }

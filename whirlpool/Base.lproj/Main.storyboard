@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="252" width="375" height="294"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WhirlpoolRecordTableViewCell" id="Bxf-mR-jSS" customClass="WhirlpoolRecordTableViewCell" customModule="whirlpool" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WhirlpoolRecordTableViewCell" id="Bxf-mR-jSS" customClass="WhirlpoolRecordTableViewCell" customModule="whirlpool" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bxf-mR-jSS" id="pKy-5f-YVI">
@@ -140,6 +140,9 @@
                             <constraint firstItem="n1S-o0-2bc" firstAttribute="trailing" secondItem="C7F-gh-4qS" secondAttribute="trailing" id="znv-q1-1yO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C7F-gh-4qS"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jLn-h8-tv0" appends="YES" id="j5D-3z-1gb"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="VzO-SO-XR6">
                         <barButtonItem key="backBarButtonItem" title="秒表" id="NoU-Eh-Aga"/>
@@ -171,6 +174,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEw-ME-BSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="jLn-h8-tv0">
+                    <connections>
+                        <action selector="draging:" destination="c5x-w3-Rks" id="HFs-F6-x0s"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2648.8000000000002" y="-18.440779610194905"/>
         </scene>
@@ -244,7 +252,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WhirlpoolTimerTableViewCell" id="pfK-5w-2MK" customClass="WhirlpoolTimerTableViewCell" customModule="whirlpool" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WhirlpoolTimerTableViewCell" id="pfK-5w-2MK" customClass="WhirlpoolTimerTableViewCell" customModule="whirlpool" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pfK-5w-2MK" id="dU7-2q-VMN">
@@ -265,11 +273,18 @@
                         <viewLayoutGuide key="safeArea" id="mNR-Fr-I7a"/>
                     </view>
                     <navigationItem key="navigationItem" id="aj4-2x-dIa">
-                        <barButtonItem key="rightBarButtonItem" title="分享" id="Q20-gL-rBd">
-                            <connections>
-                                <action selector="shareBtnTouched:" destination="vxN-gm-nTg" id="M5P-Zz-KSW"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="分享" id="Q20-gL-rBd">
+                                <connections>
+                                    <action selector="shareBtnTouched:" destination="vxN-gm-nTg" id="M5P-Zz-KSW"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="删除" id="iHg-So-v2y">
+                                <connections>
+                                    <action selector="deleteBtnTouched:" destination="vxN-gm-nTg" id="tpu-ol-j7Y"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="detailTableView" destination="ERU-DU-ZEI" id="ETM-Hv-zXP"/>

@@ -154,6 +154,7 @@
 				BF508E3821DDF76E0010E1BD /* Info.plist */,
 				BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */,
 				BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */,
+				BF3F53CC21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift */,
 				BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */,
 				BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */,
 				BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */,
@@ -163,7 +164,6 @@
 				BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */,
 				BF85DABC21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift */,
 				BF85DABD21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib */,
-				BF3F53CC21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift */,
 				BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */,
 				BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */,
 			);
