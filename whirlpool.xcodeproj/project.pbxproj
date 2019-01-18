@@ -52,6 +52,11 @@
 		BF113A0221E5FF0800F38D43 /* TimeRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeRecord.xcdatamodel; sourceTree = "<group>"; };
 		BF113A0C21E60F3B00F38D43 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryDetailViewController.swift; sourceTree = "<group>"; };
+		BF27841E21F1C9FC0052F28B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		BF27841F21F1C9FC0052F28B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BF27842021F1CA070052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		BF27842121F1CA070052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BF27842221F1CA700052F28B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolSwitchToolbarButtonItem.swift; sourceTree = "<group>"; };
 		BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTableCellTextFieldSwitchBar.swift; sourceTree = "<group>"; };
 		BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolToolbarTableViewCell.swift; sourceTree = "<group>"; };
@@ -375,6 +380,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				BF508E3121DDF76D0010E1BD /* Base */,
+				BF27841E21F1C9FC0052F28B /* zh-Hans */,
+				BF27842021F1CA070052F28B /* zh-Hant */,
+				BF27842221F1CA700052F28B /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -383,6 +391,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BF508E3621DDF76E0010E1BD /* Base */,
+				BF27841F21F1C9FC0052F28B /* zh-Hans */,
+				BF27842121F1CA070052F28B /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -394,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -455,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
