@@ -10,6 +10,7 @@
 		BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF113A0121E5FF0800F38D43 /* whirlpool.xcdatamodeld */; };
 		BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */; };
 		BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842321F1CB2E0052F28B /* Localizable.strings */; };
+		BF27842A21F1CBE20052F28B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842821F1CBE20052F28B /* InfoPlist.strings */; };
 		BF2D9B5A21EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */; };
 		BF2D9B6021EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */; };
 		BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */; };
@@ -61,6 +62,9 @@
 		BF27842421F1CB2E0052F28B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF27842621F1CB330052F28B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BF27842721F1CB360052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BF27842921F1CBE20052F28B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF27842B21F1CBE80052F28B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BF27842C21F1CBEB0052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolSwitchToolbarButtonItem.swift; sourceTree = "<group>"; };
 		BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTableCellTextFieldSwitchBar.swift; sourceTree = "<group>"; };
 		BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolToolbarTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				BF508E3321DDF76E0010E1BD /* Assets.xcassets */,
 				BF508E3521DDF76E0010E1BD /* LaunchScreen.storyboard */,
 				BF508E3821DDF76E0010E1BD /* Info.plist */,
+				BF27842821F1CBE20052F28B /* InfoPlist.strings */,
 				BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */,
 				BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */,
 				BF3F53CC21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift */,
@@ -303,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */,
+				BF27842A21F1CBE20052F28B /* InfoPlist.strings in Resources */,
 				BF85DABF21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib in Resources */,
 				BF508E3721DDF76E0010E1BD /* LaunchScreen.storyboard in Resources */,
 				BF508E3421DDF76E0010E1BD /* Assets.xcassets in Resources */,
@@ -390,6 +396,16 @@
 				BF27842721F1CB360052F28B /* zh-Hant */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BF27842821F1CBE20052F28B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF27842921F1CBE20052F28B /* en */,
+				BF27842B21F1CBE80052F28B /* zh-Hans */,
+				BF27842C21F1CBEB0052F28B /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		BF508E3021DDF76D0010E1BD /* Main.storyboard */ = {

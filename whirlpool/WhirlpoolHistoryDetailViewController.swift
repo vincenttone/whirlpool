@@ -65,6 +65,11 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
         cell.beginEditingCallback = { () in
             self.editingIndexPath = indexPath
         }
+        /*
+        if cell.commentTextField.text == "" {
+            cell.commentTextField.placeholder = NSLocalizedString("ADD_COMMENT", comment: "add comment")
+        }
+        */
         return cell
     }
     
