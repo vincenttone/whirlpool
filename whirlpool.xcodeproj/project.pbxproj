@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF113A0121E5FF0800F38D43 /* whirlpool.xcdatamodeld */; };
 		BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */; };
+		BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842321F1CB2E0052F28B /* Localizable.strings */; };
 		BF2D9B5A21EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */; };
 		BF2D9B6021EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */; };
 		BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */; };
@@ -57,6 +58,9 @@
 		BF27842021F1CA070052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		BF27842121F1CA070052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		BF27842221F1CA700052F28B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		BF27842421F1CB2E0052F28B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BF27842621F1CB330052F28B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BF27842721F1CB360052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolSwitchToolbarButtonItem.swift; sourceTree = "<group>"; };
 		BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTableCellTextFieldSwitchBar.swift; sourceTree = "<group>"; };
 		BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolToolbarTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 		BF508E2721DDF76D0010E1BD /* whirlpool */ = {
 			isa = PBXGroup;
 			children = (
+				BF27842321F1CB2E0052F28B /* Localizable.strings */,
 				BF113A0821E602F300F38D43 /* data */,
 				BF508E2821DDF76D0010E1BD /* AppDelegate.swift */,
 				BF508E2C21DDF76D0010E1BD /* WhirlpoolViewController.swift */,
@@ -297,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */,
 				BF85DABF21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib in Resources */,
 				BF508E3721DDF76E0010E1BD /* LaunchScreen.storyboard in Resources */,
 				BF508E3421DDF76E0010E1BD /* Assets.xcassets in Resources */,
@@ -376,6 +382,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BF27842321F1CB2E0052F28B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF27842421F1CB2E0052F28B /* en */,
+				BF27842621F1CB330052F28B /* zh-Hans */,
+				BF27842721F1CB360052F28B /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BF508E3021DDF76D0010E1BD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
