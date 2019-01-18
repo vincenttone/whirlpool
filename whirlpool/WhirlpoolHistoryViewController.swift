@@ -24,7 +24,6 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
         self.historyTableView.delegate = self
         self.historyTableView.dataSource = self
         super.viewDidLoad()
-        print("load history", self.histories)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,9 +39,9 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
         if history.date != nil {
            detailText = dateFmter.string(from: history.date!) + "\t"
         }
-        detailText += history.count.description + "条记录"
+        detailText += history.count.description + NSLocalizedString("RECORDS", comment: "条记录")
         if history.title?.count == 0 {
-            cell?.textLabel?.text = "暂无标题"
+            cell?.textLabel?.text = NSLocalizedString("UNTITLED", comment: "未命名")
             cell?.textLabel?.textColor = .gray
         } else {
             cell?.textLabel?.textColor = .gray
@@ -69,13 +68,17 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "确认删除？", message: "确认要删除这条记录吗？", preferredStyle: .alert)
-            alert.addAction(UIAlertAction.init(title: "取消", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (_ sender: Any?) in
+            var title = ""
+            if self.histories.count > indexPath.row {
+                title = self.histories[indexPath.row].title ?? ""
+            }
+            let alert = UIAlertController(title: NSLocalizedString("DELETE_CONFIRM", comment: "confirm deletion"), message: title, preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: NSLocalizedString("CANCEL", comment: "取消"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "确认"), style: .default, handler: { (_ sender: Any?) in
                 let target_history = self.histories[indexPath.row]
                 if target_history.uuid == nil {
-                    let alert_failed = UIAlertController(title: "删除失败", message: "因未知原因删除失败，请稍后尝试", preferredStyle: .alert)
-                    alert_failed.addAction(UIAlertAction(title: "确认", style: .default, handler: nil))
+                    let alert_failed = UIAlertController(title: NSLocalizedString("DELETE_FAILED", comment: "删除失败"), message: title, preferredStyle: .alert)
+                    alert_failed.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "确认"), style: .default, handler: nil))
                     self.present(alert_failed, animated: true, completion: nil)
                     return
                 }
@@ -86,8 +89,8 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 } catch {
                     dump(error)
-                    let alert_failed = UIAlertController(title: "删除失败", message: "因未知原因删除失败，请稍后尝试", preferredStyle: .alert)
-                    alert_failed.addAction(UIAlertAction(title: "确认", style: .default, handler: nil))
+                    let alert_failed = UIAlertController(title: NSLocalizedString("DELETE_FAILED", comment: "删除失败"), message: title, preferredStyle: .alert)
+                    alert_failed.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "确认"), style: .default, handler: nil))
                     self.present(alert_failed, animated: true, completion: nil)
                     return
                 }

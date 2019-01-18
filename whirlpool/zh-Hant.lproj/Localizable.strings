@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  whirlpool
+
+  Created by Vincent.Tone on 2019/1/18.
+  Copyright © 2019 Vincent.Tone. All rights reserved.
+*/
+START = "開始";
+PAUSE = "暫停";
+SPLIT = "計次";
+GO_ON = "繼續";
+RESET = "重置";
+SAVE = "保存";
+CANCEL = "取消";
+OK = "確認";
+
+UNTITLED = "暫未命名";
+RECORDS = "條記錄";
+
+NAME = "名稱";
+ADD_COMMENT = "添加備註";
+HIDE = "隱藏";
+PREVIOUS = "前一個";
+NEXT = "後一個";
+
+DELETE_CONFIRM = "刪除記錄?";
+DELETE_CONFIRM_MSG = "";
+DELETE_FAILED = "刪除失敗";
+DELETE_FAILED_MSG = "刪除失敗，請稍後再試";

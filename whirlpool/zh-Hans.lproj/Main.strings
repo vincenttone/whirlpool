@@ -1,0 +1,48 @@
+
+/* Class = "UILabel"; text = "1"; ObjectID = "4dv-ku-i7E"; */
+"4dv-ku-i7E.text" = "1";
+
+/* Class = "UILabel"; text = "00.00.00"; ObjectID = "CML-cC-ZDh"; */
+"CML-cC-ZDh.text" = "00.00.00";
+
+/* Class = "UIBarButtonItem"; title = "历史"; ObjectID = "Dzr-ih-Dor"; */
+"Dzr-ih-Dor.title" = "历史";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "F22-F0-8zI"; */
+"F22-F0-8zI.text" = "Subtitle";
+
+/* Class = "UIBarButtonItem"; title = "秒表"; ObjectID = "NoU-Eh-Aga"; */
+"NoU-Eh-Aga.title" = "秒表";
+
+/* Class = "UILabel"; text = "00:00.00"; ObjectID = "PL7-be-jBq"; */
+"PL7-be-jBq.text" = "00:00.00";
+
+/* Class = "UIBarButtonItem"; title = "分享"; ObjectID = "Q20-gL-rBd"; */
+"Q20-gL-rBd.title" = "分享";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "QRu-kO-ZQ3"; */
+"QRu-kO-ZQ3.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "历史记录"; ObjectID = "dRj-J2-Iqf"; */
+"dRj-J2-Iqf.title" = "历史记录";
+
+/* Class = "UILabel"; text = "00:00.00"; ObjectID = "ggr-rJ-sSK"; */
+"ggr-rJ-sSK.text" = "00:00.00";
+
+/* Class = "UIBarButtonItem"; title = "删除"; ObjectID = "iHg-So-v2y"; */
+"iHg-So-v2y.title" = "删除";
+
+/* Class = "UITabBarItem"; title = "秒表"; ObjectID = "lzq-Mo-ReD"; */
+"lzq-Mo-ReD.title" = "秒表";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "mAU-Il-F0r"; */
+"mAU-Il-F0r.title" = "保存";
+
+/* Class = "UIButton"; normalTitle = "开始"; ObjectID = "nfk-1r-1XQ"; */
+"nfk-1r-1XQ.normalTitle" = "开始";
+
+/* Class = "UIButton"; normalTitle = "计次"; ObjectID = "yFp-vr-VTv"; */
+"yFp-vr-VTv.normalTitle" = "计次";
+
+/* Class = "UIBarButtonItem"; title = "分享"; ObjectID = "zM4-TI-Pyx"; */
+"zM4-TI-Pyx.title" = "分享";

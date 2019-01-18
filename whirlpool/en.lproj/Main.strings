@@ -1,0 +1,45 @@
+
+/* Class = "UILabel"; text = "1"; ObjectID = "4dv-ku-i7E"; */
+"4dv-ku-i7E.text" = "1";
+
+/* Class = "UILabel"; text = "00.00.00"; ObjectID = "CML-cC-ZDh"; */
+"CML-cC-ZDh.text" = "00.00.00";
+
+/* Class = "UIBarButtonItem"; title = "History"; ObjectID = "Dzr-ih-Dor"; */
+"Dzr-ih-Dor.title" = "History";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "F22-F0-8zI"; */
+"F22-F0-8zI.text" = "Subtitle";
+
+/* Class = "UIBarButtonItem"; title = "Shopwatch"; ObjectID = "NoU-Eh-Aga"; */
+"NoU-Eh-Aga.title" = "Shopwatch";
+
+/* Class = "UILabel"; text = "00:00.00"; ObjectID = "PL7-be-jBq"; */
+"PL7-be-jBq.text" = "00:00.00";
+
+/* Class = "UIBarButtonItem"; title = "share"; ObjectID = "Q20-gL-rBd"; */
+"Q20-gL-rBd.title" = "share";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "QRu-kO-ZQ3"; */
+"QRu-kO-ZQ3.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "History"; ObjectID = "dRj-J2-Iqf"; */
+"dRj-J2-Iqf.title" = "History";
+
+/* Class = "UILabel"; text = "00:00.00"; ObjectID = "ggr-rJ-sSK"; */
+"ggr-rJ-sSK.text" = "00:00.00";
+
+/* Class = "UIBarButtonItem"; title = "delete"; ObjectID = "iHg-So-v2y"; */
+"iHg-So-v2y.title" = "delete";
+
+/* Class = "UIBarButtonItem"; title = "save"; ObjectID = "mAU-Il-F0r"; */
+"mAU-Il-F0r.title" = "save";
+
+/* Class = "UIButton"; normalTitle = "start"; ObjectID = "nfk-1r-1XQ"; */
+"nfk-1r-1XQ.normalTitle" = "start";
+
+/* Class = "UIButton"; normalTitle = "split"; ObjectID = "yFp-vr-VTv"; */
+"yFp-vr-VTv.normalTitle" = "split";
+
+/* Class = "UIBarButtonItem"; title = "share"; ObjectID = "zM4-TI-Pyx"; */
+"zM4-TI-Pyx.title" = "share";

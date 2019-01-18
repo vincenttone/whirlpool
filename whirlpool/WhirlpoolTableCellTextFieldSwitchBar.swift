@@ -38,12 +38,12 @@ class WhirlpoolTableCellTextFieldSwitchBar: UIToolbar {
         self.setIndexPath(indexPath)
         self.tableView = tableView
         self.textField = textField
-        let preBtn = WhirlpoolSwitchToolbarButtonItem(title: "上一个", style: .plain, target: self, action: #selector(switchToPreTarget(sender:)))
+        let preBtn = WhirlpoolSwitchToolbarButtonItem(title: NSLocalizedString("PREVIOUS", comment: "previous") , style: .plain, target: self, action: #selector(switchToPreTarget(sender:)))
         self.preCallback = preCallback
-        let nextBtn = WhirlpoolSwitchToolbarButtonItem(title: "下一个", style: .plain, target: self, action: #selector(switchToNextTarget(sender:)))
+        let nextBtn = WhirlpoolSwitchToolbarButtonItem(title: NSLocalizedString("NEXT", comment: "next"), style: .plain, target: self, action: #selector(switchToNextTarget(sender:)))
         self.nextCallback = nextCallback
         let space = UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let hideBtn = UIBarButtonItem.init(title: "隐藏", style: .plain, target: self, action: #selector(hidekeyboard(sender:)))
+        let hideBtn = UIBarButtonItem.init(title: NSLocalizedString("HIDE", comment: "hide"), style: .plain, target: self, action: #selector(hidekeyboard(sender:)))
         self.items = [preBtn, nextBtn, space, hideBtn]
         self.sizeToFit()
     }

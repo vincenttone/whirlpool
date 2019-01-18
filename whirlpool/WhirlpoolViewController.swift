@@ -24,6 +24,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         case GO_ON = "继续"
         case RESET = "重置"
         case SAVE = "保存"
+        case CANCEL = "取消"
     }
     
     @IBOutlet var startBtn: UIButton!
@@ -80,15 +81,15 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func saveBtnTouched(_ sender: Any) {
-        let alert = UIAlertController(title: "名称", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("NAME", comment: "名称"), message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "请输入记录名称"
             if WhirlpoolRecordStoreManager.manager().currentStore!.title.count > 0 {
                 textField.text = WhirlpoolRecordStoreManager.manager().currentStore!.title
             }
         }
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "保存", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: "取消"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("SAVE", comment: "保存"), style: .default, handler: { (_) in
             let title_tf = alert.textFields!.first!
             WhirlpoolRecordStoreManager.manager().currentStore!.title = title_tf.text ?? ""
             WhirlpoolRecordStoreManager.manager().currentStore!.save()
@@ -125,8 +126,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setTimingStyle() {
-        self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
-        self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
+        self.startBtn.setTitle(NSLocalizedString("PAUSE", comment: "暂停"), for: .normal)
+        self.splitBtn.setTitle(NSLocalizedString("SPLIT", comment: "计次"), for: .normal)
         self.splitBtn.isEnabled = true
     }
     
@@ -144,8 +145,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         
         WhirlpoolRecordStoreManager.manager().currentStore!.goOn()
 
-        self.startBtn.setTitle(BTN_TEXT.PAUSE.rawValue, for: .normal)
-        self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .normal)
+        self.setTimingStyle()
         self.recordsTableView.reloadData()
     }
     
@@ -153,8 +153,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         self.saveBtn.isEnabled = true
         self.shareBtn.isEnabled = true
         
-        self.startBtn.setTitle(BTN_TEXT.GO_ON.rawValue, for: .normal)
-        self.splitBtn.setTitle(BTN_TEXT.RESET.rawValue, for: .normal)
+        self.startBtn.setTitle(NSLocalizedString("GO_ON", comment: "继续"), for: .normal)
+        self.splitBtn.setTitle(NSLocalizedString("RESET", comment: "重置"), for: .normal)
     }
 
     func pause() {
@@ -169,8 +169,8 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         WhirlpoolRecordStoreManager.manager().currentStore! = WhirlpoolRecordStoreManager.manager().generateNewCurrentStore()
         
         self.timeLabel.text = self.TIMER_INIT_STR
-        self.startBtn.setTitle(BTN_TEXT.START.rawValue, for: .normal)
-        self.splitBtn.setTitle(BTN_TEXT.SPLIT.rawValue, for: .disabled)
+        self.startBtn.setTitle(NSLocalizedString("START", comment: "开始"), for: .normal)
+        self.splitBtn.setTitle(NSLocalizedString("SPLIT", comment: "计次"), for: .disabled)
         self.splitBtn.isEnabled = false
         
         self.saveBtn.isEnabled = false

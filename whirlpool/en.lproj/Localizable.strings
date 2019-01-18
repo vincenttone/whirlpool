@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  whirlpool
+
+  Created by Vincent.Tone on 2019/1/18.
+  Copyright © 2019 Vincent.Tone. All rights reserved.
+*/
+START = "start";
+PAUSE = "pause";
+SPLIT = "split";
+GO_ON = "continue";
+RESET = "reset";
+SAVE = "save";
+CANCEL = "cancel";
+OK = "ok";
+
+UNTITLED = "untitled";
+RECORDS = " records";
+
+NAME = "name";
+ADD_COMMENT = "add comment";
+HIDE = "hide";
+PREVIOUS = "previous";
+NEXT = "next";
+
+DELETE_CONFIRM = "Delete this record?";
+DELETE_CONFIRM_MSG = "";
+DELETE_FAILED = "delete failed";
+DELETE_FAILED_MSG = "Something wrong with the deletion, may be you can do that later";

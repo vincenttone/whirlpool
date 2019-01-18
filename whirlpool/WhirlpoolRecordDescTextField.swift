@@ -17,7 +17,7 @@ class WhirlpoolRecordDescTextField: UITextField {
         }
         self.editable = true
         if self.text?.count == 0 {
-            self.placeholder = "添加备注"
+            self.placeholder = NSLocalizedString("ADD_COMMENT", comment: "add comment")
         }
     }
     

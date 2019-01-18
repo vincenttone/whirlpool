@@ -24,17 +24,17 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     }
     
     @IBAction func deleteBtnTouched(_ sender: Any) {
-        let alert = UIAlertController(title: "确认删除？", message: "确认要删除这条记录吗？", preferredStyle: .alert)
-        alert.addAction(UIAlertAction.init(title: "取消", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (_ sender: Any?) in
+        let alert = UIAlertController(title: NSLocalizedString("DELETE_CONFIRM", comment: "confirm deletion"), message: self.recordStore.title, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: NSLocalizedString("CANCEL", comment: "取消"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "确认"), style: .default, handler: { (_ sender: Any?) in
             do {
                 try WhirlpoolRecordStoreManager.deleteHistory(uuid: self.recordStore.uuid)
                 self.navigationController?.popViewController(animated: true)
                 self.deletedCallback?()
             } catch {
                 dump(error)
-                let alert_failed = UIAlertController(title: "删除失败", message: "因未知原因删除失败，请稍后尝试", preferredStyle: .alert)
-                alert_failed.addAction(UIAlertAction(title: "确认", style: .default, handler: nil))
+                let alert_failed = UIAlertController(title: NSLocalizedString("DELETE_FAILED", comment: "删除失败"), message: self.recordStore.title, preferredStyle: .alert)
+                alert_failed.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "确认"), style: .default, handler: nil))
                 self.present(alert_failed, animated: true, completion: nil)
                 return
             }

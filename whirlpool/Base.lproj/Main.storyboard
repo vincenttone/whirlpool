@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFp-vr-VTv">
-                                <rect key="frame" x="96" y="578" width="49" height="41"/>
+                                <rect key="frame" x="96" y="578" width="44" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="计次"/>
+                                <state key="normal" title="split"/>
                                 <connections>
                                     <action selector="splitBtnTouched:" destination="c5x-w3-Rks" eventType="touchUpInside" id="HrW-bn-2Ka"/>
                                 </connections>
@@ -110,9 +110,9 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfk-1r-1XQ">
-                                <rect key="frame" x="232" y="578" width="49" height="41"/>
+                                <rect key="frame" x="234" y="578" width="47" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="开始">
+                                <state key="normal" title="start">
                                     <color key="titleColor" red="0.96379128889999999" green="0.047469724150000003" blue="0.16353651150000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -145,19 +145,19 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="VzO-SO-XR6">
-                        <barButtonItem key="backBarButtonItem" title="秒表" id="NoU-Eh-Aga"/>
-                        <barButtonItem key="leftBarButtonItem" title="历史" id="Dzr-ih-Dor">
+                        <barButtonItem key="backBarButtonItem" title="Shopwatch" id="NoU-Eh-Aga"/>
+                        <barButtonItem key="leftBarButtonItem" title="History" id="Dzr-ih-Dor">
                             <connections>
                                 <segue destination="9iR-SB-Blf" kind="show" id="9KZ-7l-FOi"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="保存" id="mAU-Il-F0r">
+                            <barButtonItem title="save" id="mAU-Il-F0r">
                                 <connections>
                                     <action selector="saveBtnTouched:" destination="c5x-w3-Rks" id="swh-G4-V9H"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="分享" id="zM4-TI-Pyx">
+                            <barButtonItem title="share" id="zM4-TI-Pyx">
                                 <connections>
                                     <action selector="shareBtnTouched:" destination="c5x-w3-Rks" id="gAu-Ww-JB9"/>
                                 </connections>
@@ -182,7 +182,7 @@
             </objects>
             <point key="canvasLocation" x="2648.8000000000002" y="-18.440779610194905"/>
         </scene>
-        <!--历史记录-->
+        <!--History-->
         <scene sceneID="6Sf-Je-ioH">
             <objects>
                 <viewController id="9iR-SB-Blf" customClass="WhirlpoolHistoryViewController" customModule="whirlpool" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +230,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9qL-hy-L2p"/>
                     </view>
-                    <navigationItem key="navigationItem" title="历史记录" id="dRj-J2-Iqf"/>
+                    <navigationItem key="navigationItem" title="History" id="dRj-J2-Iqf"/>
                     <connections>
                         <outlet property="historyTableView" destination="bJB-gd-UiP" id="5vV-jw-pJe"/>
                         <segue destination="vxN-gm-nTg" kind="show" identifier="showHistoryDetail" id="YaY-ll-sR7"/>
@@ -274,12 +274,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="aj4-2x-dIa">
                         <rightBarButtonItems>
-                            <barButtonItem title="分享" id="Q20-gL-rBd">
+                            <barButtonItem title="share" id="Q20-gL-rBd">
                                 <connections>
                                     <action selector="shareBtnTouched:" destination="vxN-gm-nTg" id="M5P-Zz-KSW"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="删除" id="iHg-So-v2y">
+                            <barButtonItem title="delete" id="iHg-So-v2y">
                                 <connections>
                                     <action selector="deleteBtnTouched:" destination="vxN-gm-nTg" id="tpu-ol-j7Y"/>
                                 </connections>
@@ -295,11 +295,10 @@
             </objects>
             <point key="canvasLocation" x="4636" y="-18"/>
         </scene>
-        <!--秒表-->
+        <!--Navigation Controller-->
         <scene sceneID="peO-sv-bvn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qcg-wZ-4Sp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="秒表" id="lzq-Mo-ReD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q8l-Ew-dho">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
