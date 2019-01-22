@@ -79,6 +79,8 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
+        let cell = tableView.cellForRow(at: indexPath) as! WhirlpoolTimerTableViewCell
+        cell.commentTextField.becomeFirstResponder()
     }
     
     @objc func keyboardWillShow(note: NSNotification) {

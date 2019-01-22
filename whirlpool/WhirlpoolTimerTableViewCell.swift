@@ -23,6 +23,7 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.commentTextField.placeholder = NSLocalizedString("ADD_COMMENT", comment: "add comment")
         // Bundle.main.loadNibNamed("WhirlpoolTimerTableViewCell", owner: nil, options: nil)
     }
     
