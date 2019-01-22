@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udp-L6-2Yb">
-                        <rect key="frame" x="8" y="0.0" width="96" height="40"/>
+                        <rect key="frame" x="8" y="0.0" width="88" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="QXL-js-pfC"/>
                         </constraints>
@@ -28,24 +28,24 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Ea-ZGd">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g39-Ea-ZGd">
                         <rect key="frame" x="204" y="11" width="100" height="58"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="0ws-2d-HTK"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfv-C9-xHa">
-                        <rect key="frame" x="104" y="11" width="100" height="58"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfv-C9-xHa">
+                        <rect key="frame" x="96" y="11" width="100" height="58"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="fhZ-vZ-KAK"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Q-3g-rQ9">
-                        <rect key="frame" x="8" y="40" width="96" height="39.5"/>
+                        <rect key="frame" x="8" y="40" width="88" height="39.5"/>
                         <color key="textColor" red="0.085749484599999995" green="0.50275510550000002" blue="0.43921414019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -69,8 +69,8 @@
                     <constraint firstItem="hfv-C9-xHa" firstAttribute="leading" secondItem="Udp-L6-2Yb" secondAttribute="trailing" id="khB-md-6cg"/>
                     <constraint firstItem="hfv-C9-xHa" firstAttribute="leading" secondItem="Udp-L6-2Yb" secondAttribute="trailing" id="n9g-DM-gwX"/>
                     <constraint firstItem="hfv-C9-xHa" firstAttribute="leading" secondItem="Z6Q-3g-rQ9" secondAttribute="trailing" id="nOg-Cj-bcu"/>
+                    <constraint firstItem="g39-Ea-ZGd" firstAttribute="leading" secondItem="hfv-C9-xHa" secondAttribute="trailing" constant="8" id="vDM-7d-Mkk"/>
                     <constraint firstItem="Udp-L6-2Yb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xza-NY-g4h"/>
-                    <constraint firstItem="g39-Ea-ZGd" firstAttribute="leading" secondItem="hfv-C9-xHa" secondAttribute="trailing" id="zds-oc-847"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
