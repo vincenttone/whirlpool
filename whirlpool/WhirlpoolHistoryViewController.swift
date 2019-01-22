@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+//import GoogleMobileAds
 
 class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -19,11 +20,13 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
     var count = 0
     
     var choosedIndexPath: IndexPath? = nil
+    //var bannerAdsView: GADBannerView?
     
     override func viewDidLoad() {
         self.historyTableView.delegate = self
         self.historyTableView.dataSource = self
         super.viewDidLoad()
+        //self.addBannerAdsView()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,4 +128,29 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
             self.fetchOffset += fetchedBatch.count
         }
     }
+    /*
+    func addBannerAdsView() {
+        self.bannerAdsView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerAdsView!.adUnitID = "ca-app-pub-7990545623014959/6998390521"
+        bannerAdsView!.rootViewController = self
+        view.addSubview(bannerAdsView!)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerAdsView!,
+                               attribute: .bottom,
+                               relatedBy: .equal,
+                               toItem: view.safeAreaLayoutGuide,
+                               attribute: .top,
+                               multiplier: 1,
+                               constant: 0),
+             NSLayoutConstraint(item: bannerAdsView!,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+        bannerAdsView!.load(GADRequest())
+    }
+ */
 }

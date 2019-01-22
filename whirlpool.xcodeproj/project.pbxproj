@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE2AA320FA42D298F02D0838 /* libPods-whirlpool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD70CA61C636F2CCBA1B139 /* libPods-whirlpool.a */; };
 		BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF113A0121E5FF0800F38D43 /* whirlpool.xcdatamodeld */; };
 		BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */; };
 		BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842321F1CB2E0052F28B /* Localizable.strings */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C43313EE3D7DC836A65E666 /* Pods-whirlpool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whirlpool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-whirlpool/Pods-whirlpool.debug.xcconfig"; sourceTree = "<group>"; };
+		2CD70CA61C636F2CCBA1B139 /* libPods-whirlpool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-whirlpool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF113A0221E5FF0800F38D43 /* TimeRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeRecord.xcdatamodel; sourceTree = "<group>"; };
 		BF113A0C21E60F3B00F38D43 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordTableViewCell.swift; sourceTree = "<group>"; };
 		BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordDescTextField.swift; sourceTree = "<group>"; };
 		BFF2189721E5E89A004D6480 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
+		D8BE878943EC20BCDA96F1BD /* Pods-whirlpool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whirlpool.release.xcconfig"; path = "Pods/Target Support Files/Pods-whirlpool/Pods-whirlpool.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE2AA320FA42D298F02D0838 /* libPods-whirlpool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +123,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56F1E846D8296A7F062E40D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C43313EE3D7DC836A65E666 /* Pods-whirlpool.debug.xcconfig */,
+				D8BE878943EC20BCDA96F1BD /* Pods-whirlpool.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BF113A0821E602F300F38D43 /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				BF113A0C21E60F3B00F38D43 /* CoreData.framework */,
+				2CD70CA61C636F2CCBA1B139 /* libPods-whirlpool.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,6 +157,7 @@
 				BF508E4B21DDF76E0010E1BD /* whirlpoolUITests */,
 				BF508E2621DDF76D0010E1BD /* Products */,
 				BF113A0B21E60F3B00F38D43 /* Frameworks */,
+				56F1E846D8296A7F062E40D1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +226,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF508E5121DDF76E0010E1BD /* Build configuration list for PBXNativeTarget "whirlpool" */;
 			buildPhases = (
+				28721A62B284FDC339D263EE /* [CP] Check Pods Manifest.lock */,
 				BF508E2121DDF76D0010E1BD /* Sources */,
 				BF508E2221DDF76D0010E1BD /* Frameworks */,
 				BF508E2321DDF76D0010E1BD /* Resources */,
@@ -331,6 +348,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28721A62B284FDC339D263EE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-whirlpool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF508E2121DDF76D0010E1BD /* Sources */ = {
@@ -552,10 +594,15 @@
 		};
 		BF508E5221DDF76E0010E1BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C43313EE3D7DC836A65E666 /* Pods-whirlpool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L756M7D2VX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = whirlpool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -570,10 +617,15 @@
 		};
 		BF508E5321DDF76E0010E1BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8BE878943EC20BCDA96F1BD /* Pods-whirlpool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L756M7D2VX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = whirlpool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
