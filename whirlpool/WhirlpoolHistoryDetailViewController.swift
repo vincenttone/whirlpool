@@ -84,10 +84,6 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     }
     
     @objc func keyboardWillShow(note: NSNotification) {
-        if self.selectedIndexPath != nil {
-            self.detailTableView.deselectRow(at: self.selectedIndexPath!, animated: true)
-            self.selectedIndexPath = nil
-        }
         let info = note.userInfo!
         let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
         self.detailTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: kbSize.height, right: 0)
@@ -99,6 +95,10 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     }
     
     @objc func keyboardWillHide(note: NSNotification) {
+        if self.selectedIndexPath != nil {
+            self.detailTableView.deselectRow(at: self.selectedIndexPath!, animated: true)
+            self.selectedIndexPath = nil
+        }
         UIView.animate(withDuration: 0.5, animations: {() in
             self.detailTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         })
