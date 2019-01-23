@@ -39,6 +39,7 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
                 return
             }
         }))
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         self.present(alert, animated: true, completion: nil)
     }
     

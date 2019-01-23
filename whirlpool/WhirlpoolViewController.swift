@@ -62,6 +62,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func startBtnTouched(_ sender: Any) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         if WhirlpoolRecordStoreManager.manager().currentStore!.isWaiting() {
             self.start()
         } else if WhirlpoolRecordStoreManager.manager().currentStore!.isTiming() {
@@ -72,6 +73,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func splitBtnTouched(_ sender: Any) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         if WhirlpoolRecordStoreManager.manager().currentStore!.isPausing() {
             self.reset()
         } else if WhirlpoolRecordStoreManager.manager().currentStore!.isTiming() {

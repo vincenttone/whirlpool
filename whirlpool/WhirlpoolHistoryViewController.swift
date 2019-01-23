@@ -99,6 +99,7 @@ class WhirlpoolHistoryViewController: UIViewController, UITableViewDelegate, UIT
                 }
             }))
             self.present(alert, animated: true, completion: nil)
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         }
     }
     
