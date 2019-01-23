@@ -58,6 +58,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.recordsTableView.reloadData()
     }
     
     @IBAction func startBtnTouched(_ sender: Any) {

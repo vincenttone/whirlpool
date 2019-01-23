@@ -37,6 +37,10 @@ class WhirlpoolTimerTableViewCell: UITableViewCell {
             do {
                 try self.record.update()
                 self.desc_changed = false
+                if self.record.uuid == WhirlpoolRecordStoreManager.manager().currentStore?.uuid {
+                    let record = WhirlpoolRecordStoreManager.manager().currentStore?.records[self.record.num - 1]
+                    record?.desc = self.record.desc
+                }
             } catch {
                 dump(error)
                 print("update failed!")
