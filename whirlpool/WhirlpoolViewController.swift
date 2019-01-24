@@ -205,6 +205,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.time1Label.textColor = .darkGray
             cell.time2Label.textColor = .darkGray
         }
+        cell.descTextField.placeholder = NSLocalizedString("ADD_COMMENT", comment: "add comment")
         if record != nil {
             cell.setRecord(record: record!)
         }
