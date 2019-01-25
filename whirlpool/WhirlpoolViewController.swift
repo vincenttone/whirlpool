@@ -14,7 +14,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let TIMER_INIT_STR = "00:00.00"
     
-    var switchToolbars: [WhirlpoolTableCellTextFieldSwitchBar] = []
     var editingIndexPath: IndexPath?
     
     enum BTN_TEXT :String {
@@ -217,7 +216,13 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             cell.enableDescTextField()
         }
-        cell.descTextField.inputAccessoryView = self.getSwitchToolbar(indexPath: indexPath, record: record!, textField: cell.descTextField )
+        if cell.descTextField.inputAccessoryView == nil {
+            cell.descTextField.inputAccessoryView = self.generateSwitchToolbar(indexPath: indexPath, record: record!, textField: cell.descTextField )
+        } else {
+            let switchToolbar = cell.descTextField.inputAccessoryView as! WhirlpoolTableCellTextFieldSwitchBar
+            switchToolbar.setIndexPath(indexPath)
+            switchToolbar.textField = cell.descTextField
+        }
         return cell
     }
     
@@ -225,12 +230,9 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         return WhirlpoolRecordStoreManager.manager().currentStore!.count()
     }
     
-    func getSwitchToolbar(indexPath: IndexPath, record: WhirlpoolRecord, textField: UITextField) -> UIToolbar {
-        var switchToolbar: WhirlpoolTableCellTextFieldSwitchBar!
-        while self.switchToolbars.count <= indexPath.row {
-            self.switchToolbars.append(WhirlpoolTableCellTextFieldSwitchBar())
-        }
-        switchToolbar = switchToolbars[indexPath.row]
+    func generateSwitchToolbar(indexPath: IndexPath, record: WhirlpoolRecord, textField: UITextField) -> UIToolbar {
+        let switchToolbar = WhirlpoolTableCellTextFieldSwitchBar()
+        switchToolbar.translatesAutoresizingMaskIntoConstraints = true
         switchToolbar.addSwitchItems(
             tableView: self.recordsTableView,
             indexPath: indexPath,
