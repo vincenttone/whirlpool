@@ -101,7 +101,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func shareBtnTouched(_ sender: Any) {
-        WhirlpoolRecordStoreManager.manager().currentStore!.share(vc: self)
+        WhirlpoolRecordStoreManager.manager().currentStore!.share(vc: self, shareItem: shareBtn)
     }
     
     @IBAction func draging(_ sender: Any) {

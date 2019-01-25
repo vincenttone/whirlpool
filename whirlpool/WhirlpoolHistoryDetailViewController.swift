@@ -20,7 +20,7 @@ class WhirlpoolHistoryDetailViewController: UIViewController, UITableViewDataSou
     @IBOutlet weak var shareBtn: UIBarButtonItem!
     
     @IBAction func shareBtnTouched(_ sender: Any) {
-        self.recordStore.share(vc: self)
+        self.recordStore.share(vc: self, shareItem: shareBtn)
     }
     
     @IBAction func deleteBtnTouched(_ sender: Any) {

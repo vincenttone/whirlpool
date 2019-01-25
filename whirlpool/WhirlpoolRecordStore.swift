@@ -222,7 +222,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         }
     }
     
-    func share(vc: UIViewController) {
+    func share(vc: UIViewController, shareItem: UIBarButtonItem) {
         if self.isWaiting() {
             return
         }
@@ -230,6 +230,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         avc.completionWithItemsHandler = {act, success, items, error in print(error ?? "ok") }
+        avc.popoverPresentationController?.barButtonItem = shareItem
         vc.present(avc, animated: true)
     }
     
