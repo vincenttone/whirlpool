@@ -29,6 +29,7 @@ class WhirlpoolRecordStoreManager {
     }
     
     func generateNewCurrentStore() -> WhirlpoolRecordStore {
+        self.tryRemoveSnapshot()
         self.currentStore = WhirlpoolRecordStore()
         return self.currentStore!
     }
@@ -116,6 +117,17 @@ class WhirlpoolRecordStoreManager {
             return false
         }
         return true
+    }
+    
+    func tryRemoveSnapshot() {
+        if FileManager.default.fileExists(atPath: archiveUrl.path) {
+            do {
+                try FileManager.default.removeItem(at: archiveUrl)
+            } catch {
+                dump(error)
+                print("remove archive file failed!")
+            }
+        }
     }
     
     func loadLastHistory() -> Batch? {

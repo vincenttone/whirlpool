@@ -288,13 +288,16 @@
 				TargetAttributes = {
 					BF508E2421DDF76D0010E1BD = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					BF508E3C21DDF76E0010E1BD = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = BF508E2421DDF76D0010E1BD;
 					};
 					BF508E4721DDF76E0010E1BD = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = BF508E2421DDF76D0010E1BD;
 					};
 				};
@@ -306,6 +309,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = BF508E1C21DDF76D0010E1BD;
 			productRefGroup = BF508E2621DDF76D0010E1BD /* Products */;
@@ -610,7 +615,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = red.vii.whirlpool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -633,7 +638,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = red.vii.whirlpool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -653,7 +658,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = red.vii.whirlpoolTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/whirlpool.app/whirlpool";
 			};
@@ -674,7 +679,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = red.vii.whirlpoolTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/whirlpool.app/whirlpool";
 			};
@@ -694,7 +699,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = red.vii.whirlpoolUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = whirlpool;
 			};
@@ -714,7 +719,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = red.vii.whirlpoolUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = whirlpool;
 			};
