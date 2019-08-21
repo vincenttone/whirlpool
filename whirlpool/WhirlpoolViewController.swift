@@ -169,6 +169,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func reset() {
         WhirlpoolRecordStoreManager.manager().currentStore! = WhirlpoolRecordStoreManager.manager().generateNewCurrentStore()
+        WhirlpoolRecordStoreManager.manager().tryRemoveSnapshot()
         
         self.timeLabel.text = self.TIMER_INIT_STR
         self.startBtn.setTitle(NSLocalizedString("START", comment: "开始"), for: .normal)

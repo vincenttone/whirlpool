@@ -29,7 +29,6 @@ class WhirlpoolRecordStoreManager {
     }
     
     func generateNewCurrentStore() -> WhirlpoolRecordStore {
-        self.tryRemoveSnapshot()
         self.currentStore = WhirlpoolRecordStore()
         return self.currentStore!
     }
