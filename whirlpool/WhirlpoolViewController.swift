@@ -74,6 +74,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func splitBtnTouched(_ sender: Any) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         if WhirlpoolRecordStoreManager.manager().currentStore!.isPausing() {
+            WhirlpoolRecordStoreManager.manager().tryRemoveSnapshot()
             self.reset()
         } else if WhirlpoolRecordStoreManager.manager().currentStore!.isTiming() {
             self.split()
@@ -169,7 +170,6 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func reset() {
         WhirlpoolRecordStoreManager.manager().currentStore! = WhirlpoolRecordStoreManager.manager().generateNewCurrentStore()
-        WhirlpoolRecordStoreManager.manager().tryRemoveSnapshot()
         
         self.timeLabel.text = self.TIMER_INIT_STR
         self.startBtn.setTitle(NSLocalizedString("START", comment: "开始"), for: .normal)
