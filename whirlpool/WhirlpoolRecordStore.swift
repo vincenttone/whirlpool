@@ -59,12 +59,14 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         self.start_time = self.real_start_time
         self.split_time = self.real_start_time
         self.state = STATE.TIMING
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     func pause() {
         self.last_pause_time = Date()
         self.finish_time = self.last_pause_time
         self.state = STATE.PAUSING
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     func goOn() { // compute and reset overtime
@@ -73,6 +75,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
         self.split_time = Date.init(timeInterval: current_date.timeIntervalSince(self.last_pause_time!), since: self.split_time!)
         self.last_pause_time = Date.init(timeInterval: current_date.timeIntervalSince(self.last_pause_time!), since: self.last_pause_time!)
         self.state = STATE.TIMING
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     func split() {
