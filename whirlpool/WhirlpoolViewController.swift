@@ -69,6 +69,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if WhirlpoolRecordStoreManager.manager().currentStore!.isPausing() {
             self.goOn()
         }
+        self.touchFeedback(feedbackStyle: .heavy)
     }
     
     @IBAction func splitBtnTouched(_ sender: Any) {
@@ -81,6 +82,7 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if WhirlpoolRecordStoreManager.manager().currentStore!.isWaiting() {
             self.do_nothing()
         }
+        self.touchFeedback(feedbackStyle: .heavy)
     }
     
     @IBAction func saveBtnTouched(_ sender: Any) {
@@ -286,6 +288,11 @@ class WhirlpoolViewController: UIViewController, UITableViewDelegate, UITableVie
         UIView.animate(withDuration: 0.3, animations: {() in
             self.recordsTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         })
+    }
+    
+    func touchFeedback(feedbackStyle: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: feedbackStyle)
+        generator.impactOccurred()
     }
 }
 
