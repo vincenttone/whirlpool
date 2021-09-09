@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BE2AA320FA42D298F02D0838 /* libPods-whirlpool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD70CA61C636F2CCBA1B139 /* libPods-whirlpool.a */; };
+		BF0376B826EA0692002F41DD /* WhirlpoolMainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0376B726EA0692002F41DD /* WhirlpoolMainContainerView.swift */; };
+		BF0376BA26EA06A6002F41DD /* WhirlpoolTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0376B926EA06A6002F41DD /* WhirlpoolTimingView.swift */; };
+		BF0376BC26EA06C4002F41DD /* WhirlpoolHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0376BB26EA06C4002F41DD /* WhirlpoolHistoryListView.swift */; };
 		BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF113A0121E5FF0800F38D43 /* whirlpool.xcdatamodeld */; };
 		BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */; };
 		BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842321F1CB2E0052F28B /* Localizable.strings */; };
@@ -26,6 +29,7 @@
 		BF508E4D21DDF76E0010E1BD /* whirlpoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508E4C21DDF76E0010E1BD /* whirlpoolUITests.swift */; };
 		BF85DABE21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85DABC21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift */; };
 		BF85DABF21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF85DABD21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib */; };
+		BFBF03E126EA16D30068BEFF /* WhirlpoolRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF03E026EA16D30068BEFF /* WhirlpoolRecordListView.swift */; };
 		BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */; };
 		BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */; };
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
@@ -54,6 +58,9 @@
 /* Begin PBXFileReference section */
 		1C43313EE3D7DC836A65E666 /* Pods-whirlpool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whirlpool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-whirlpool/Pods-whirlpool.debug.xcconfig"; sourceTree = "<group>"; };
 		2CD70CA61C636F2CCBA1B139 /* libPods-whirlpool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-whirlpool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF0376B726EA0692002F41DD /* WhirlpoolMainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolMainContainerView.swift; sourceTree = "<group>"; };
+		BF0376B926EA06A6002F41DD /* WhirlpoolTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTimingView.swift; sourceTree = "<group>"; };
+		BF0376BB26EA06C4002F41DD /* WhirlpoolHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryListView.swift; sourceTree = "<group>"; };
 		BF113A0221E5FF0800F38D43 /* TimeRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeRecord.xcdatamodel; sourceTree = "<group>"; };
 		BF113A0C21E60F3B00F38D43 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 		BF508E4E21DDF76E0010E1BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF85DABC21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTimerTableViewCell.swift; sourceTree = "<group>"; };
 		BF85DABD21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhirlpoolTimerTableViewCell.xib; sourceTree = "<group>"; };
+		BFBF03E026EA16D30068BEFF /* WhirlpoolRecordListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordListView.swift; sourceTree = "<group>"; };
 		BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecord.swift; sourceTree = "<group>"; };
 		BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordStore.swift; sourceTree = "<group>"; };
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +140,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BF0376B626EA066E002F41DD /* view */ = {
+			isa = PBXGroup;
+			children = (
+				BF0376B726EA0692002F41DD /* WhirlpoolMainContainerView.swift */,
+				BF0376B926EA06A6002F41DD /* WhirlpoolTimingView.swift */,
+				BF0376BB26EA06C4002F41DD /* WhirlpoolHistoryListView.swift */,
+				BFBF03E026EA16D30068BEFF /* WhirlpoolRecordListView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		BF113A0821E602F300F38D43 /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +193,7 @@
 		BF508E2721DDF76D0010E1BD /* whirlpool */ = {
 			isa = PBXGroup;
 			children = (
+				BF0376B626EA066E002F41DD /* view */,
 				BF27842321F1CB2E0052F28B /* Localizable.strings */,
 				BF113A0821E602F300F38D43 /* data */,
 				BF508E2821DDF76D0010E1BD /* AppDelegate.swift */,
@@ -385,11 +405,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF508E2D21DDF76D0010E1BD /* WhirlpoolViewController.swift in Sources */,
+				BF0376BC26EA06C4002F41DD /* WhirlpoolHistoryListView.swift in Sources */,
 				BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */,
 				BF2D9B5A21EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift in Sources */,
 				BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */,
 				BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */,
 				BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */,
+				BF0376B826EA0692002F41DD /* WhirlpoolMainContainerView.swift in Sources */,
 				BF3F53CD21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift in Sources */,
 				BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */,
 				BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */,
@@ -400,6 +422,8 @@
 				BF508E2921DDF76D0010E1BD /* AppDelegate.swift in Sources */,
 				BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */,
 				BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */,
+				BFBF03E126EA16D30068BEFF /* WhirlpoolRecordListView.swift in Sources */,
+				BF0376BA26EA06A6002F41DD /* WhirlpoolTimingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -589,7 +613,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

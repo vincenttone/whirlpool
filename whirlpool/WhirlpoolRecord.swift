@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class WhirlpoolRecord :NSObject, NSCoding {
+class WhirlpoolRecord :NSObject, NSCoding, ObservableObject {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(num, forKey: "num")
@@ -28,10 +28,23 @@ class WhirlpoolRecord :NSObject, NSCoding {
         uuid = aDecoder.decodeObject(forKey: "uuid") as? String
     }
     
+    // 标号
+    @Published
     var num = 0
+    
+    // 计时开始时间
+    @Published
     var time :TimeInterval = 0
+    
+    // 计时结束时间
+    @Published
     var time_far :TimeInterval = 0
+    
+    // 简介
+    @Published
     var desc :String = ""
+    
+    @Published
     var uuid: String!
     
     init(num: Int, uuid: String) {

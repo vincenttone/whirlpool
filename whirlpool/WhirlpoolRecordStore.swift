@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class WhirlpoolRecordStore: NSObject, NSCoding {
+class WhirlpoolRecordStore: NSObject, NSCoding, ObservableObject {
     
     // status
     enum STATE :Int{
@@ -27,8 +27,11 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     }
     
     var uuid: String = NSUUID().uuidString
+    
+    @Published
     var title: String = ""
     
+    @Published
     var state = STATE.INIT
     
     var real_start_time: Date? = nil
@@ -40,6 +43,7 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     
     var current_record :WhirlpoolRecord!
 
+    @Published
     var records :[WhirlpoolRecord] = []
     
     func isTiming() -> Bool {
@@ -101,6 +105,17 @@ class WhirlpoolRecordStore: NSObject, NSCoding {
     func getTimingTimeInterval() -> TimeInterval {
         return Date().timeIntervalSince(self.start_time ?? Date())
     }
+    
+//    func getTimingInterval() -> TimeInterval {
+//        switch self.state {
+//        case .INIT:
+//            return TimeInterval(0)
+//        case .PAUSING:
+//            return self.getPausingTimeInterval()
+//        case .TIMING:
+//            return self.getTimingInterval()
+//        }
+//    }
     
     func flushCurrentRecord() {
         if self.isPausing() {
