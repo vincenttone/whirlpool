@@ -10,47 +10,30 @@ import SwiftUI
 
 struct WhirlpoolMainContainerView: View {
     @ObservedObject
-    var store: WhirlpoolRecordStore
+    var controller: WhirlpoolTimingPageController
     
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
                 VStack {
-                    WhirlpoolTimingView(record: self.store.current_record)
+                    WhirlpoolTimingView(record: self.controller.store.current_record)
                     Spacer()
-                    WhirlpoolRecordListView(store: self.store)
+                    WhirlpoolRecordListView(store: self.controller.store)
                     Spacer()
                     HStack {
                         let len = proxy.size.width / 7
+                        let btnSize = CGSize(width: len, height: len)
                         Spacer()
-                        Button(action: {
-                            self.store.split()
-                        }, label: {
-                            Image(systemName: "record.circle")
-                                .resizable()
-                                .frame(width: len, height: len, alignment: .center)
-                        })
+                        WhirlpoolSplitButtonView(controller: self.controller, store: self.controller.store, size: btnSize)
                         Spacer()
-                        Button(action: {
-                            if self.store.isPausing() {
-                                self.store.goOn()
-                            } else if self.store.isWaiting() {
-                                self.store.start()
-                            } else if self.store.isTiming() {
-                                self.store.pause()
-                            }
-                        }, label: {
-                            Image(systemName: self.store.isPausing() ? "pause.circle" : "play.circle" )
-                                .resizable()
-                                .frame(width: len, height: len, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        })
+                        WhirlpoolPlayButtonView(controller: self.controller, store: self.controller.store, size: btnSize)
                         Spacer()
                     }
                     Spacer()
                 }
             }
         }
-        .navigationTitle(store.title)
+        .navigationTitle(self.controller.store.title)
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
@@ -71,6 +54,6 @@ struct WhirlpoolMainContainerView: View {
 
 struct WhirlpoolMainContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        WhirlpoolMainContainerView(store: WhirlpoolRecordStore())
+        WhirlpoolMainContainerView(controller: WhirlpoolTimingPageController())
     }
 }

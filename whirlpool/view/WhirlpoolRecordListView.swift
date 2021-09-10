@@ -13,8 +13,11 @@ struct WhirlpoolRecordListView: View {
     var store: WhirlpoolRecordStore
     
     var body: some View {
-        List(self.store.records, id: \.self) { record in
-            Text(TimeHelper.format2ReadableTime(time:  record.time))
+        List {
+            WhirlpoolRecordCellView(record: store.current_record, color: .green)
+            ForEach(self.store.records.reversed(), id: \.self) { record in
+                WhirlpoolRecordCellView(record: record, imageName: "timer", color: .gray)
+            }
         }
     }
 }
