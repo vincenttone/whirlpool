@@ -18,6 +18,8 @@ class WhirlpoolRecordStoreManager {
     
     var timerVC: WhirlpoolViewController!
     
+    var timerDisptachQueue = DispatchQueue(label: "soda.blue.dispatch.queue.timer")
+    
     var archiveUrl: URL {
         let docDirs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docDir = docDirs.first!
@@ -85,7 +87,7 @@ class WhirlpoolRecordStoreManager {
         }
     }
     
-    func recoverSnapshoot() -> Bool{
+    func recoverSnapshoot() -> Bool {
         if FileManager.default.fileExists(atPath: archiveUrl.path) == false {
             return false
         }
@@ -138,11 +140,21 @@ class WhirlpoolRecordStoreManager {
     }
     
     func resetTimer(_ block: @escaping (_ timer: Timer) -> Void) {
-        self.currentTimer = Timer.scheduledTimer(
-            withTimeInterval: 0.07,
-            repeats: true,
-            block: block
-        )
+        timerDisptachQueue.sync {
+            self.currentTimer = Timer.scheduledTimer(
+                withTimeInterval: 0.07,
+                repeats: true,
+                block: block
+            )
+            print("process start", ProcessInfo.processInfo.processIdentifier)
+        }
+    }
+    
+    func invalidateTimer() {
+        timerDisptachQueue.sync {
+            self.currentTimer?.invalidate()
+            print("process stop", ProcessInfo.processInfo.processIdentifier)
+        }
     }
     
     class func deleteHistory(uuid: String) throws {

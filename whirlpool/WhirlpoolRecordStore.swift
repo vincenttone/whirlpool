@@ -121,9 +121,9 @@ class WhirlpoolRecordStore: NSObject, NSCoding, ObservableObject {
         if self.isPausing() {
             self.current_record.time = self.last_pause_time!.timeIntervalSince(self.split_time!)
             self.current_record.time_far = self.last_pause_time!.timeIntervalSince(self.start_time!)
-        } else {
-            self.current_record.time = self.split_time!.timeIntervalSince(Date())
-            self.current_record.time_far = self.start_time!.timeIntervalSince(Date())
+        } else if !self.isWaiting() {
+            self.current_record.time = Date().timeIntervalSince(self.split_time!)
+            self.current_record.time_far = Date().timeIntervalSince(self.start_time!)
         }
     }
     

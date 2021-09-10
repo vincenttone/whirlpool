@@ -15,6 +15,8 @@
 		BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453C321E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift */; };
 		BF27842521F1CB2E0052F28B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842321F1CB2E0052F28B /* Localizable.strings */; };
 		BF27842A21F1CBE20052F28B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF27842821F1CBE20052F28B /* InfoPlist.strings */; };
+		BF2C288826EB350A00671ABC /* WhirlpoolHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2C288726EB350A00671ABC /* WhirlpoolHostingViewController.swift */; };
+		BF2C288A26EB358900671ABC /* WhirlpoolHostingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2C288926EB358900671ABC /* WhirlpoolHostingStoryboard.storyboard */; };
 		BF2D9B5A21EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */; };
 		BF2D9B6021EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */; };
 		BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */; };
@@ -79,6 +81,8 @@
 		BF27842921F1CBE20052F28B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF27842B21F1CBE80052F28B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		BF27842C21F1CBEB0052F28B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BF2C288726EB350A00671ABC /* WhirlpoolHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHostingViewController.swift; sourceTree = "<group>"; };
+		BF2C288926EB358900671ABC /* WhirlpoolHostingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WhirlpoolHostingStoryboard.storyboard; sourceTree = "<group>"; };
 		BF2D9B5921EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolSwitchToolbarButtonItem.swift; sourceTree = "<group>"; };
 		BF2D9B5F21EEFBE70036BBCD /* WhirlpoolTableCellTextFieldSwitchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolTableCellTextFieldSwitchBar.swift; sourceTree = "<group>"; };
 		BF368CD521E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolToolbarTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		BF0376B626EA066E002F41DD /* view */ = {
 			isa = PBXGroup;
 			children = (
+				BF2C288926EB358900671ABC /* WhirlpoolHostingStoryboard.storyboard */,
 				BF0376B726EA0692002F41DD /* WhirlpoolMainContainerView.swift */,
 				BF0376B926EA06A6002F41DD /* WhirlpoolTimingView.swift */,
 				BF0376BB26EA06C4002F41DD /* WhirlpoolHistoryListView.swift */,
@@ -254,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				BFBF03E526EA23B50068BEFF /* WhirlpoolTimingPageController.swift */,
+				BF2C288726EB350A00671ABC /* WhirlpoolHostingViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 				BF508E3721DDF76E0010E1BD /* LaunchScreen.storyboard in Resources */,
 				BF508E3421DDF76E0010E1BD /* Assets.xcassets in Resources */,
 				BF508E3221DDF76D0010E1BD /* Main.storyboard in Resources */,
+				BF2C288A26EB358900671ABC /* WhirlpoolHostingStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +452,7 @@
 				BF3F53CD21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift in Sources */,
 				BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */,
 				BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */,
+				BF2C288826EB350A00671ABC /* WhirlpoolHostingViewController.swift in Sources */,
 				BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */,
 				BF368CD821E75B6400A8971E /* WhirlpoolHistoryViewController.swift in Sources */,
 				BF85DABE21EDEB4A009F6FEF /* WhirlpoolTimerTableViewCell.swift in Sources */,
@@ -667,6 +675,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = whirlpool/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -690,6 +699,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = whirlpool/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -22,12 +22,12 @@ class WhirlpoolTimingPageController: ObservableObject {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         if self.store.isWaiting() {
             self.store.start()
+            self.resetTimer()
         } else if self.store.isTiming() {
             self.store.pause()
         } else if self.store.isPausing() {
             self.store.goOn()
         }
-        self.resetTimer()
         self.touchFeedback(feedbackStyle: .heavy)
     }
     
@@ -52,7 +52,15 @@ class WhirlpoolTimingPageController: ObservableObject {
     }
     
     private func reset() {
+        WhirlpoolRecordStoreManager.manager().invalidateTimer()
         self.store = WhirlpoolRecordStoreManager.manager().generateNewCurrentStore()
+    }
+    
+    func tryToRecoverSnapshot() {
+        if WhirlpoolRecordStoreManager.manager().recoverSnapshoot() {
+            self.store = WhirlpoolRecordStoreManager.manager().currentStore!
+            self.resetTimer()
+        }
     }
     
     func resetTimer() {
