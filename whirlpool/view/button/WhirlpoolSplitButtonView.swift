@@ -24,11 +24,15 @@ struct WhirlpoolSplitButtonView: View {
             Image(systemName: self.controller.store.state == .PAUSING ? "arrow.uturn.backward.circle" : "record.circle")
                 .resizable()
                 .frame(width: size.width, height: size.height)
-                .disabled(self.store.state == .INIT)
-                .foregroundColor(self.controller.store.state == .PAUSING
-                                    ? .red : .blue
+                .foregroundColor(
+                    self.controller.store.state == .INIT
+                    ? .gray
+                    : (self.controller.store.state == .PAUSING
+                       ? .red : .blue
+                      )
                 )
         })
+            .disabled(self.store.state == .INIT)
     }
 }
 

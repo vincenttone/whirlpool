@@ -9,8 +9,31 @@
 import SwiftUI
 
 struct WhirlpoolHistoryListView: View {
+    
+    @State var page = 1
+    
+    private let contentSize = 20
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(0..<self.page * contentSize,id : \.self) { num in
+                Text("数据" + "\(num)").frame(height: 100)
+            }
+            Button(action: loadMore) {
+                Text(self.page == 4 ? "已经到底啦" :  "")
+            }
+            .onAppear {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100)) {
+                    self.loadMore()
+                }
+            }
+        }
+    }
+    func loadMore() {
+        if self.page < 4 {
+            self.page += 1
+            print("Load more..." + "\(page)")
+        }
     }
 }
 

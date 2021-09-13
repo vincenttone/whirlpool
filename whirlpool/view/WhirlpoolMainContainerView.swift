@@ -12,6 +12,9 @@ struct WhirlpoolMainContainerView: View {
     @ObservedObject
     var controller: WhirlpoolTimingPageController
     
+    @State
+    private var showHistory = false
+    
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
@@ -31,23 +34,45 @@ struct WhirlpoolMainContainerView: View {
                     }
                     Spacer()
                 }
+                .background(NavigationLink("", destination: WhirlpoolHistoryListView(), isActive: self.$showHistory))
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            self.showHistory.toggle()
+                        } label: {
+                            Image(systemName: "list.triangle")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        
+                        Button {
+                            // save alert
+//                            controller.store.save()
+                        } label: {
+                            Image(systemName: "square.and.arrow.down")
+                        }
+
+                    }
+                }
+                .navigationTitle(self.controller.store.title)
+//                .fullScreenCover(isPresented: self.$showHistory, content: {
+//                    WhirlpoolHistoryListView()
+//                })
+//                .sheet(isPresented: self.$showHistory, content: {
+//                    WhirlpoolHistoryListView()
+//                })
             }
         }
-        .navigationTitle(self.controller.store.title)
-        .toolbar(content: {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    WhirlpoolHistoryListView()
-                }, label: {
-                    Text("Button")
-                })
-            }
-        })
-        .navigationBarItems(leading: Button(action: {
-            
-        }, label: {
-            Text("Button")
-        }))
+        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationBarItems(leading: Button(action: {
+//
+//        }, label: {
+//            Text("Button")
+//        }))
         
     }
 }
