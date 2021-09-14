@@ -39,6 +39,7 @@
 		BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */; };
 		BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */; };
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
+		BFE3CDDD26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */; };
 		BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */; };
 		BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */; };
 		BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189721E5E89A004D6480 /* TimeHelper.swift */; };
@@ -111,6 +112,7 @@
 		BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecord.swift; sourceTree = "<group>"; };
 		BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordStore.swift; sourceTree = "<group>"; };
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
+		BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRefreshableTableView.swift; sourceTree = "<group>"; };
 		BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordTableViewCell.swift; sourceTree = "<group>"; };
 		BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordDescTextField.swift; sourceTree = "<group>"; };
 		BFF2189721E5E89A004D6480 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				BFBF03E026EA16D30068BEFF /* WhirlpoolRecordListView.swift */,
 				BFBF03E926EAE8C30068BEFF /* WhirlpoolRecordCellView.swift */,
 				BFBF03ED26EB05670068BEFF /* button */,
+				BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				BF0376B826EA0692002F41DD /* WhirlpoolMainContainerView.swift in Sources */,
 				BF3F53CD21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift in Sources */,
 				BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */,
+				BFE3CDDD26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift in Sources */,
 				BF1453C421E8C8B0008D0D02 /* WhirlpoolHistoryDetailViewController.swift in Sources */,
 				BF2C288826EB350A00671ABC /* WhirlpoolHostingViewController.swift in Sources */,
 				BF368CD621E6EB4F00A8971E /* WhirlpoolToolbarTableViewCell.swift in Sources */,
@@ -675,7 +679,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = whirlpool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,7 +703,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = whirlpool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
