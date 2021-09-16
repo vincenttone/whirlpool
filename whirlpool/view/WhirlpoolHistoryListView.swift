@@ -14,20 +14,32 @@ struct WhirlpoolHistoryListView: View {
     
     private let contentSize = 20
     
+    @State
+    private var data = Array(0..<30)
+    
     var body: some View {
-        List {
-            ForEach(0..<self.page * contentSize,id : \.self) { num in
-                Text("数据" + "\(num)").frame(height: 100)
-            }
-            Button(action: loadMore) {
-                Text(self.page == 4 ? "已经到底啦" :  "")
-            }
-            .onAppear {
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100)) {
-                    self.loadMore()
-                }
+        
+        WhirlpoolRefreshableTableView(data: data, total: data.count) { d in
+            VStack {
+                Text(String(format: "#%d", d))
             }
         }
+        .refreshable {
+            data.append(contentsOf: 31..<60)
+        }
+//        List {
+//            ForEach(0..<self.page * contentSize,id : \.self) { num in
+//                Text("数据" + "\(num)").frame(height: 100)
+//            }
+//            Button(action: loadMore) {
+//                Text(self.page == 4 ? "已经到底啦" :  "")
+//            }
+//            .onAppear {
+//                DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100)) {
+//                    self.loadMore()
+//                }
+//            }
+//        }
     }
     func loadMore() {
         if self.page < 4 {
