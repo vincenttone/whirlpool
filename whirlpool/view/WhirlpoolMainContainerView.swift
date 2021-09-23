@@ -15,6 +15,12 @@ struct WhirlpoolMainContainerView: View {
     @State
     private var showHistory = false
     
+    @State
+    private var isSaving = false
+    
+    @State
+    private var title = ""
+    
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
@@ -48,17 +54,38 @@ struct WhirlpoolMainContainerView: View {
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                         }
-                        
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            // save alert
-//                            controller.store.save()
+                            if self.controller.store.state == .PAUSING {
+                                self.isSaving.toggle()
+                            }
                         } label: {
                             Image(systemName: "square.and.arrow.down")
                         }
-
+                    }
+                    ToolbarItem(placement: .navigation) {
+                        Text(self.controller.store.title)
                     }
                 }
-                .navigationTitle(self.controller.store.title)
+                .sheet(isPresented: self.$isSaving, onDismiss: {
+
+                }, content: {
+                    VStack {
+                        TextField("标题", text: self.$title)
+                            .font(.title)
+                        WhirlpoolRecordListView(store: self.controller.store)
+                        Button("保存") {
+                            self.controller.store.title = self.title
+                            self.controller.store.save()
+                            self.title = ""
+                            self.isSaving.toggle()
+                        }
+                        .disabled(self.title.isEmpty)
+                    }
+                })
+//                .navigationTitle(self.controller.store.title)
 //                .fullScreenCover(isPresented: self.$showHistory, content: {
 //                    WhirlpoolHistoryListView()
 //                })

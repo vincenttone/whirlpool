@@ -40,6 +40,7 @@
 		BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */; };
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
 		BFE3CDDD26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */; };
+		BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D026FCA22400246BAC /* DateUtil.swift */; };
 		BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */; };
 		BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */; };
 		BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189721E5E89A004D6480 /* TimeHelper.swift */; };
@@ -113,6 +114,7 @@
 		BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordStore.swift; sourceTree = "<group>"; };
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
 		BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRefreshableTableView.swift; sourceTree = "<group>"; };
+		BFEAE0D026FCA22400246BAC /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordTableViewCell.swift; sourceTree = "<group>"; };
 		BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordDescTextField.swift; sourceTree = "<group>"; };
 		BFF2189721E5E89A004D6480 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		BF508E2721DDF76D0010E1BD /* whirlpool */ = {
 			isa = PBXGroup;
 			children = (
+				BFEAE0CF26FCA21600246BAC /* utils */,
 				BFBF03E426EA238B0068BEFF /* controller */,
 				BF0376B626EA066E002F41DD /* view */,
 				BF27842321F1CB2E0052F28B /* Localizable.strings */,
@@ -276,6 +279,14 @@
 			path = button;
 			sourceTree = "<group>";
 		};
+		BFEAE0CF26FCA21600246BAC /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				BFEAE0D026FCA22400246BAC /* DateUtil.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -293,6 +304,8 @@
 			dependencies = (
 			);
 			name = whirlpool;
+			packageProductDependencies = (
+			);
 			productName = whirlpool;
 			productReference = BF508E2521DDF76D0010E1BD /* whirlpool.app */;
 			productType = "com.apple.product-type.application";
@@ -370,6 +383,8 @@
 				"zh-Hant",
 			);
 			mainGroup = BF508E1C21DDF76D0010E1BD;
+			packageReferences = (
+			);
 			productRefGroup = BF508E2621DDF76D0010E1BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -466,6 +481,7 @@
 				BFBF03EF26EB057E0068BEFF /* WhirlpoolPlayButtonView.swift in Sources */,
 				BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */,
 				BFBF03E626EA23B50068BEFF /* WhirlpoolTimingPageController.swift in Sources */,
+				BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */,
 				BFBF03E126EA16D30068BEFF /* WhirlpoolRecordListView.swift in Sources */,
 				BF0376BA26EA06A6002F41DD /* WhirlpoolTimingView.swift in Sources */,
 			);

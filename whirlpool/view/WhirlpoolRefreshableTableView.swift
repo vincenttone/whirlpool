@@ -27,10 +27,12 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
     var body: some View {
         List {
             topView
+                .hidden()
             ForEach(data, id: \.self) { d in
                 self.cellBuilder(d)
             }
             bottomView
+                .hidden()
                 .onAppear {
                     if self.refresh != nil && !self.isRefreshing{
                         self.isRefreshing.toggle()
