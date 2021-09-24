@@ -10,59 +10,54 @@ import SwiftUI
 
 struct WhirlpoolHistoryListView: View {
     
-    @State var page = 1
-    
-    private let limit = 30
-    
-    @State
-    private var data: [Batch] = WhirlpoolRecordStoreManager.instance.loadHistories(limit: 30, offset: 0)
-    
-    private var count: Int { WhirlpoolRecordStoreManager.instance.fetchHistoriesCount()
-    }
-    
-    @State
-    private var isEndOfPage = false
+    @ObservedObject
+    private var controller = WhirlpoolHistoryController.shared
     
     var body: some View {
-//        NavigationView {
-            if self.count > 0 {
-                //            WhirlpoolRefreshableTableView(data: data, total: data.count) { store in
-                //                Text(String(format: "#%d", store.title ?? "暂无标题"))
-                //            }
-                List(data, id: \.self) { store in
+        //        NavigationView {
+        if self.controller.total > 0 {
+            List {
+                ForEach(controller.stores, id: \.self) { store in
                     NavigationLink(destination: {
-                        Text(String(format: "%@", store.title ?? "暂无标题"))
-                            .font(.title)
-                            .navigationTitle(Text(String(format: "%@", store.title ?? "暂无标题")))
+                        VStack {
+                            WhirlpoolTimingView(record: store.current_record!)
+                            WhirlpoolRecordListView(store: store, editable: true)
+                        }
+                        .navigationTitle(Text(String(format: "%@", store.title )))
                     }, label: {
                         VStack(alignment: .leading) {
-                            Text(String(format: "%@", store.title ?? "暂无标题"))
+                            Text(String(format: "%@", store.title))
                                 .font(.title2)
                             HStack {
-                                Text(store.date!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
+                                Text(store.start_time!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
                                 Spacer()
-                                Text(String(format: "%d条记录", store.count))
+                                Text(String(format: "%d条记录", store.count()))
                             }
                             .font(.footnote)
                         }
                     })
                 }
-                .navigationBarTitle("历史记录")
-                .refreshable {
-                    if self.count > (self.page - 1) * self.limit {
-                        let histories = WhirlpoolRecordStoreManager.instance.loadHistories(limit: self.limit, offset: (self.page  - 1) * self.limit )
-                        self.data.append(contentsOf: histories)
-                        self.page += 1
-                    } else {
-                        self.isEndOfPage = true
+                .onDelete { ids in
+                    if !ids.isEmpty {
+                        let store = self.controller.stores[ids.first!]
+                        self.controller.deleteHistory(store)
                     }
                 }
-            } else {
-                VStack {
-                    Label("暂无任何记录", systemImage: "ellipsis.rectangle")
-                }
             }
-//        }
+            .onAppear(perform: {
+                self.controller.reload()
+            })
+            .navigationBarTitle("历史记录")
+            .refreshable {
+                print("refresh")
+                self.controller.next()
+            }
+        } else {
+            VStack {
+                Label("暂无任何记录", systemImage: "ellipsis.rectangle")
+            }
+        }
+        //        }
     }
 }
 

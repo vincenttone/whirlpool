@@ -13,6 +13,9 @@ struct WhirlpoolRecordCellView: View {
     var record: WhirlpoolRecord
     
     @State
+    var editable = false
+    
+    @State
     var imageName: String = "stopwatch"
     
     @State
@@ -26,6 +29,15 @@ struct WhirlpoolRecordCellView: View {
             Spacer()
             TextField("添加备注", text: $record.desc)
                 .foregroundColor(color)
+                .onSubmit {
+                    if self.editable {
+                        do {
+                            try self.record.update()
+                        } catch {
+                            NSLog("update record desc failed! error: %@", error.localizedDescription)
+                        }
+                    }
+                }
             
             Spacer()
             Text(TimeHelper.format2ReadableTime(time:  record.time_far))

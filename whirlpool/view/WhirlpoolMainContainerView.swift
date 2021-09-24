@@ -18,9 +18,6 @@ struct WhirlpoolMainContainerView: View {
     @State
     private var isSaving = false
     
-    @State
-    private var title = ""
-    
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
@@ -73,16 +70,14 @@ struct WhirlpoolMainContainerView: View {
 
                 }, content: {
                     VStack {
-                        TextField("标题", text: self.$title)
+                        TextField("标题", text: self.$controller.store.title)
                             .font(.title)
                         WhirlpoolRecordListView(store: self.controller.store)
                         Button("保存") {
-                            self.controller.store.title = self.title
                             self.controller.store.save()
-                            self.title = ""
                             self.isSaving.toggle()
                         }
-                        .disabled(self.title.isEmpty)
+                        .disabled(self.controller.store.title.isEmpty)
                     }
                 })
 //                .navigationTitle(self.controller.store.title)

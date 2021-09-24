@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,8 @@
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
 		BFE3CDDD26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */; };
 		BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D026FCA22400246BAC /* DateUtil.swift */; };
+		BFEAE0D326FDB61100246BAC /* WhirlpoolHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */; };
+		BFEAE0D626FDB8E100246BAC /* PolarShadow in Frameworks */ = {isa = PBXBuildFile; productRef = BFEAE0D526FDB8E100246BAC /* PolarShadow */; };
 		BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */; };
 		BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */; };
 		BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2189721E5E89A004D6480 /* TimeHelper.swift */; };
@@ -115,6 +117,7 @@
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
 		BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRefreshableTableView.swift; sourceTree = "<group>"; };
 		BFEAE0D026FCA22400246BAC /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryController.swift; sourceTree = "<group>"; };
 		BFF2189321E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordTableViewCell.swift; sourceTree = "<group>"; };
 		BFF2189521E5A357004D6480 /* WhirlpoolRecordDescTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordDescTextField.swift; sourceTree = "<group>"; };
 		BFF2189721E5E89A004D6480 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2AA320FA42D298F02D0838 /* libPods-whirlpool.a in Frameworks */,
+				BFEAE0D626FDB8E100246BAC /* PolarShadow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +270,7 @@
 			children = (
 				BFBF03E526EA23B50068BEFF /* WhirlpoolTimingPageController.swift */,
 				BF2C288726EB350A00671ABC /* WhirlpoolHostingViewController.swift */,
+				BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 			);
 			name = whirlpool;
 			packageProductDependencies = (
+				BFEAE0D526FDB8E100246BAC /* PolarShadow */,
 			);
 			productName = whirlpool;
 			productReference = BF508E2521DDF76D0010E1BD /* whirlpool.app */;
@@ -384,6 +390,7 @@
 			);
 			mainGroup = BF508E1C21DDF76D0010E1BD;
 			packageReferences = (
+				BFEAE0D426FDB8E100246BAC /* XCRemoteSwiftPackageReference "PolarShadow" */,
 			);
 			productRefGroup = BF508E2621DDF76D0010E1BD /* Products */;
 			projectDirPath = "";
@@ -463,6 +470,7 @@
 				BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */,
 				BFBF03F126EB07400068BEFF /* WhirlpoolSplitButtonView.swift in Sources */,
 				BF2D9B5A21EEE4220036BBCD /* WhirlpoolSwitchToolbarButtonItem.swift in Sources */,
+				BFEAE0D326FDB61100246BAC /* WhirlpoolHistoryController.swift in Sources */,
 				BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */,
 				BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */,
 				BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */,
@@ -853,6 +861,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BFEAE0D426FDB8E100246BAC /* XCRemoteSwiftPackageReference "PolarShadow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@www.bluesoda.cn:/git/PolarShadow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BFEAE0D526FDB8E100246BAC /* PolarShadow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BFEAE0D426FDB8E100246BAC /* XCRemoteSwiftPackageReference "PolarShadow" */;
+			productName = PolarShadow;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		BF113A0121E5FF0800F38D43 /* whirlpool.xcdatamodeld */ = {
