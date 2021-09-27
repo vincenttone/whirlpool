@@ -25,6 +25,14 @@ class WhirlpoolHistoryController: EzPage<Batch>, ObservableObject {
                    sortDescriptors: [NSSortDescriptor(key: "date", ascending: false)])
     }
     
+    func load() {
+        if self.stores.isEmpty {
+            self.reload()
+        } else {
+            self.nextPage()
+        }
+    }
+    
     func reload() {
         do {
             self.stores.removeAll()

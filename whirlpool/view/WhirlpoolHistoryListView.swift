@@ -13,44 +13,48 @@ struct WhirlpoolHistoryListView: View {
     @ObservedObject
     private var controller = WhirlpoolHistoryController.shared
     
+    @Environment(\.colorScheme)
+    private var colorScheme
+    
     var body: some View {
-        //        NavigationView {
         if self.controller.total > 0 {
-            List {
-                ForEach(controller.stores, id: \.self) { store in
+
+            WhirlpoolRefreshableTableView(data: controller.stores, isLastPage: {
+                self.controller.isLastPage()
+            }) { store in
                     NavigationLink(destination: {
                         VStack {
                             WhirlpoolTimingView(record: store.current_record!)
                             WhirlpoolRecordListView(store: store, editable: true)
                         }
+                        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
                         .navigationTitle(Text(String(format: "%@", store.title )))
                     }, label: {
-                        VStack(alignment: .leading) {
+                        LazyVStack(alignment: .leading) {
                             Text(String(format: "%@", store.title))
-                                .font(.title2)
+                                .font(.title3)
+                                .foregroundColor(self.colorScheme == .light ? .black : .white)
+                            Spacer()
                             HStack {
-                                Text(store.start_time!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
-                                Spacer()
                                 Text(String(format: "%d条记录", store.count()))
+                                Spacer()
+                                Text(store.start_time!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
                             }
                             .font(.footnote)
+                            .foregroundColor(self.colorScheme == .light ? .green : .gray)
+                            .padding(.horizontal)
                         }
                     })
-                }
-                .onDelete { ids in
-                    if !ids.isEmpty {
-                        let store = self.controller.stores[ids.first!]
-                        self.controller.deleteHistory(store)
-                    }
+            }
+            .onDelete { ids in
+                if !ids.isEmpty && self.controller.stores.count > ids.first! {
+                    let store = self.controller.stores[ids.first!]
+                    self.controller.deleteHistory(store)
                 }
             }
-            .onAppear(perform: {
-                self.controller.reload()
-            })
             .navigationBarTitle("历史记录")
             .refreshable {
-                print("refresh")
-                self.controller.next()
+                self.controller.load()
             }
         } else {
             VStack {
