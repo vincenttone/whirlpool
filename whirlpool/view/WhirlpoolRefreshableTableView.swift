@@ -46,18 +46,18 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
                         self.deleteAction!(idxSet)
                     }
                 })
-                
             }
             .onPreferenceChange(ScrollViewBottomOffsetPreferenceKey.self) { offset in
-                if proxy.size.height > (offset.value * 2 / 3)
-                    && self.refresh != nil
-                    && !self.isLastPage()
-                    && !self.isRefreshing {
-                    self.isRefreshing.toggle()
-                    Task {
-                        print("Refresh", self.isLastPage())
-                        await self.refresh!()
+                DispatchQueue.main.async {
+                    if proxy.size.height * 2 > (offset.value * 3 / 2)
+                        && self.refresh != nil
+                        && !self.isLastPage()
+                        && !self.isRefreshing {
                         self.isRefreshing.toggle()
+                        Task {
+                            await self.refresh!()
+                            self.isRefreshing.toggle()
+                        }
                     }
                 }
             }

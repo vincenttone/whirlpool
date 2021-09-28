@@ -28,7 +28,7 @@ struct WhirlpoolHistoryListView: View {
                             WhirlpoolRecordListView(store: store, editable: true)
                         }
                         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-                        .navigationTitle(Text(String(format: "%@", store.title )))
+                        .navigationBarTitle(Text(String(format: "%@", store.title )))
                     }, label: {
                         LazyVStack(alignment: .leading) {
                             Text(String(format: "%@", store.title))
@@ -52,7 +52,7 @@ struct WhirlpoolHistoryListView: View {
                     self.controller.deleteHistory(store)
                 }
             }
-            .navigationBarTitle("历史记录")
+            .navigationTitle("历史记录")
             .refreshable {
                 self.controller.load()
             }

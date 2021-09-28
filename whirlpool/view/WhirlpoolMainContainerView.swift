@@ -62,9 +62,6 @@ struct WhirlpoolMainContainerView: View {
                             Image(systemName: "square.and.arrow.down")
                         }
                     }
-                    ToolbarItem(placement: .navigation) {
-                        Text(self.controller.store.title)
-                    }
                 }
                 .sheet(isPresented: self.$isSaving, onDismiss: {
 
@@ -80,22 +77,11 @@ struct WhirlpoolMainContainerView: View {
                         .disabled(self.controller.store.title.isEmpty)
                     }
                 })
-//                .navigationTitle(self.controller.store.title)
-//                .fullScreenCover(isPresented: self.$showHistory, content: {
-//                    WhirlpoolHistoryListView()
-//                })
-//                .sheet(isPresented: self.$showHistory, content: {
-//                    WhirlpoolHistoryListView()
-//                })
+                .navigationBarTitle(self.controller.store.title)
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-//        .navigationBarItems(leading: Button(action: {
-//
-//        }, label: {
-//            Text("Button")
-//        }))
-        
     }
 }
 
