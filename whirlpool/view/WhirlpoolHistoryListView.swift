@@ -22,18 +22,11 @@ struct WhirlpoolHistoryListView: View {
                 self.controller.isLastPage()
             }) { store in
                     NavigationLink(destination: {
-                        VStack {
-                            WhirlpoolTimingView(record: store.current_record!)
-                            WhirlpoolRecordListView(store: store, editable: true)
-                        }
-                        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-                        .navigationBarTitle(Text(String(format: "%@", store.title )))
+                        WhirlpoolHistoryDetailView(store: store)
                     }, label: {
                         LazyVStack(alignment: .leading) {
                             Text(String(format: "%@", store.title))
-                                .font(.title3)
-                                .foregroundColor(self.colorScheme == .light ? .black : .white)
-                            Spacer()
+                                .padding(.vertical)
                             HStack {
                                 Text(String(format: "%d条记录", store.count()))
                                 Spacer()
@@ -44,8 +37,7 @@ struct WhirlpoolHistoryListView: View {
                             .padding(.horizontal)
                         }
                     })
-            } onDelete: 
-            { ids in
+            } onDelete: { ids in
                 if !ids.isEmpty && self.controller.stores.count > ids.first! {
                     let store = self.controller.stores[ids.first!]
                     self.controller.deleteHistory(store)

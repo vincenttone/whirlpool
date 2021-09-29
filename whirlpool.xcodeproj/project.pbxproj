@@ -41,6 +41,7 @@
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
 		BFDEF9A7270448C5004F08D1 /* WhirlpoolShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */; };
 		BFDEF9A9270453CC004F08D1 /* WhirlpoolHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF9A8270453CC004F08D1 /* WhirlpoolHomePageView.swift */; };
+		BFDEF9AB27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF9AA27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift */; };
 		BFE3CDDD26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */; };
 		BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D026FCA22400246BAC /* DateUtil.swift */; };
 		BFEAE0D326FDB61100246BAC /* WhirlpoolHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */; };
@@ -119,6 +120,7 @@
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
 		BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolShareSheetView.swift; sourceTree = "<group>"; };
 		BFDEF9A8270453CC004F08D1 /* WhirlpoolHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHomePageView.swift; sourceTree = "<group>"; };
+		BFDEF9AA27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryDetailView.swift; sourceTree = "<group>"; };
 		BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRefreshableTableView.swift; sourceTree = "<group>"; };
 		BFEAE0D026FCA22400246BAC /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				BFBF03ED26EB05670068BEFF /* button */,
 				BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */,
 				BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */,
+				BFDEF9AA27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */,
 				BFBF03E126EA16D30068BEFF /* WhirlpoolRecordListView.swift in Sources */,
 				BF0376BA26EA06A6002F41DD /* WhirlpoolTimingView.swift in Sources */,
+				BFDEF9AB27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

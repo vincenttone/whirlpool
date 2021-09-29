@@ -48,6 +48,7 @@ struct WhirlpoolHomePageView: View {
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
+                            WhirlpoolHistoryController.shared.reload()
                             self.showHistory.toggle()
                         } label: {
                             Image(systemName: "list.triangle")
@@ -62,7 +63,6 @@ struct WhirlpoolHomePageView: View {
                             Image(systemName: "square.and.arrow.up")
                         }
                         .disabled(self.store.state != .PAUSING)
-//                        .foregroundColor(self.store.state == .PAUSING ? .blue : .gray)
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -74,7 +74,6 @@ struct WhirlpoolHomePageView: View {
                             Image(systemName: "square.and.arrow.down")
                         }
                         .disabled(self.store.state != .PAUSING)
-//                        .foregroundColor(self.store.state == .PAUSING ? .blue : .gray)
                     }
                 }
                 .sheet(isPresented: self.$isSaving) {

@@ -39,21 +39,30 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
         GeometryReader { proxy in
             List {
                 ForEach(data, id: \.self) { d in
-                    if d == data.last {
-                        GeometryReader { proxy in
-                            let offset = proxy.frame(in: .global).minY
-                            self.cellBuilder(d)
-                                .preference(key: ScrollViewBottomOffsetPreferenceKey.self, value: ScrollViewBottomOffset(value: offset))
-                        }
-                    } else {
+//                    if d == data.last {
+//                        GeometryReader { proxy in
+//                            let offset = proxy.frame(in: .global).minY
+//                            self.cellBuilder(d)
+//                                .preference(key: ScrollViewBottomOffsetPreferenceKey.self, value: ScrollViewBottomOffset(value: offset))
+//                        }
+//                    } else {
                         self.cellBuilder(d)
-                    }
+//                    }
                 }
                 .onDelete(perform: { idxSet in
                     if self.deleteAction != nil {
                         self.deleteAction!(idxSet)
                     }
                 })
+                HStack {
+                    GeometryReader { proxy in
+                        let offset = proxy.frame(in: .global).minY
+                        Label(String(format: "共%d条记录", self.data.count), systemImage: "chevron.up.circle")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .preference(key: ScrollViewBottomOffsetPreferenceKey.self, value: ScrollViewBottomOffset(value: offset))
+                    }
+                }
             }
             .onPreferenceChange(ScrollViewBottomOffsetPreferenceKey.self) { offset in
                 DispatchQueue.main.async {
