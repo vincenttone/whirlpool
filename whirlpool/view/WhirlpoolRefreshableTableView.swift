@@ -15,17 +15,25 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
     
     var cellBuilder: (T.Element) -> Cell
     
+    var deleteAction: ((IndexSet) -> Void)?
+    
     @Environment(\.refresh)
     private var refresh
     
     @State
     private var isRefreshing = false
     
-    
     init(data: T, isLastPage: @escaping () -> Bool, @ViewBuilder cellBuilder: @escaping (T.Element) -> Cell) {
         self.data = data
         self.isLastPage = isLastPage
         self.cellBuilder = cellBuilder
+    }
+    
+    init(data: T, isLastPage: @escaping () -> Bool, @ViewBuilder cellBuilder: @escaping (T.Element) -> Cell, onDelete: @escaping (IndexSet) -> Void) {
+        self.data = data
+        self.isLastPage = isLastPage
+        self.cellBuilder = cellBuilder
+        self.deleteAction = onDelete
     }
     var body: some View {
         GeometryReader { proxy in
@@ -75,16 +83,6 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
 //            Color.clear.preference(key: ScrollViewBottomOffsetPreferenceKey.self, value: ScrollViewBottomOffset(value: offset))
 //        }
 //    }
-    
-    @State
-    var deleteAction: ((IndexSet) -> Void)?
-}
-
-extension WhirlpoolRefreshableTableView {
-    func onDelete(action: @escaping (IndexSet) -> Void) -> WhirlpoolRefreshableTableView {
-        self.deleteAction = action
-        return self
-    }
 }
 
 struct ScrollViewBottomOffset: Equatable {

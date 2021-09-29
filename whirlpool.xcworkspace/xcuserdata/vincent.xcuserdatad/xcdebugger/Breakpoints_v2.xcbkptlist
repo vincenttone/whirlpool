@@ -51,8 +51,8 @@
             filePath = "whirlpool/controller/WhirlpoolTimingPageController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "reset()"
             landmarkType = "7">
          </BreakpointContent>
@@ -92,15 +92,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B98D6BB0-2C16-48C3-8E1B-E72AF8370D57"
+            uuid = "315EFDEC-0E05-4820-BD8B-DE81BA906ADF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "whirlpool/view/WhirlpoolRefreshableTableView.swift"
+            filePath = "whirlpool/controller/WhirlpoolHistoryController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "deleteHistory(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBCC40FC-77CF-4C4F-8360-9D6448C2A2A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "whirlpool/view/WhirlpoolHistoryListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

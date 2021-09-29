@@ -17,9 +17,14 @@ struct WhirlpoolSplitButtonView: View {
     
     let size: CGSize
     
+    var touchedCallback: (() -> Void)?
+    
     var body: some View {
         Button(action: {
             self.controller.splitBtnTouched()
+            if self.touchedCallback != nil {
+                self.touchedCallback!()
+            }
         }, label: {
             Image(systemName: self.controller.store.state == .PAUSING ? "arrow.uturn.backward.circle" : "record.circle")
                 .resizable()

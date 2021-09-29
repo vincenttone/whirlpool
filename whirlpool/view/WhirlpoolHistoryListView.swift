@@ -18,7 +18,6 @@ struct WhirlpoolHistoryListView: View {
     
     var body: some View {
         if self.controller.total > 0 {
-
             WhirlpoolRefreshableTableView(data: controller.stores, isLastPage: {
                 self.controller.isLastPage()
             }) { store in
@@ -45,8 +44,8 @@ struct WhirlpoolHistoryListView: View {
                             .padding(.horizontal)
                         }
                     })
-            }
-            .onDelete { ids in
+            } onDelete: 
+            { ids in
                 if !ids.isEmpty && self.controller.stores.count > ids.first! {
                     let store = self.controller.stores[ids.first!]
                     self.controller.deleteHistory(store)

@@ -26,6 +26,9 @@ class WhirlpoolHistoryController: EzPage<Batch>, ObservableObject {
     }
     
     func load() {
+        if self.total == 0 {
+            return
+        }
         if self.stores.isEmpty {
             self.reload()
         } else {
@@ -44,9 +47,9 @@ class WhirlpoolHistoryController: EzPage<Batch>, ObservableObject {
         }
     }
     
-    func deleteHistory(_ store: WhirlpoolRecordStore) {
+    func deleteHistory(id: String) {
         do {
-            try WhirlpoolRecordStoreManager.deleteHistory(uuid: store.uuid)
+            try WhirlpoolRecordStoreManager.deleteHistory(uuid: id)
             let limit = self.limit
             let page = self.currentPage
             self.limit = self.currentPage * self.limit
@@ -56,6 +59,10 @@ class WhirlpoolHistoryController: EzPage<Batch>, ObservableObject {
         }  catch {
             NSLog("load data failed! error: %@", error.localizedDescription)
         }
+    }
+    
+    func deleteHistory(_ store: WhirlpoolRecordStore) {
+        self.deleteHistory(id: store.uuid)
     }
     
     private func nextPage() {

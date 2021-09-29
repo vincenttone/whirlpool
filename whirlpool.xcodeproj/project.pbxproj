@@ -39,6 +39,8 @@
 		BFD65FBB21E481990036ED99 /* WhirlpoolRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */; };
 		BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */; };
 		BFD65FBF21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */; };
+		BFDEF9A7270448C5004F08D1 /* WhirlpoolShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */; };
+		BFDEF9A9270453CC004F08D1 /* WhirlpoolHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDEF9A8270453CC004F08D1 /* WhirlpoolHomePageView.swift */; };
 		BFE3CDDD26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */; };
 		BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D026FCA22400246BAC /* DateUtil.swift */; };
 		BFEAE0D326FDB61100246BAC /* WhirlpoolHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */; };
@@ -115,6 +117,8 @@
 		BFD65FBA21E481990036ED99 /* WhirlpoolRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecord.swift; sourceTree = "<group>"; };
 		BFD65FBC21E484740036ED99 /* WhirlpoolRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordStore.swift; sourceTree = "<group>"; };
 		BFD65FBE21E48E2B0036ED99 /* WhirlpoolRecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRecordsTableViewController.swift; sourceTree = "<group>"; };
+		BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolShareSheetView.swift; sourceTree = "<group>"; };
+		BFDEF9A8270453CC004F08D1 /* WhirlpoolHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHomePageView.swift; sourceTree = "<group>"; };
 		BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolRefreshableTableView.swift; sourceTree = "<group>"; };
 		BFEAE0D026FCA22400246BAC /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhirlpoolHistoryController.swift; sourceTree = "<group>"; };
@@ -165,12 +169,14 @@
 			children = (
 				BF2C288926EB358900671ABC /* WhirlpoolHostingStoryboard.storyboard */,
 				BF0376B726EA0692002F41DD /* WhirlpoolMainContainerView.swift */,
+				BFDEF9A8270453CC004F08D1 /* WhirlpoolHomePageView.swift */,
 				BF0376B926EA06A6002F41DD /* WhirlpoolTimingView.swift */,
 				BF0376BB26EA06C4002F41DD /* WhirlpoolHistoryListView.swift */,
 				BFBF03E026EA16D30068BEFF /* WhirlpoolRecordListView.swift */,
 				BFBF03E926EAE8C30068BEFF /* WhirlpoolRecordCellView.swift */,
 				BFBF03ED26EB05670068BEFF /* button */,
 				BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */,
+				BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -268,8 +274,8 @@
 		BFBF03E426EA238B0068BEFF /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				BFBF03E526EA23B50068BEFF /* WhirlpoolTimingPageController.swift */,
 				BF2C288726EB350A00671ABC /* WhirlpoolHostingViewController.swift */,
+				BFBF03E526EA23B50068BEFF /* WhirlpoolTimingPageController.swift */,
 				BFEAE0D226FDB61100246BAC /* WhirlpoolHistoryController.swift */,
 			);
 			path = controller;
@@ -473,6 +479,7 @@
 				BFEAE0D326FDB61100246BAC /* WhirlpoolHistoryController.swift in Sources */,
 				BFF2189821E5E89A004D6480 /* TimeHelper.swift in Sources */,
 				BFD65FBD21E484740036ED99 /* WhirlpoolRecordStore.swift in Sources */,
+				BFDEF9A7270448C5004F08D1 /* WhirlpoolShareSheetView.swift in Sources */,
 				BF113A0321E5FF0800F38D43 /* whirlpool.xcdatamodeld in Sources */,
 				BF0376B826EA0692002F41DD /* WhirlpoolMainContainerView.swift in Sources */,
 				BF3F53CD21EC341500F97A06 /* WhirlpoolRecordStoreManager.swift in Sources */,
@@ -488,6 +495,7 @@
 				BFF2189621E5A357004D6480 /* WhirlpoolRecordDescTextField.swift in Sources */,
 				BFBF03EF26EB057E0068BEFF /* WhirlpoolPlayButtonView.swift in Sources */,
 				BFF2189421E5916A004D6480 /* WhirlpoolRecordTableViewCell.swift in Sources */,
+				BFDEF9A9270453CC004F08D1 /* WhirlpoolHomePageView.swift in Sources */,
 				BFBF03E626EA23B50068BEFF /* WhirlpoolTimingPageController.swift in Sources */,
 				BFEAE0D126FCA22400246BAC /* DateUtil.swift in Sources */,
 				BFBF03E126EA16D30068BEFF /* WhirlpoolRecordListView.swift in Sources */,

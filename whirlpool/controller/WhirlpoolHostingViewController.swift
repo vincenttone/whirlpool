@@ -12,7 +12,8 @@ class WhirlpoolHostingViewController: UIHostingController<WhirlpoolMainContainer
     let controller = WhirlpoolTimingPageController()
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: WhirlpoolMainContainerView(controller: controller))
+        let view = WhirlpoolMainContainerView(controller: controller)
+        super.init(coder: aDecoder, rootView: view)
         controller.tryToRecoverSnapshot()
     }
 }

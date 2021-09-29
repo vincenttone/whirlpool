@@ -44,6 +44,11 @@ class WhirlpoolTimingPageController: ObservableObject {
         self.touchFeedback(feedbackStyle: .heavy)
     }
     
+    func saveBtnTouched() {
+        self.store.save()
+        WhirlpoolHistoryController.shared.reload()
+    }
+    
     private func doNothing() {
     }
     
