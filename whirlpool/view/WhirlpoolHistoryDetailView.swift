@@ -15,6 +15,15 @@ struct WhirlpoolHistoryDetailView: View {
     @State
     private var isSharing = false
     
+    @State
+    private var isDeleting = false
+    
+    @Environment(\.isPresented)
+    private var isPresented
+    
+    @Environment(\.dismiss)
+    private var dismiss
+    
     var body: some View {
         VStack {
             WhirlpoolTimingView(record: store.current_record!)
@@ -30,10 +39,29 @@ struct WhirlpoolHistoryDetailView: View {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    self.isDeleting.toggle()
+                } label: {
+                    Image(systemName: "trash")
+                }
+            }
         }
+        .alert(String(format: "删除：%@?", store.title), isPresented: self.$isDeleting, actions: {
+            Button {
+                if self.isPresented {
+                    self.dismiss()
+                    WhirlpoolHistoryController.shared.deleteHistory(self.store)
+                }
+            } label: {
+                Text("删除")
+            }
+
+        })
         .sheet(isPresented: self.$isSharing) {
             WhirlpoolShareSheet(activityItems: [self.store.description])
         }
+
     }
 }
 

@@ -174,12 +174,12 @@
 				BFDEF9A8270453CC004F08D1 /* WhirlpoolHomePageView.swift */,
 				BF0376B926EA06A6002F41DD /* WhirlpoolTimingView.swift */,
 				BF0376BB26EA06C4002F41DD /* WhirlpoolHistoryListView.swift */,
+				BFDEF9AA27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift */,
 				BFBF03E026EA16D30068BEFF /* WhirlpoolRecordListView.swift */,
 				BFBF03E926EAE8C30068BEFF /* WhirlpoolRecordCellView.swift */,
-				BFBF03ED26EB05670068BEFF /* button */,
 				BFE3CDDC26F050B8002C1E1B /* WhirlpoolRefreshableTableView.swift */,
 				BFDEF9A6270448C5004F08D1 /* WhirlpoolShareSheetView.swift */,
-				BFDEF9AA27045D05004F08D1 /* WhirlpoolHistoryDetailView.swift */,
+				BFBF03ED26EB05670068BEFF /* button */,
 			);
 			path = view;
 			sourceTree = "<group>";
