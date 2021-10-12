@@ -28,7 +28,8 @@ struct WhirlpoolHistoryListView: View {
                             Text(String(format: "%@", store.title))
                                 .padding(.vertical)
                             HStack {
-                                Text(String(format: "%dRECORDS", store.count()))
+                                Text(String(format: "%d%@", store.count(), NSLocalizedString("RECORDS", comment: "条记录")))
+//                                Text("RECORDS")
                                 Spacer()
                                 Text(store.start_time!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
                             }
