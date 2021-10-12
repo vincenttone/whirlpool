@@ -16,6 +16,9 @@ OK = "確認";
 
 UNTITLED = "暫未命名";
 RECORDS = "條記錄";
+NO_RECORDS = "暫無記錄";
+
+HISTORY = "歷史記錄";
 
 NAME = "名稱";
 ADD_COMMENT = "添加備註";
@@ -23,6 +26,7 @@ HIDE = "隱藏";
 PREVIOUS = "前一個";
 NEXT = "後一個";
 
+DELETE = "删除";
 DELETE_CONFIRM = "刪除記錄?";
 DELETE_CONFIRM_MSG = "";
 DELETE_FAILED = "刪除失敗";

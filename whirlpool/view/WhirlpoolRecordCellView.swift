@@ -27,7 +27,7 @@ struct WhirlpoolRecordCellView: View {
                 .foregroundColor(color)
 
             Spacer()
-            TextField("添加备注", text: $record.desc)
+            TextField("ADD_COMMENT", text: $record.desc)
                 .foregroundColor(color)
                 .onSubmit {
                     if self.editable {

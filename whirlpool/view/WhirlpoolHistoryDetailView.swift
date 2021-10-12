@@ -47,14 +47,14 @@ struct WhirlpoolHistoryDetailView: View {
                 }
             }
         }
-        .alert(String(format: "删除：%@?", store.title), isPresented: self.$isDeleting, actions: {
+        .alert(String(format: "DELETE_CONFIRM %@", store.title), isPresented: self.$isDeleting, actions: {
             Button {
                 if self.isPresented {
                     self.dismiss()
                     WhirlpoolHistoryController.shared.deleteHistory(self.store)
                 }
             } label: {
-                Text("删除")
+                Text("DELETE")
             }
 
         })

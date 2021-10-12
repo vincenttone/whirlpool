@@ -78,11 +78,11 @@ struct WhirlpoolHomePageView: View {
                 }
                 .sheet(isPresented: self.$isSaving) {
                     VStack {
-                        TextField("标题", text: self.$controller.store.title)
+                        TextField("UNTITLED", text: self.$controller.store.title)
                             .padding()
                             .font(.title)
                         WhirlpoolRecordListView(store: self.store)
-                        Button("保存") {
+                        Button("SAVE") {
                             self.controller.saveBtnTouched()
                             self.isSaving.toggle()
                         }

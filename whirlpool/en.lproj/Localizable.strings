@@ -16,6 +16,9 @@ OK = "ok";
 
 UNTITLED = "untitled";
 RECORDS = " records";
+NO_RECORDS = "no record";
+
+HISTORY = "history";
 
 NAME = "name";
 ADD_COMMENT = "add comment";
@@ -23,7 +26,8 @@ HIDE = "hide";
 PREVIOUS = "previous";
 NEXT = "next";
 
-DELETE_CONFIRM = "Delete this record?";
+DELETE = "delete";
+DELETE_CONFIRM = "Delete record?";
 DELETE_CONFIRM_MSG = "";
 DELETE_FAILED = "delete failed";
 DELETE_FAILED_MSG = "Something wrong with the deletion, may be you can do that later";

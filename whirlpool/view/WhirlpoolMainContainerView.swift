@@ -23,5 +23,6 @@ struct WhirlpoolMainContainerView: View {
 struct WhirlpoolMainContainerView_Previews: PreviewProvider {
     static var previews: some View {
         WhirlpoolMainContainerView(controller: WhirlpoolTimingPageController())
+            .environment(\.locale, .init(identifier: "zh-Hans"))
     }
 }

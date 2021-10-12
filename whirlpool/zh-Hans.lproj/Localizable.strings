@@ -16,6 +16,9 @@ OK = "确认";
 
 UNTITLED = "暂未命名";
 RECORDS = "条记录";
+NO_RECORDS = "暂无记录";
+
+HISTORY = "历史记录";
 
 NAME = "名称";
 ADD_COMMENT = "添加备注";
@@ -23,7 +26,8 @@ HIDE = "隐藏";
 PREVIOUS = "上一个";
 NEXT = "下一个";
 
-DELETE_CONFIRM = "确认删除记录?";
+DELETE = "删除";
+DELETE_CONFIRM = "确认删除?";
 DELETE_CONFIRM_MSG = "";
 DELETE_FAILED = "删除失败";
 DELETE_FAILED_MSG = "因未知原因删除失败，请稍后尝试";

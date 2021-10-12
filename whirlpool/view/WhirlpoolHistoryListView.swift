@@ -28,7 +28,7 @@ struct WhirlpoolHistoryListView: View {
                             Text(String(format: "%@", store.title))
                                 .padding(.vertical)
                             HStack {
-                                Text(String(format: "%d条记录", store.count()))
+                                Text(String(format: "%dRECORDS", store.count()))
                                 Spacer()
                                 Text(store.start_time!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
                             }
@@ -43,13 +43,13 @@ struct WhirlpoolHistoryListView: View {
                     self.controller.deleteHistory(store)
                 }
             }
-            .navigationTitle("历史记录")
+            .navigationTitle("HISTORY")
             .refreshable {
                 self.controller.load()
             }
         } else {
             VStack {
-                Label("暂无任何记录", systemImage: "ellipsis.rectangle")
+                Label("NO_RECORDS", systemImage: "ellipsis.rectangle")
             }
         }
         //        }
