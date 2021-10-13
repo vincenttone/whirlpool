@@ -129,21 +129,21 @@ class WhirlpoolRecordStore: NSObject, NSCoding, ObservableObject {
     
     func remove(at indexSet: IndexSet) {
         for i in indexSet {
-            print("remove index of ", i)
-            if i > self.records.count {
-                continue
-            }
-            if i == 0 {
-                self.current_record = self.records.popLast()
-                continue
-            }
-            self.records.remove(at: i - 1)
+            let _ = self.remove(index: i)
         }
     }
     
     func remove(index: Int) -> Bool {
         if self.records.count < index {
             return false
+        } else if index == 0 {
+            self.state = .INIT
+            if self.records.isEmpty {
+                self.current_record = WhirlpoolRecord(num: 1,  uuid: self.uuid)
+            } else {
+                self.current_record = self.records.popLast()
+            }
+            return true
         } else {
             self.records.remove(at: index - 1)
             return true

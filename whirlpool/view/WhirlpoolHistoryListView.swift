@@ -55,7 +55,7 @@ struct WhirlpoolHistoryListView: View {
                 self.controller.load()
             }
             .confirmationDialog("DELETE_CONFIRM", isPresented: self.$isDeleting) {
-                Button {
+                Button(role: .destructive) {
                     if self.deletingStore != nil {
                         self.controller.deleteHistory(self.deletingStore!)
                     }

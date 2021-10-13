@@ -44,11 +44,12 @@ struct WhirlpoolHistoryDetailView: View {
                     self.isDeleting.toggle()
                 } label: {
                     Image(systemName: "trash")
+                        .foregroundColor(.red)
                 }
             }
         }
         .confirmationDialog("DELETE_CONFIRM", isPresented: self.$isDeleting) {
-            Button {
+            Button(role: .destructive) {
                 if self.isPresented {
                     self.dismiss()
                     WhirlpoolHistoryController.shared.deleteHistory(self.store)

@@ -26,7 +26,7 @@ HIDE = "hide";
 PREVIOUS = "previous";
 NEXT = "next";
 
-DELETE = "delete";
+DELETE = "Delete";
 DELETE_CONFIRM = "Delete record?";
 DELETE_CONFIRM_MSG = "";
 DELETE_FAILED = "delete failed";
