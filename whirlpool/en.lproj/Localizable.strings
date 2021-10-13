@@ -14,11 +14,11 @@ SAVE = "save";
 CANCEL = "cancel";
 OK = "ok";
 
-UNTITLED = "untitled";
+UNTITLED = "Untitled";
 RECORDS = " records";
 NO_RECORDS = "no record";
 
-HISTORY = "history";
+HISTORY = "History";
 
 NAME = "name";
 ADD_COMMENT = "add comment";
@@ -31,3 +31,5 @@ DELETE_CONFIRM = "Delete record?";
 DELETE_CONFIRM_MSG = "";
 DELETE_FAILED = "delete failed";
 DELETE_FAILED_MSG = "Something wrong with the deletion, may be you can do that later";
+
+TOTAL_NUM_OF_RECORDS = "Total number of records: %d";

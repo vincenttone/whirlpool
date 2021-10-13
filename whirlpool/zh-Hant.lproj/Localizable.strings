@@ -31,3 +31,5 @@ DELETE_CONFIRM = "刪除記錄?";
 DELETE_CONFIRM_MSG = "";
 DELETE_FAILED = "刪除失敗";
 DELETE_FAILED_MSG = "刪除失敗，請稍後再試";
+
+TOTAL_NUM_OF_RECORDS = "共%d條記錄";

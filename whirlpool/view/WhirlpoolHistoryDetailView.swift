@@ -47,7 +47,7 @@ struct WhirlpoolHistoryDetailView: View {
                 }
             }
         }
-        .alert(String(format: "DELETE_CONFIRM %@", store.title), isPresented: self.$isDeleting, actions: {
+        .confirmationDialog("DELETE_CONFIRM", isPresented: self.$isDeleting) {
             Button {
                 if self.isPresented {
                     self.dismiss()
@@ -56,8 +56,9 @@ struct WhirlpoolHistoryDetailView: View {
             } label: {
                 Text("DELETE")
             }
-
-        })
+        } message: {
+            Text(String(format: "%@【%@】?", NSLocalizedString("DELETE", comment: "删除"), self.store.title))
+        }
         .sheet(isPresented: self.$isSharing) {
             WhirlpoolShareSheet(activityItems: [self.store.description])
         }

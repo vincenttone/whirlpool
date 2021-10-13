@@ -16,6 +16,12 @@ struct WhirlpoolHistoryListView: View {
     @Environment(\.colorScheme)
     private var colorScheme
     
+    @State
+    private var isDeleting = false
+    
+    @State
+    private var deletingStore: WhirlpoolRecordStore?
+    
     var body: some View {
         if self.controller.total > 0 {
             WhirlpoolRefreshableTableView(data: controller.stores, isLastPage: {
@@ -40,14 +46,26 @@ struct WhirlpoolHistoryListView: View {
                     })
             } onDelete: { ids in
                 if !ids.isEmpty && self.controller.stores.count > ids.first! {
-                    let store = self.controller.stores[ids.first!]
-                    self.controller.deleteHistory(store)
+                    self.deletingStore = self.controller.stores[ids.first!]
+                    self.isDeleting.toggle()
                 }
             }
             .navigationTitle("HISTORY")
             .refreshable {
                 self.controller.load()
             }
+            .confirmationDialog("DELETE_CONFIRM", isPresented: self.$isDeleting) {
+                Button {
+                    if self.deletingStore != nil {
+                        self.controller.deleteHistory(self.deletingStore!)
+                    }
+                } label: {
+                    Text("DELETE")
+                }
+            } message: {
+                Text(String(format: "%@【%@】?", NSLocalizedString("DELETE", comment: "删除"), self.deletingStore == nil ? "" : self.deletingStore!.title))
+            }
+
         } else {
             VStack {
                 Label("NO_RECORDS", systemImage: "ellipsis.rectangle")
