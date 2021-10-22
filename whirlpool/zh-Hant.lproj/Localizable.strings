@@ -25,6 +25,8 @@ ADD_COMMENT = "添加備註";
 HIDE = "隱藏";
 PREVIOUS = "前一個";
 NEXT = "後一個";
+Rename = "重命名";
+"Please input new name" = "輸入新標題";
 
 DELETE = "删除";
 DELETE_CONFIRM = "刪除記錄?";

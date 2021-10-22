@@ -30,6 +30,7 @@ struct WhirlpoolHomePageView: View {
             GeometryReader { proxy in
                 VStack {
                     WhirlpoolTimingView(record: self.store.current_record)
+                        .padding(.horizontal, proxy.size.width / 12)
                     Spacer()
                     WhirlpoolRecordListView(store: self.store)
                     Spacer()
@@ -42,7 +43,7 @@ struct WhirlpoolHomePageView: View {
                         WhirlpoolPlayButtonView(controller: self.controller, store: self.store, size: btnSize)
                         Spacer()
                     }
-                    Spacer()
+                    .padding()
                 }
                 .background(NavigationLink("", destination: WhirlpoolHistoryListView(), isActive: self.$showHistory))
                 .toolbar{
@@ -81,12 +82,18 @@ struct WhirlpoolHomePageView: View {
                         TextField("UNTITLED", text: self.$controller.store.title)
                             .padding()
                             .font(.title)
+                            .submitLabel(.done)
+                            .onSubmit {
+                                self.controller.saveBtnTouched()
+                                self.isSaving.toggle()
+                            }
                         WhirlpoolRecordListView(store: self.store)
                         Button("SAVE") {
                             self.controller.saveBtnTouched()
                             self.isSaving.toggle()
                         }
                         .font(.title2)
+                        .padding()
                         .disabled(self.store.title.isEmpty)
                     }
                 }
@@ -101,8 +108,13 @@ struct WhirlpoolHomePageView: View {
 }
 
 struct WhirlpoolHomePageView_Previews: PreviewProvider {
+    
     static var previews: some View {
         let controller = WhirlpoolTimingPageController()
         WhirlpoolHomePageView(controller: controller, store: controller.store)
+            .onAppear {
+                controller.store.current_record.time = TimeInterval(30)
+                controller.store.current_record.time_far = TimeInterval(600000)
+            }
     }
 }

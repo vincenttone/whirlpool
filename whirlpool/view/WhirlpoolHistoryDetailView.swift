@@ -25,43 +25,47 @@ struct WhirlpoolHistoryDetailView: View {
     private var dismiss
     
     var body: some View {
-        VStack {
-            WhirlpoolTimingView(record: store.current_record!)
-            WhirlpoolRecordListView(store: store, editable: true)
-        }
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-        .navigationBarTitle(Text(String(format: "%@", store.title )))
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    self.isSharing.toggle()
+        GeometryReader { proxy in
+            VStack {
+                WhirlpoolTimingView(record: store.current_record!)
+                    .padding(.horizontal, proxy.size.width / 12)
+                Spacer()
+                WhirlpoolRecordListView(store: store, editable: true)
+            }
+            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+            .navigationBarTitle(Text(String(format: "%@", store.title )))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        self.isSharing.toggle()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        self.isDeleting.toggle()
+                    } label: {
+                        Image(systemName: "trash")
+                            .foregroundColor(.red)
+                    }
+                }
+            }
+            .confirmationDialog("DELETE_CONFIRM", isPresented: self.$isDeleting) {
+                Button(role: .destructive) {
+                    if self.isPresented {
+                        self.dismiss()
+                        WhirlpoolHistoryController.shared.deleteHistory(self.store)
+                    }
                 } label: {
-                    Image(systemName: "square.and.arrow.up")
+                    Text("DELETE")
                 }
+            } message: {
+                Text(String(format: "%@【%@】?", NSLocalizedString("DELETE", comment: "删除"), self.store.title))
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    self.isDeleting.toggle()
-                } label: {
-                    Image(systemName: "trash")
-                        .foregroundColor(.red)
-                }
-            }
+            .sheet(isPresented: self.$isSharing) {
+                WhirlpoolShareSheet(activityItems: [self.store.description])
         }
-        .confirmationDialog("DELETE_CONFIRM", isPresented: self.$isDeleting) {
-            Button(role: .destructive) {
-                if self.isPresented {
-                    self.dismiss()
-                    WhirlpoolHistoryController.shared.deleteHistory(self.store)
-                }
-            } label: {
-                Text("DELETE")
-            }
-        } message: {
-            Text(String(format: "%@【%@】?", NSLocalizedString("DELETE", comment: "删除"), self.store.title))
-        }
-        .sheet(isPresented: self.$isSharing) {
-            WhirlpoolShareSheet(activityItems: [self.store.description])
         }
 
     }

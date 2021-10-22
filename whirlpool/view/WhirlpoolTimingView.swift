@@ -14,13 +14,16 @@ struct WhirlpoolTimingView: View {
     
     var body: some View {
         Text(TimeHelper.format2ReadableTime(time: record.time_far))
-            .font(.custom("helvetica neue", size: 72))
+            .font(.custom("helvetica neue", size: 720))
             .fontWeight(.thin)
+            .scaledToFit()
+            .minimumScaleFactor(0.1)
+            .lineLimit(1)
     }
 }
 
 struct WhirlpoolTimingView_Previews: PreviewProvider {
     static var previews: some View {
-        WhirlpoolTimingView(record: WhirlpoolRecord(num: 0, time: TimeInterval(30), time_far: TimeInterval(60)))
+        WhirlpoolTimingView(record: WhirlpoolRecord(num: 0, time: TimeInterval(30), time_far: TimeInterval(6000000)))
     }
 }

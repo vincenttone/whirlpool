@@ -146,14 +146,12 @@ class WhirlpoolRecordStoreManager {
                 repeats: true,
                 block: block
             )
-            print("process start", ProcessInfo.processInfo.processIdentifier)
         }
     }
     
     func invalidateTimer() {
         timerDisptachQueue.sync {
             self.currentTimer?.invalidate()
-            print("process stop", ProcessInfo.processInfo.processIdentifier)
         }
     }
     

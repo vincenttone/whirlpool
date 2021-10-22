@@ -56,11 +56,15 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
                 })
                 HStack {
                     GeometryReader { proxy in
+                        Spacer()
                         let offset = proxy.frame(in: .global).minY
                         Label(String(format: NSLocalizedString("TOTAL_NUM_OF_RECORDS", comment: "总记录数"), self.data.count), systemImage: "chevron.up.circle")
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding()
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .preference(key: ScrollViewBottomOffsetPreferenceKey.self, value: ScrollViewBottomOffset(value: offset))
+                        Spacer()
                     }
                 }
             }

@@ -21,7 +21,7 @@ struct WhirlpoolHistoryListView: View {
     
     @State
     private var deletingStore: WhirlpoolRecordStore?
-    
+        
     var body: some View {
         if self.controller.total > 0 {
             WhirlpoolRefreshableTableView(data: controller.stores, isLastPage: {
@@ -31,24 +31,27 @@ struct WhirlpoolHistoryListView: View {
                         WhirlpoolHistoryDetailView(store: store)
                     }, label: {
                         LazyVStack(alignment: .leading) {
-                            Text(String(format: "%@", store.title))
+                            Text(store.title)
                                 .padding(.vertical)
                             HStack {
                                 Text(String(format: "%d%@", store.count(), NSLocalizedString("RECORDS", comment: "条记录")))
-//                                Text("RECORDS")
+                                //                                Text("RECORDS")
                                 Spacer()
                                 Text(store.start_time!.quickFormat(format: "YYYY-MM-dd HH:mm:ss"))
                             }
                             .font(.footnote)
                             .foregroundColor(self.colorScheme == .light ? .green : .gray)
-                            .padding(.horizontal)
+//                            .padding(.horizontal)
+                        }
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                self.deletingStore = store
+                                self.isDeleting.toggle()
+                            } label: {
+                                Text("Delete")
+                            }
                         }
                     })
-            } onDelete: { ids in
-                if !ids.isEmpty && self.controller.stores.count > ids.first! {
-                    self.deletingStore = self.controller.stores[ids.first!]
-                    self.isDeleting.toggle()
-                }
             }
             .navigationTitle("HISTORY")
             .refreshable {
@@ -71,7 +74,6 @@ struct WhirlpoolHistoryListView: View {
                 Label("NO_RECORDS", systemImage: "ellipsis.rectangle")
             }
         }
-        //        }
     }
 }
 
