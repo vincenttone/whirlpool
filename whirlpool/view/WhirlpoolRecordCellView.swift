@@ -25,10 +25,10 @@ struct WhirlpoolRecordCellView: View {
         HStack {
             Image(systemName: self.imageName)
                 .foregroundColor(color)
-
             Spacer()
             TextField("ADD_COMMENT", text: $record.desc)
                 .foregroundColor(color)
+                .submitLabel(.done)
                 .onSubmit {
                     if self.editable {
                         do {

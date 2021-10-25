@@ -39,15 +39,7 @@ struct WhirlpoolRefreshableTableView<T: RandomAccessCollection, Cell: View>: Vie
         GeometryReader { proxy in
             List {
                 ForEach(data, id: \.self) { d in
-//                    if d == data.last {
-//                        GeometryReader { proxy in
-//                            let offset = proxy.frame(in: .global).minY
-//                            self.cellBuilder(d)
-//                                .preference(key: ScrollViewBottomOffsetPreferenceKey.self, value: ScrollViewBottomOffset(value: offset))
-//                        }
-//                    } else {
-                        self.cellBuilder(d)
-//                    }
+                    self.cellBuilder(d)
                 }
                 .onDelete(perform: { idxSet in
                     if self.deleteAction != nil {
