@@ -76,6 +76,10 @@ class WhirlpoolHistoryController: EzPage<Batch>, ObservableObject {
     
     private func convertAndAppendHistories(batches: [Batch]) {
         for b in batches {
+            if WhirlpoolRecordStoreManager.instance.currentStore?.uuid == b.uuid{
+                self.stores.append(WhirlpoolRecordStoreManager.instance.currentStore!)
+                continue
+            }
             let store = WhirlpoolRecordStore()
             store.loadHistory(b)
             self.stores.append(store)

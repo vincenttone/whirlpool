@@ -18,7 +18,7 @@ struct WhirlpoolRecordListView: View {
     var body: some View {
         List {
             ForEach([store.current_record], id: \.self) { record in
-                WhirlpoolRecordCellView(record: record, editable: self.editable, color: .green)
+                WhirlpoolRecordCellView(record: record, color: .green)
             }
 //            .onDelete { _ in
 //                if self.editable {
@@ -28,7 +28,7 @@ struct WhirlpoolRecordListView: View {
 //                self.store.remove(at: IndexSet(integer: 0))
 //            }
             ForEach(self.store.records.reversed(), id: \.self) { record in
-                WhirlpoolRecordCellView(record: record, editable: self.editable, imageName: "timer", color: .gray)
+                WhirlpoolRecordCellView(record: record, imageName: "timer", color: .gray)
             }
 //            .onDelete { idx in
 //                var index:IndexSet = []

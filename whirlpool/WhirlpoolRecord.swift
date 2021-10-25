@@ -90,6 +90,22 @@ class WhirlpoolRecord :NSObject, NSCoding, ObservableObject {
         return String(format: "#%d\t%@\t%@\t%@", self.num, TimeHelper.format2ReadableTime(time: self.time), TimeHelper.format2ReadableTime(time: self.time_far), self.desc)
     }
     
+    var isSaved: Bool {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        // save records
+        let request = NSFetchRequest<Record>(entityName: "Record")
+        let predicate = NSPredicate(format: "uuid = \"\(self.uuid!)\" AND %K = %d", "no", self.num)
+        request.predicate = predicate
+        do {
+            let records = try context.fetch(request)
+            return !records.isEmpty
+        } catch {
+            NSLog("get record failed! error: %@", error.localizedDescription)
+            return false
+        }
+    }
+    
     func update() throws {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext

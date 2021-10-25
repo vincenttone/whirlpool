@@ -13,9 +13,6 @@ struct WhirlpoolRecordCellView: View {
     var record: WhirlpoolRecord
     
     @State
-    var editable = false
-    
-    @State
     var imageName: String = "stopwatch"
     
     @State
@@ -30,7 +27,7 @@ struct WhirlpoolRecordCellView: View {
                 .foregroundColor(color)
                 .submitLabel(.done)
                 .onSubmit {
-                    if self.editable {
+                    if record.isSaved {
                         do {
                             try self.record.update()
                         } catch {

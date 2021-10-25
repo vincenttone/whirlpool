@@ -199,6 +199,24 @@ class WhirlpoolRecordStore: NSObject, NSCoding, ObservableObject {
         return records
     }
     
+    var isSaved: Bool {
+        if self.isWaiting() {
+            return false
+        }
+        let fbr = NSFetchRequest<Batch>(entityName: "Batch")
+        do {
+            let app = UIApplication.shared.delegate as! AppDelegate
+            let context = app.persistentContainer.viewContext
+            let fbp = NSPredicate(format: "uuid=\"\(self.uuid)\"", "")
+            fbr.predicate = fbp
+            let fetchedBatch = try context.fetch(fbr)
+            return !fetchedBatch.isEmpty
+        } catch {
+            NSLog("fetch record failed! error %@", error.localizedDescription)
+            return false
+        }
+    }
+    
     func save() {
         if self.isWaiting() {
             return
